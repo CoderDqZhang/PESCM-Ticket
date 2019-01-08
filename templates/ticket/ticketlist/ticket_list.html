@@ -1,0 +1,219 @@
+{% extends "ticket/base_site.html" %}
+{% block head %}
+<style>
+    .col-center-block {
+        float: none;
+        display: block;
+        margin-top: 5%;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: white;
+    }
+</style>{% endblock %}
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{rootUrl}}/api/ticket/create/">提交工单</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    工单列表
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{rootUrl}}/api/ticket/myticket/?page=1&status=4&dateType=100">我的工单</a>
+                    <a class="dropdown-item" href="{{rootUrl}}/api/ticket/list/?page=1&status=4&dateType=100">工单列表</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarTicket" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    工单设置
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">工单模型</a>
+                </div>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" action="../logout/">
+        <span class="navbar-text" style="margin-right: 30px;">
+      您好，{{ user.nickname }}
+    </span>
+            <button type="submit" class="btn btn-primary btn-sm">退出登录</button>
+        </form>
+    </div>
+</nav>
+<div class="bg-white border rounded d-block p-4 h-auto w-95 mt-4 ml-2 mr-2">
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+            {% if status == 4 %}
+            <button type="button" class="btn btn-secondary bg-primary border-light text-white"
+                    onclick="statusClick(4)">全部
+            </button>
+            {% else %}
+            <button type="button" class="btn btn-secondary bg-light border-light text-dark"
+                    onclick="statusClick(4)">全部
+            </button>
+            {%endif%}
+
+            {% if status == 0 %}
+            <button type="button" class="btn btn-secondary bg-primary border-light text-white"
+                    onclick="statusClick(0)">待回复
+            </button>
+            {% else %}
+            <button type="button" class="btn btn-secondary bg-light border-light text-dark"
+                    onclick="statusClick(0)">待回复
+            </button>
+            {%endif%}
+            {% if status == 3 %}
+            <button type="button" class="btn btn-secondary bg-primary border-light text-white"
+                    onclick="statusClick(3)">已完成
+            </button>
+            {% else %}
+            <button type="button" class="btn btn-secondary bg-light border-light text-dark"
+                    onclick="statusClick(3)">已完成
+            </button>
+            {%endif%}
+        </div>
+        <div class="btn-group mr-2" role="group" aria-label="Second group">
+            {% if dateType == 100 %}
+            <button type="button" class="btn btn-secondary bg-primary border-light text-white"
+                    onclick="dateTypeClick(100)">全部
+            </button>
+            {% else %}
+            <button type="button" class="btn btn-secondary bg-light border-light text-dark"
+                    onclick="dateTypeClick(100)">
+                全部
+            </button>
+            {%endif%}
+            {% if dateType == 1 %}
+            <button type="button" class="btn btn-secondary bg-primary border-light text-white"
+                    onclick="dateTypeClick(1)">今天
+            </button>
+            {% else %}
+            <button type="button" class="btn btn-secondary bg-light border-light text-dark" onclick="dateTypeClick(1)">
+                今天
+            </button>
+            {%endif%}
+            {% if dateType == -1 %}
+            <button type="button" class="btn btn-secondary bg-primary border-light text-white"
+                    onclick="dateTypeClick(-1)">昨天
+            </button>
+            {% else %}
+            <button type="button" class="btn btn-secondary bg-light border-light text-dark" onclick="dateTypeClick(-1)">
+                昨天
+            </button>
+            {%endif%}
+            {% if dateType == -7 %}
+            <button type="button" class="btn btn-secondary bg-primary border-light text-white"
+                    onclick="dateTypeClick(-7)">本周
+            </button>
+            {% else %}
+            <button type="button" class="btn btn-secondary bg-light border-light text-dark" onclick="dateTypeClick(-7)">
+                本周
+            </button>
+            {%endif%}
+        </div>
+    </div>
+    <table class="table mt-4">
+        <thead>
+        <tr>
+            <th scope="col">工单编号</th>
+            <th scope="col">相关产品</th>
+            <th scope="col">问题内容</th>
+            <th scope="col">状态</th>
+            <th scope="col">提交时间</th>
+            <th scope="col">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for ticket in ticket_list%}
+
+        <tr>
+            <th scope="col">{{ticket.ticket_id}}</th>
+            <td scope="col">{{ticket.ticket_model_ticket}}</td>
+            <td scope="col">{{ticket.ticket_title}}</td>
+            {% if ticket.ticket_status == 0 %}
+            <td scope="col" class="text-danger">未完成</td>
+            {% else %}
+            <td scope="col" class="text-success">已完成</td>
+            {% endif %}
+            <td scope="col">{{ticket.create_time}}</td>
+            <td scope="col"><a href="">工单详情</a></td>
+        </tr>
+        {%endfor%}
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                {% if ticket_list.has_previous %}
+                <li class="page-item">
+                    <a class="page-link"
+                       href="?page={{ ticket_list.previous_page_number }}&status={{status}}&dateType={{dateType}}">上一页</a>
+                </li>
+                {% endif %}
+                {% if ticket_list.paginator.num_pages > 1 %}
+                {% for index in ticket_list.paginator.page_range %}
+                {% if index == ticket_list.number %}
+                <li class="page-item "><a class="page-link bg-primary border-light text-white"
+                                         href="?page={{ index }}&status={{status}}&dateType={{dateType}}">{{index}}</a>
+                </li>
+                {% else %}
+                <li class="page-item"><a class="page-link"
+                                         href="?page={{ index }}&status={{status}}&dateType={{dateType}}">{{index}}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                {% if ticket_list.has_next %}
+                <li class="page-item">
+                    <a class="page-link"
+                       href="?page={{ ticket_list.next_page_number }}&status={{status}}&dateType={{dateType}}">下一页</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+
+    function changeUrlArg(url, arg, arg_val) {
+        var pattern = arg + '=([^&]*)';
+        var replaceText = arg + '=' + arg_val;
+        if (url.match(pattern)) {
+            var tmp = '/(' + arg + '=)([^&]*)/gi';
+            tmp = url.replace(eval(tmp), replaceText);
+            return tmp;
+        } else {
+            if (url.match('[\?]')) {
+                return url + '&' + replaceText;
+            } else {
+                return url + '?' + replaceText;
+            }
+        }
+        return url + '\n' + arg + '\n' + arg_val;
+    }
+
+    function statusClick(ticket_status) {
+        var urls = location.href.split('?')
+        var parms = urls[1].split('&')
+        var newurl1 = urls[0] + '?' + parms[0] + '&status=' + ticket_status + '&' + parms[2]
+        window.location.href = newurl1;
+    }
+
+    function dateTypeClick(dateType_id) {
+        var urls = location.href.split('?')
+        var parms = urls[1].split('&')
+        var newurl1 = urls[0] + '?' + parms[0] + '&' + parms[1] + '&dateType=' + dateType_id
+        window.location.href = newurl1;
+    }
+
+
+</script>
+{% endblock %}

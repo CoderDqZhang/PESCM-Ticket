@@ -1,0 +1,114 @@
+{% extends "blog_temp/base_site.html" %}
+{% block content %}
+    <article>
+        <div class="blogs">
+            {% for blog in blog_list %}
+                <li>
+                    {% if blog.image != 'image/list.png' %}
+                        <span class="blogpic"><a href="../detail/?blog_id={{ blog.id }}&categary={{ categary_id }}">
+                    <img
+                            src="/media/{{ blog.image }}"></a></span>
+                    {% endif %}
+                    <h3 class="blogtitle"><a
+                            href="../detail/?blog_id={{ blog.id }}&categary={{ categary_id }}">{{ blog.title }}</a></h3>
+                    <div class="bloginfo">
+                        <p>{{ blog.content }}</p>
+                    </div>
+                    <div class="autor"><span class="lm"><a
+                            href="../detail/?blog_id={{ blog.id }}&categary={{ categary_id }}"
+                            title="{{ blog.category.name }}"
+                            target="_blank" class="classname">{{ blog.category.name }}</a></span><span
+                            class="dtime">{{ blog.pub }}</span><span class="viewnum">浏览（<a
+                            href="/">{{ blog.read_number }}</a>）</span><span
+                            class="readmore"><a
+                            href="../detail/?blog_id={{ blog.id }}&categary={{ categary_id }}">阅读原文</a></span></div>
+                </li>
+            {% endfor %}
+        </div>
+        <div class="sidebar">
+            <div class="about">
+                <div class="avatar"><img src="/media/{{ user.avatar }}" alt=""></div>
+                <p class="abname">{{ user.nickname }}</p>
+                <p class="abposition">{{ user.abposition }}</p>
+                <div class="abtext"> {{ user.abtext }}</div>
+            </div>
+            <div class="search">
+                <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
+                    <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字"
+                           style="color: rgb(153, 153, 153);"
+                           onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}"
+                           onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text">
+                    <input name="show" value="title" type="hidden">
+                    <input name="tempid" value="1" type="hidden">
+                    <input name="tbname" value="news" type="hidden">
+                    <input name="Submit" class="input_submit" value="搜索" type="submit">
+                </form>
+            </div>
+            <div class="cloud">
+                <h2 class="hometitle">标签云</h2>
+                <ul>
+                    {% for tag in tag_list %}
+                        <a href="?tag_id={{ tag.id }}">{{ tag.name }}</a>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="paihang">
+                <h2 class="hometitle">点击排行</h2>
+                <ul>
+                    {% for blog in click_blog_list %}
+                        <li><b><a href="/detail/?blog_id={{ blog.id }}&categary={{ categary_id }}"
+                                  target="_blank">{{ blog.title }}</a></b>
+                            <p>
+                                {% if blog.image != 'image/list.png' %}
+                                    <i><img src="/media/{{ blog.image }}"></i>
+                                {% endif %}
+                                {{ blog.content }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="paihang">
+                <h2 class="hometitle">站长推荐</h2>
+                <ul>
+                    {% for blog in recommond_list %}
+                        <li><b><a href="/detail/?blog_id={{ blog.id }}&categary={{ categary_id }}"
+                                  target="_blank">{{ blog.title }}</a></b>
+                            <p>{% if blog.image != 'image/list.png' %}
+                                <i><img src="/media/{{ blog.image }}"></i>
+                            {% endif %}{{ blog.content }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="weixin">
+                <h2 class="hometitle">官方微信</h2>
+                <ul>
+                    <img src="../../static/server_images/ercode_image.jpeg">
+                </ul>
+            </div>
+        </div>
+    </article>
+    <div class="blank"></div>
+    {% if blog_list.paginator.num_pages > 1 %}
+        <div class="pagelist"><a title="Total record">&nbsp;<b>{{ blog_list.paginator.num_pages }}</b></a>&nbsp;
+            {% for index in blog_list.paginator.page_range %}
+                {% if index == page %}
+                    <a href="?page={{ index }}&categary={{ categary_id }}">
+                        {{ index }}</a>
+                {% else %}
+                    <a href="?page={{ index }}&categary={{ categary_id }}">
+                        {{ index }}</a>
+                {% endif %}
+            {% endfor %}&nbsp;
+            {% if page == blog_list.paginator.num_pages %}
+                <a href="?page={{ blog_list.paginator.num_pages }}&categary={{ categary_id }}">
+                    下一页</a>
+            {% else %}
+                <a href="?page={{ blog_list.next_page_number }}&categary={{ categary_id }}">
+                    下一页</a>
+            {% endif %}
+            <a href="?page={{ blog_list.paginator.num_pages }}&categary={{ categary_id }}">尾页</a></div>
+    {% endif %}
+{% endblock %}

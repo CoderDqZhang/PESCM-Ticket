@@ -1,0 +1,257 @@
+{% extends "blog_temp/base_site.html" %}
+
+{% block content %}
+    <article>
+        <div class="blogs">
+            <div class="article_content">
+                <div class="article_info">
+                    <h1>{{ blog.title }}</h1>
+                    <p class="time">时间-{{ blog.pub }} 阅读({{ blog.read_number }})</p>
+                </div>
+                <div class="blog_content" id="content"><textarea class="blog_markdown">{{ blog.content }}</textarea>
+                </div>
+            </div>
+            <div id="free-reward-panel" class="support-author"><p>主编很辛苦，快来安慰我</p>
+                <div class="btn btn-pay">赞赏支持</div>
+                <div class="supporter"></div>
+
+            </div>
+            <div class="meta-bottom">
+                <div data-v-6ddd02c6="" class="like">
+                    <div data-v-6ddd02c6="" class="btn like-group">
+                        <div data-v-6ddd02c6="" class="btn-like"><a data-v-6ddd02c6="">喜欢</a></div>
+                        <div data-v-6ddd02c6="" class="modal-wrap"><a data-v-6ddd02c6="">3</a></div>
+                    </div> <!----></div>
+                <div class="share-group">
+                    <li class="row">
+                        <div id="share-2" class="share-component social-share">
+                            <a class="social-share-icon icon-qzone"
+                               href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=file%3A%2F%2F%2FUsers%2Fzhang%2FDownloads%2Fshare.js%25E8%2587%25AA%25E5%25AE%259A%25E4%25B9%2589%25E5%2588%2586%25E4%25BA%25AB%25E5%2588%25B0%25E7%25AC%25AC%25E4%25B8%2589%25E6%2596%25B9SNS%25E5%25B9%25B3%25E5%258F%25B0%2Findex.html&amp;title=content%20title&amp;desc=&amp;summary=&amp;site=content%20site"
+                               target="_blank"></a>
+                            <a
+                                    class="social-share-icon icon-qq"
+                                    href="http://connect.qq.com/widget/shareqq/index.html?url=file%3A%2F%2F%2FUsers%2Fzhang%2FDownloads%2Fshare.js%25E8%2587%25AA%25E5%25AE%259A%25E4%25B9%2589%25E5%2588%2586%25E4%25BA%25AB%25E5%2588%25B0%25E7%25AC%25AC%25E4%25B8%2589%25E6%2596%25B9SNS%25E5%25B9%25B3%25E5%258F%25B0%2Findex.html&amp;title=content%20title&amp;source=content%20site&amp;desc=&amp;pics=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAO%2BklEQVR4Xu1dv75szRDtLyEiQoKIBBEJIiS8AF6AiOTjBfAASBDxAP48ABESRES%2BiAQRERERv%2FXdvebUXVNVe9WeOece7J2ce2e6a7q7urqqVlX1fm2t9e91%2FPn2Wuura62Pr7V%2BJWTw2W%2FWWmjzevjuL2ut927%2Fx7%2FfHb7L6L1WDO%2Fza60frrUyevjux8NpkV7XjeOLbbh%2B1XxHw8BkT4a8WLJnx5Avr7XeMNn59bXWJ7bdDwl5%2B1rrI1vfn29%2Ff7fW%2Bsda631rrfestX6x1vrG1hZ98GBXvWWtBXq%2FXGv9ea31R6GHfni%2Bt9b6YBjf7zcpwG8rPUrI59ZamBfa4i8e0vvSNl98jnbv3Oj%2FbWMO2kLK3pFIMMaB8eDB2PH8dpsvTwTO11lS0PsuGkYJocg5BDDQzwaGxD6VxKEPFgrH1Z%2FkR5wjBsffR0M%2Fhx4Y9c3t6MT88OwdMbceqWQIx%2Bes5%2BXIzxjymW3nZoS%2Bte0CZQgk4Itbh68VI4D0Vef6j0Q6Iz3uQNDH53woIR2DM4aQng7zQ9smyxiCcWP8v15r%2FUx0puo4ZUiUYP3NK3oZQ1QJRyKYPAasDMmUerUz4oSrNpFepdTZd8oQ9qPEgWmY88RI6ManDMnGxzFcGTGPwRDogvhQh%2FCzjCE4Q98VOmUSwjNamZhNmDoJCweJh276wdZRddJ31lo%2FKRiCjQfdAqmP84oM%2BdRGV3VId6Q%2BKUMqEe4YQomLu7c68x2GlBPe9GYmmZmEOBLMNmr2ngxJVu9Wv%2BZ%2FmiHZjqFOqiaOz5%2FKT3KsIhoJ2Xj%2F6yTkZMg1Gy2l3u1Wftf5IWrFxD44p%2BOj0EmnQ3Rc3Y6eWIFqZcXfcSRYx3V3P%2BRkyMMKvFKGEOpwGAIzFeYgRS5CCZ%2FcCNDOByQAsxKOFyCKvwZoghJCMxXfA9JAX7WyCO3gL1ACSgjGQYcT%2FQF9dBJCMxXQxwc22CX6IRE6ISxEs9eBYighoONCUXAeP4x1ewxwkWbvEcdrAnV0OqljyFONz9nYV20wuApKcAjS9c8cOYch3IHOb7ENHL2PBQmJ0IQD7SgU89NNIumHABDFLu%2Be6GiS3vc3FKODnnbnuQdL7BJoGjgMqYyEDJqowMVsCI7Rof0y%2BL2Cim5Zl7YvGMIzv2r4z20Hxe8JdWRwOdsRDOygiVsY0sHbDA%2BAMdAVf19rQUfiqeaLz6Er%2FhXmW%2BmkuBZK7w%2BbpLDNWxuw9mr9HB2SYU%2BOWalwfgdNTM78I7szMxIqOs58Y191XGlGs81hcPGWAXYhXNI9GXK9wq1j6DCEZqoGlJwzn%2FSnMfC9HXirDuli%2Fs6Rqr%2BvEhK%2F380hmB5ZJ0PqpA4u%2FN0YojF1Krm4oyEJUFJQdnD0%2BFwcmwBvI8aOz%2FWJRoLSQ%2BSQsWr2q5QmPofyjo4m%2B6jREcegMXXEa3DOZ0qd%2FRjRZHwlzreSkGx8nC%2F7XNHrYurOmZ8dF0dM6VvMVCcCmSnhyujI5sQjukN7VUKc%2BMoVvegYVo4NTEY6So4jt%2Bdodo4crCHErKPjxYnSjKYjRygmW0Dd0Vmbar4Y31e2Dpg3HEXScxiC8WMeWYye66f0sKnejGhmu7lDKysdUhkE2efRDFTHi%2B2jmRo%2FQ9aJY1Z2O3ovKSEbX9z9yGKZPJ0RcwUVxcHxzKfrj%2Fwq5FHFhzFmcrjLoyI9OkoAAbFrooTQ8YJU4cwFBIMzPTKEOkTBQNLDX4wnPgpWYpfTMdzLo4r0FO0luOgwhHlekSG6fgRTAUK%2BmTcWGaJQR%2FejE0euy%2BrIFGKVR1Wd0c7iZI6hk%2Fp5BH7neA7p4JMh17nHkcHPkiHdmersTm3j0HPyvCaZi3EMCr%2Fzu0NZIokePhIxvIzPkRBnASeMceidDGlWtLOKuvT8W858Z0d3m6DLFd7LYun8GsfsVYmL41QrtbWyqgmeDHlYmVfCEKbn0%2ByNeD4ihIgXKDSRpedzGjR7aXXEmLVz1BHqUCiGUEdWPgAzEp%2FzieUIKiGM%2BWdQkaaSdgxR6ClzXBnRJPR0ZeZPHcNqAZ3kaAdKcBjUmZVH0oomydZOopyOL7PaytTZDjrJCmImC8a2Tsy6gzqqcgRnLNgon94ieEy21n7d%2BMCAt23xe0gd6WW%2FXWFjMUavMX9CRS9ZWVrA0pmp1SJ0EbkuES3uJuyabAdOzFT1Gzp6OhenpK3bBHeJkEa0l2egxoRj3hNL0CZnNBlCODpOSkvaCCVkUAehE5S84WiiBGdQB3VcR4%2FlA4TfO7CSeWgZQ1imwBK57kjld4SKmLWTlrSxsRNgmZiVDj2d6FGJc8DKqqTNSU3NGDKpEtb%2BKfw%2BCZE6aO8ReidDthW4teiz2zGaR8W206LK6tw%2BuqNJ75YiVwdJcObLNpcT4WSIY6vdr6Zy1yyPiXJVDV82ZK0JjG3UkWNyNBPbYky9ysKIde%2F6%2B6THZOYups6%2BF6UZiFXJ5U6MPqsxpNGh442JdzR72ebK6DgS%2F%2Fb21EMrJwLJ1hk2pr%2FnpO1on6NHTDXXSdpTpLFrlkeGaMyahLo66445jFlzAbs69Y6OxuiVIV1ydFZXzigo5ot7VhgDz8agUIdDr5vLiCFVxLBLhex%2B%2FEhEznHkujr6TJpAs9vRXYz%2BHnX5YwlhzFqTo7OYNZiGM1GfmKdER4kSomd%2B7MsdCCcPOiGLWVcx8K4gho4ck61juUSM0aMdk8G7mL%2BTy1zpJICzKJ%2FAsxujd%2FKyOg7zO%2BdMzczUiV9TVblmUtrVvVdS7cTAneuolL4TkLv0ORnysHzPniEcqhOg6uD3I2d%2Btoud24CcM3%2BvpC37bSdz8Uid%2BtVvOY7hyZAXF9NUaHQ8tuMNek7SRMsQfnmkbruz8x16eubHge7B744OydpMcnu1f5fnNdEhI3Cxq7nTHz0Z8sK0BqOelCGO2cs6cA5MY%2BqZ1dZJyMSMJm01ezMJUago24D4DOa11ixGMxpXHeI5YvaCzvv1OKjg8qMRtL34wJQh1Rldma%2FxcweKYftJFe4EisnmW449KnXEnOEX6JOl58dFqmLWdAx1wk6MGTvnC1tHQh1H6sC7OvqqvCHO17HaqsWdXGl4oZFZWd0VdRUW4yi5o3b%2BPQDQVwGdHHKEs5i6wuVZ%2BYDGrCNDCL9zR6sOyTIDGWNmSVt2d0pVIhd3aJU3ljGE18520ImCi9n4KglhzD9%2BrwU7LOdIJaQi3NVts49TYHNrXlYVgex00q03yjnQTrVuE510MiRZxcmtpI5BcTNDJnlFHNBj5VFlEucsAttMHM1JiVw0ZnjX%2FREdV6LHDrg4zQbf86ydGr7%2Fa4YwPqCO0qQm8FIjF657UrOXiWhZVS8vCKPExUQ5jV%2BopDgx9dhHY%2F7dZTHYybj7nYmBVOodmMpk9U6i6bhis%2FOu%2B8sFZntHwbRqtkpNdc7oyRHIcU%2Fr1PfmG7%2FfvQqjqaCa%2FM5LSr26gMtJtmbycTxiNAaudeVRQqoCljgZjYHzu8zx0qyObFGq8WVtaaYikoldfZUcnVwANwk3xE11qVOfpFbuVgCFWTlVvQ5Dqp3WXfHX7c5JZmVlJHQ67ghD2kQ5EszyqLTOGhJS3a1OhrAgJlskntGMN2QxdQXvuveRaIye4F28wIw6hOOhY8j%2FZwVKtIp45mc3TVAHdzpEk9XTgp3J%2BzR0x3SOl%2BPIkZ6TvF1lsYxuSjAO9mlALprCGfye6SQNeFkS0inNycUBxhpcInJZ28mGmRyp1biePUOygU9Cmto%2Fy%2FM6Qu%2FeVtu9k7cPja9De7udfWQBSe9kSBOjd9z%2BLnPRyVO66WaDxGo7cgQ6ASVHQiZ1%2Bd04y%2FvBToY8LNuzZwhrAmMqJIffveaObaqIXIQ6tA6cfZ275J06dUId2Wv9dAc75Q1X8YvkHmC92Tqbb3l3fichXUy9M1M5UXUMHSUXTUhFUyf0SMc5YpQxt0IxXbnELhTTMYRgYBdTz87J6m71DlwknS7dn20cKAaSF19zF8epnrpeyZfF%2FPXSz0hvr1wiMri6IvGSQzDVIVWVaxygQ1MZ6WSXOzWBToRvkmVzZL6TgqI0UY6LU8WsszpwvZIvLrC%2BRk4XP4MmNKYerSLNyyI9nM36fg5liAOdqMRl5QOT%2BSpDsrtdtPzipfeH6JnfmWu7FUCh85FMPkeHsI2T1XF1%2FVEyuSNZNtkaOQVK7Kc6%2BLIBswvMToY8vKv3yAZ00N6WIXsBpcigKnGsU5r3ugRzsgO7TRWlMGarZ32cOxf3LkTr1i%2BeTphf%2B7boQ1kTyXsHT4Y8sGT36o%2BuTp0x9cjhWy4w62L0%2FA0q4SyZWSVk8kKXWKdOo6OqOo5GjCaXZ4lyjNdU76PPjCJalayBvMRrjpiolUJz02KcmrsMezpSY%2BjEa5w0IM7Zwe50fRw4%2F9InXmDmnLvaJktmruh0MfrJXe1qFTl3yWfJ26xTV4Y4dfmRnuokQifZ%2B955l7zG6C8RyAi%2FH2HIBJp4SjO1S5TTeXbXR2Vtq7vfb6kxTCOGt7xYMg5cY9YaA493nWiMPnuxpOaNqYR0L5bkuGKeF898fkeGUMdl7zfp6uhJjwzRS0TjkUWdpHlZl0s6naLPTHJKPL9xvPjVNHl7khXD3%2Bjq1Pegky5Gn63F5IrEXbfhZMjD6y8maHTmd02QiTZAtZdEMHUMdRc5twF1IWG1BB1PuNOH96DXXUF4RBe%2FZGWdDFnr9eEqPnuGOH5DNuddzzV4%2FhMrxsnz0vFMCv27Ej5HgsvxTbNOJkWQDvZ0MkS2xWMyhGY04w386ek9u2pW8p5dxkOiWcm6ckb4nNfwcVwZveokyySE81UzP9KoyhsuOQSPyRC18%2Fl%2Fp2AnW4i7WDGGrnAubHN0SOcIcxhXUEzGkO594NX7yqMO0fIBOl7O2wJY3gBfQO9qrwqAjDVum6gEO9BJRpBQDL%2FLyiX0LvmrHIJ7%2BSFOHbhTp87JOCVtjt%2FQvc2gkmCHwd18nf5WgKqCj7Mf4N0fHZqqdeBcwBhjJpyv6f7xfR%2F8fX0NX0bPKW%2BI9PDmA5ZLUIdM35eiJXfUIfydeE0syxE0ry3VIQ5nM6evumRS2x4NeEWpiS%2BWvFfeGOl3BUD3goqqvKzUMTwZ8iIJehS%2FSBbtSKLchcx%2FAEFYSDmxbKanAAAAAElFTkSuQmCC"
+                                    target="_blank"></a>
+                            <a class="social-share-icon icon-weibo"
+                               href="http://service.weibo.com/share/share.php?url=file%3A%2F%2F%2FUsers%2Fzhang%2FDownloads%2Fshare.js%25E8%2587%25AA%25E5%25AE%259A%25E4%25B9%2589%25E5%2588%2586%25E4%25BA%25AB%25E5%2588%25B0%25E7%25AC%25AC%25E4%25B8%2589%25E6%2596%25B9SNS%25E5%25B9%25B3%25E5%258F%25B0%2Findex.html&amp;title=content%20title&amp;pic=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAO%2BklEQVR4Xu1dv75szRDtLyEiQoKIBBEJIiS8AF6AiOTjBfAASBDxAP48ABESRES%2BiAQRERERv%2FXdvebUXVNVe9WeOece7J2ce2e6a7q7urqqVlX1fm2t9e91%2FPn2Wuura62Pr7V%2BJWTw2W%2FWWmjzevjuL2ut927%2Fx7%2FfHb7L6L1WDO%2Fza60frrUyevjux8NpkV7XjeOLbbh%2B1XxHw8BkT4a8WLJnx5Avr7XeMNn59bXWJ7bdDwl5%2B1rrI1vfn29%2Ff7fW%2Bsda631rrfestX6x1vrG1hZ98GBXvWWtBXq%2FXGv9ea31R6GHfni%2Bt9b6YBjf7zcpwG8rPUrI59ZamBfa4i8e0vvSNl98jnbv3Oj%2FbWMO2kLK3pFIMMaB8eDB2PH8dpsvTwTO11lS0PsuGkYJocg5BDDQzwaGxD6VxKEPFgrH1Z%2FkR5wjBsffR0M%2Fhx4Y9c3t6MT88OwdMbceqWQIx%2Bes5%2BXIzxjymW3nZoS%2Bte0CZQgk4Itbh68VI4D0Vef6j0Q6Iz3uQNDH53woIR2DM4aQng7zQ9smyxiCcWP8v15r%2FUx0puo4ZUiUYP3NK3oZQ1QJRyKYPAasDMmUerUz4oSrNpFepdTZd8oQ9qPEgWmY88RI6ManDMnGxzFcGTGPwRDogvhQh%2FCzjCE4Q98VOmUSwjNamZhNmDoJCweJh276wdZRddJ31lo%2FKRiCjQfdAqmP84oM%2BdRGV3VId6Q%2BKUMqEe4YQomLu7c68x2GlBPe9GYmmZmEOBLMNmr2ngxJVu9Wv%2BZ%2FmiHZjqFOqiaOz5%2FKT3KsIhoJ2Xj%2F6yTkZMg1Gy2l3u1Wftf5IWrFxD44p%2BOj0EmnQ3Rc3Y6eWIFqZcXfcSRYx3V3P%2BRkyMMKvFKGEOpwGAIzFeYgRS5CCZ%2FcCNDOByQAsxKOFyCKvwZoghJCMxXfA9JAX7WyCO3gL1ACSgjGQYcT%2FQF9dBJCMxXQxwc22CX6IRE6ISxEs9eBYighoONCUXAeP4x1ewxwkWbvEcdrAnV0OqljyFONz9nYV20wuApKcAjS9c8cOYch3IHOb7ENHL2PBQmJ0IQD7SgU89NNIumHABDFLu%2Be6GiS3vc3FKODnnbnuQdL7BJoGjgMqYyEDJqowMVsCI7Rof0y%2BL2Cim5Zl7YvGMIzv2r4z20Hxe8JdWRwOdsRDOygiVsY0sHbDA%2BAMdAVf19rQUfiqeaLz6Er%2FhXmW%2BmkuBZK7w%2BbpLDNWxuw9mr9HB2SYU%2BOWalwfgdNTM78I7szMxIqOs58Y191XGlGs81hcPGWAXYhXNI9GXK9wq1j6DCEZqoGlJwzn%2FSnMfC9HXirDuli%2Fs6Rqr%2BvEhK%2F380hmB5ZJ0PqpA4u%2FN0YojF1Krm4oyEJUFJQdnD0%2BFwcmwBvI8aOz%2FWJRoLSQ%2BSQsWr2q5QmPofyjo4m%2B6jREcegMXXEa3DOZ0qd%2FRjRZHwlzreSkGx8nC%2F7XNHrYurOmZ8dF0dM6VvMVCcCmSnhyujI5sQjukN7VUKc%2BMoVvegYVo4NTEY6So4jt%2Bdodo4crCHErKPjxYnSjKYjRygmW0Dd0Vmbar4Y31e2Dpg3HEXScxiC8WMeWYye66f0sKnejGhmu7lDKysdUhkE2efRDFTHi%2B2jmRo%2FQ9aJY1Z2O3ovKSEbX9z9yGKZPJ0RcwUVxcHxzKfrj%2Fwq5FHFhzFmcrjLoyI9OkoAAbFrooTQ8YJU4cwFBIMzPTKEOkTBQNLDX4wnPgpWYpfTMdzLo4r0FO0luOgwhHlekSG6fgRTAUK%2BmTcWGaJQR%2FejE0euy%2BrIFGKVR1Wd0c7iZI6hk%2Fp5BH7neA7p4JMh17nHkcHPkiHdmersTm3j0HPyvCaZi3EMCr%2Fzu0NZIokePhIxvIzPkRBnASeMceidDGlWtLOKuvT8W858Z0d3m6DLFd7LYun8GsfsVYmL41QrtbWyqgmeDHlYmVfCEKbn0%2ByNeD4ihIgXKDSRpedzGjR7aXXEmLVz1BHqUCiGUEdWPgAzEp%2FzieUIKiGM%2BWdQkaaSdgxR6ClzXBnRJPR0ZeZPHcNqAZ3kaAdKcBjUmZVH0oomydZOopyOL7PaytTZDjrJCmImC8a2Tsy6gzqqcgRnLNgon94ieEy21n7d%2BMCAt23xe0gd6WW%2FXWFjMUavMX9CRS9ZWVrA0pmp1SJ0EbkuES3uJuyabAdOzFT1Gzp6OhenpK3bBHeJkEa0l2egxoRj3hNL0CZnNBlCODpOSkvaCCVkUAehE5S84WiiBGdQB3VcR4%2FlA4TfO7CSeWgZQ1imwBK57kjld4SKmLWTlrSxsRNgmZiVDj2d6FGJc8DKqqTNSU3NGDKpEtb%2BKfw%2BCZE6aO8ReidDthW4teiz2zGaR8W206LK6tw%2BuqNJ75YiVwdJcObLNpcT4WSIY6vdr6Zy1yyPiXJVDV82ZK0JjG3UkWNyNBPbYky9ysKIde%2F6%2B6THZOYups6%2BF6UZiFXJ5U6MPqsxpNGh442JdzR72ebK6DgS%2F%2Fb21EMrJwLJ1hk2pr%2FnpO1on6NHTDXXSdpTpLFrlkeGaMyahLo66445jFlzAbs69Y6OxuiVIV1ydFZXzigo5ot7VhgDz8agUIdDr5vLiCFVxLBLhex%2B%2FEhEznHkujr6TJpAs9vRXYz%2BHnX5YwlhzFqTo7OYNZiGM1GfmKdER4kSomd%2B7MsdCCcPOiGLWVcx8K4gho4ck61juUSM0aMdk8G7mL%2BTy1zpJICzKJ%2FAsxujd%2FKyOg7zO%2BdMzczUiV9TVblmUtrVvVdS7cTAneuolL4TkLv0ORnysHzPniEcqhOg6uD3I2d%2Btoud24CcM3%2BvpC37bSdz8Uid%2BtVvOY7hyZAXF9NUaHQ8tuMNek7SRMsQfnmkbruz8x16eubHge7B744OydpMcnu1f5fnNdEhI3Cxq7nTHz0Z8sK0BqOelCGO2cs6cA5MY%2BqZ1dZJyMSMJm01ezMJUago24D4DOa11ixGMxpXHeI5YvaCzvv1OKjg8qMRtL34wJQh1Rldma%2FxcweKYftJFe4EisnmW449KnXEnOEX6JOl58dFqmLWdAx1wk6MGTvnC1tHQh1H6sC7OvqqvCHO17HaqsWdXGl4oZFZWd0VdRUW4yi5o3b%2BPQDQVwGdHHKEs5i6wuVZ%2BYDGrCNDCL9zR6sOyTIDGWNmSVt2d0pVIhd3aJU3ljGE18520ImCi9n4KglhzD9%2BrwU7LOdIJaQi3NVts49TYHNrXlYVgex00q03yjnQTrVuE510MiRZxcmtpI5BcTNDJnlFHNBj5VFlEucsAttMHM1JiVw0ZnjX%2FREdV6LHDrg4zQbf86ydGr7%2Fa4YwPqCO0qQm8FIjF657UrOXiWhZVS8vCKPExUQ5jV%2BopDgx9dhHY%2F7dZTHYybj7nYmBVOodmMpk9U6i6bhis%2FOu%2B8sFZntHwbRqtkpNdc7oyRHIcU%2Fr1PfmG7%2FfvQqjqaCa%2FM5LSr26gMtJtmbycTxiNAaudeVRQqoCljgZjYHzu8zx0qyObFGq8WVtaaYikoldfZUcnVwANwk3xE11qVOfpFbuVgCFWTlVvQ5Dqp3WXfHX7c5JZmVlJHQ67ghD2kQ5EszyqLTOGhJS3a1OhrAgJlskntGMN2QxdQXvuveRaIye4F28wIw6hOOhY8j%2FZwVKtIp45mc3TVAHdzpEk9XTgp3J%2BzR0x3SOl%2BPIkZ6TvF1lsYxuSjAO9mlALprCGfye6SQNeFkS0inNycUBxhpcInJZ28mGmRyp1biePUOygU9Cmto%2Fy%2FM6Qu%2FeVtu9k7cPja9De7udfWQBSe9kSBOjd9z%2BLnPRyVO66WaDxGo7cgQ6ASVHQiZ1%2Bd04y%2FvBToY8LNuzZwhrAmMqJIffveaObaqIXIQ6tA6cfZ275J06dUId2Wv9dAc75Q1X8YvkHmC92Tqbb3l3fichXUy9M1M5UXUMHSUXTUhFUyf0SMc5YpQxt0IxXbnELhTTMYRgYBdTz87J6m71DlwknS7dn20cKAaSF19zF8epnrpeyZfF%2FPXSz0hvr1wiMri6IvGSQzDVIVWVaxygQ1MZ6WSXOzWBToRvkmVzZL6TgqI0UY6LU8WsszpwvZIvLrC%2BRk4XP4MmNKYerSLNyyI9nM36fg5liAOdqMRl5QOT%2BSpDsrtdtPzipfeH6JnfmWu7FUCh85FMPkeHsI2T1XF1%2FVEyuSNZNtkaOQVK7Kc6%2BLIBswvMToY8vKv3yAZ00N6WIXsBpcigKnGsU5r3ugRzsgO7TRWlMGarZ32cOxf3LkTr1i%2BeTphf%2B7boQ1kTyXsHT4Y8sGT36o%2BuTp0x9cjhWy4w62L0%2FA0q4SyZWSVk8kKXWKdOo6OqOo5GjCaXZ4lyjNdU76PPjCJalayBvMRrjpiolUJz02KcmrsMezpSY%2BjEa5w0IM7Zwe50fRw4%2F9InXmDmnLvaJktmruh0MfrJXe1qFTl3yWfJ26xTV4Y4dfmRnuokQifZ%2B955l7zG6C8RyAi%2FH2HIBJp4SjO1S5TTeXbXR2Vtq7vfb6kxTCOGt7xYMg5cY9YaA493nWiMPnuxpOaNqYR0L5bkuGKeF898fkeGUMdl7zfp6uhJjwzRS0TjkUWdpHlZl0s6naLPTHJKPL9xvPjVNHl7khXD3%2Bjq1Pegky5Gn63F5IrEXbfhZMjD6y8maHTmd02QiTZAtZdEMHUMdRc5twF1IWG1BB1PuNOH96DXXUF4RBe%2FZGWdDFnr9eEqPnuGOH5DNuddzzV4%2FhMrxsnz0vFMCv27Ej5HgsvxTbNOJkWQDvZ0MkS2xWMyhGY04w386ek9u2pW8p5dxkOiWcm6ckb4nNfwcVwZveokyySE81UzP9KoyhsuOQSPyRC18%2Fl%2Fp2AnW4i7WDGGrnAubHN0SOcIcxhXUEzGkO594NX7yqMO0fIBOl7O2wJY3gBfQO9qrwqAjDVum6gEO9BJRpBQDL%2FLyiX0LvmrHIJ7%2BSFOHbhTp87JOCVtjt%2FQvc2gkmCHwd18nf5WgKqCj7Mf4N0fHZqqdeBcwBhjJpyv6f7xfR%2F8fX0NX0bPKW%2BI9PDmA5ZLUIdM35eiJXfUIfydeE0syxE0ry3VIQ5nM6evumRS2x4NeEWpiS%2BWvFfeGOl3BUD3goqqvKzUMTwZ8iIJehS%2FSBbtSKLchcx%2FAEFYSDmxbKanAAAAAElFTkSuQmCC&amp;appkey="
+                               target="_blank"></a>
+                            <a class="social-share-icon icon-wechat"
+                               href="javascript:;" tabindex="-1">
+                                <div class="wechat-qrcode"><h4>微信扫一扫：分享</h4>
+                                    <div class="qrcode"><img
+                                            src="data:image/png;base64,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">
+                                    </div>
+                                    <div class="help"><p>微信里点“发现”，扫一下</p>
+                                        <p>二维码便可将本文分享至朋友圈。</p></div>
+                                </div>
+                            </a></div>
+                    </li>
+                </div>
+                <br>
+            </div>
+            <div class="comment-list-panel">
+                <h3>评论列表，共 <span>{{ comment_list.lenght }}</span> 条评论</h3>
+                <ul class="comment-list list-unstyled">
+                    {% for comment in comment_list %}
+                        <li class="comment-item">
+                            <span class="nickname">{{ comment.name }}</span>
+                            <time class="submit-date"
+                                  datetime="2012-11-09T23:15:57+00:00">{{ comment.pub }}</time>
+                            <div class="text">
+                                {{ comment.content }}
+                            </div>
+                        </li>
+                    {% empty %}
+                        暂无评论
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="comment">
+                {#                onsubmit="return beforeSubmit()"#}
+                <form method="post">
+                    <label class="lable_value">姓名:</label>
+                    <br>
+                    <input id="username" type="text" class="title" name="姓名" placeholder="请输入用户名">
+                    <br>
+                    <label class="lable_value">邮箱:</label>
+                    <br>
+                    <input id="email" type="text" class="title" name="邮箱" placeholder="请输入邮箱">
+                    <br>
+                    <label class="lable_value">内容:</label>
+                    <br>
+                    <input id="content" type="text" class="content" name="内容" placeholder="请输入评论内容">
+                    <br>
+                    <input type="submit" id="submit" value="提交">
+                </form>
+            </div>
+            <div class="blog_has_">
+                {% if blog_nex_pre_data.has_prev %}
+                    <p>上一篇：<a class="b-oa-title" href="?blog_id={{ blog_nex_pre_data.blog_prev.id }}">
+                        {{ blog_nex_pre_data.blog_prev.title }}</a></p>
+                {% else %}
+                    <p>上一篇：没有了</p>
+                {% endif %}
+                {% if blog_nex_pre_data.has_next %}
+                    <p>下一篇：<a class="b-oa-title" href="?blog_id={{ blog_nex_pre_data.blog_next.id }}">
+                        {{ blog_nex_pre_data.blog_next.title }}</a></p>
+                {% else %}
+                    <p>下一篇：没有了</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="about">
+                <div class="avatar"><img src="/media/{{ user.avatar }}" alt=""></div>
+                <p class="abname">{{ user.nickname }}</p>
+                <p class="abposition">{{ user.abposition }}</p>
+                <div class="abtext"> {{ user.abtext }}</div>
+            </div>
+            <div class="search">
+                <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
+                    <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字"
+                           style="color: rgb(153, 153, 153);"
+                           onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}"
+                           onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text">
+                    <input name="show" value="title" type="hidden">
+                    <input name="tempid" value="1" type="hidden">
+                    <input name="tbname" value="news" type="hidden">
+                    <input name="Submit" class="input_submit" value="搜索" type="submit">
+                </form>
+            </div>
+            <div class="cloud">
+                <h2 class="hometitle">标签云</h2>
+                <ul>
+                    {% for tag in tag_list %}
+                        <a href="?tag_id={{ tag.id }}">{{ tag.name }}</a>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="paihang">
+                <h2 class="hometitle">点击排行</h2>
+                <ul>
+                    {% for blog in click_blog_list %}
+                        <li><b><a href="/detail/?blog_id={{ blog.id }}&categary={{ categary_id }}"
+                                  target="_blank">{{ blog.title }}</a></b>
+                            <p><i><img src="/media/{{ blog.image }}"></i>{{ blog.content }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="paihang">
+                <h2 class="hometitle">站长推荐</h2>
+                <ul>
+                    {% for blog in recommond_list %}
+                        <li><b><a href="/detail/?blog_id={{ blog.id }}&categary={{ categary_id }}"
+                                  target="_blank">{{ blog.title }}</a></b>
+                            <p><i><img src="/media/{{ blog.image }}"></i>{{ blog.content }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="weixin">
+                <h2 class="hometitle">官方微信</h2>
+                <ul>
+                    <img src="../../static/server_images/ercode_image.jpeg">
+                </ul>
+            </div>
+        </div>
+    </article>
+{% endblock %}
+{% block js %}
+    <script src="../../static/js/jquery.min.js"></script>
+    <script src="../../static/js/editormd.js"></script>
+    <script src="../../static/js/lib/marked.min.js"></script>
+    <script src="../../static/js/lib/prettify.min.js"></script>
+    <script src="../../static/js/lib/raphael.min.js"></script>
+    <script src="../../static/js/lib/underscore.min.js"></script>
+    <script src="../../static/js/lib/sequence-diagram.min.js"></script>
+    <script src="../../static/js/lib/flowchart.min.js"></script>
+    <script src="../../static/js/lib/jquery.flowchart.min.js"></script>
+
+    {#    <script src="../../static/js/jquery.share.min.js"></script>#}
+    <script>
+        $(function () {
+            // js 解析markdown
+            editormd.markdownToHTML("content", {
+                //htmlDecode      : "style,script,iframe",  // you can filter tags decode
+                emoji: true,
+                taskList: true,
+                tex: true,  // 默认不解析
+                flowChart: true,  // 默认不解析
+                sequenceDiagram: true,  // 默认不解析
+            });
+
+            $(".reference-link").each(function (i, obj) {
+                console.log(obj)
+            })
+        });
+        var html = $("<div class='mask'>" +
+            "<div class='mask - div'>" +
+            "<img src='../../static/images/Alipay.jpeg' style='widht:200px;height:400px;margin-right:30px;'>" +
+            "<img src='../../static/images/WeChatPay.jpeg' style='widht:200px;height:400px;'></div></div>"
+        );
+        html.hide();
+        $('body').append(html);
+        $('.btn-pay').click(function () {
+            html.show();
+        });
+
+        html.click(function () {
+            html.hide();
+        });
+        $('#share-2').share({sites: ['qzone', 'qq', 'weibo', 'wechat']});
+
+        function beforeSubmit() {
+            var username = document.getElementById('username').value;
+            var email = document.getElementById('email').value;
+            var content = document.getElementById('content').value;
+            if (username.length == "") {
+                alert('用户名不能为空');
+                return false;
+            } else {
+                if (email.length == "") {
+                    alert('邮箱不能为空');
+                    return false;
+                } else {
+                    if (content.length == "") {
+                        alert('评论内容不能为空');
+                        return false;
+                    } else {
+                        var input_dict = {};
+                        $("input").each(function () {
+                            var v = $(this).val();
+                            var n = $(this).attr('name');
+                            input_dict[n] = v;
+                        });
+                        console.log(input_dict);
+                        alert(input_dict)
+                        alert('/comment/')
+                        $.ajax({
+                            url: '/comment/',
+                            type: 'POST',
+                            data: input_dict,
+                            success: function (data) {
+                                console.log(data);
+                            },
+                            error: function () {
+
+                            }
+                        })
+                        return true;
+                    }
+                    {#                    var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); //正则表达式#}
+                    {#                    if (!reg.test(email.value)) { //正则验证不通过，格式不对#}
+                    {#                        alert("邮箱验证不通过!");#}
+                    {#                        return false;#}
+                    {#                    } else {#}
+                    {#                        #}
+                    {#                    }#}
+                }
+            }
+
+
+        }
+    </script>
+{% endblock %}

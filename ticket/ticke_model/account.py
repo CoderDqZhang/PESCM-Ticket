@@ -4,6 +4,14 @@ from django.db import models
 from django.contrib.auth.models import User
 from ticket.ticke_model.department import Department
 
+class AccountGroup(models.Model):
+    group_id = models.IntegerField(auto_created=True,primary_key=True)
+    group_status = models.IntegerField('群组状态',default=0) #群组状态 0关闭，1开启
+    group_name = models.CharField('群组名称',max_length=255,null=False,blank=False)
+    group_menu = models.CharField('群组菜单',max_length=255,null=False,blank=False)
+
+    def __str__(self):
+        return self.group_name
 
 class Account(models.Model):
     nickname = models.CharField('用户名', max_length=255, default='', null=True) #用户名
@@ -11,7 +19,8 @@ class Account(models.Model):
                                default='', null=False, blank=False) #用户ID
     password = models.CharField('密码', max_length=16, default='123456', null=False) #密码
     department = models.ForeignKey(Department,verbose_name='部门',on_delete=models.CASCADE)#多对一（博客--类别）
-    status = models.IntegerField('甲乙区分', max_length= 10, default = 0, null=True) #甲乙区分 0代表甲方，1代表乙方
+    group = models.ForeignKey(AccountGroup, verbose_name='群组', on_delete=models.CASCADE,null=True)  # 多对一（博客--类别）
+    status = models.IntegerField('甲乙区分', default = 0, null=True) #甲乙区分 0代表甲方，1代表乙方
     desc = models.CharField('负责项目', max_length=255, default='', null=True) #人员介绍
     create_time = models.DateField('创建时间',auto_created=True,auto_now=True) #创建时间
     last_login = models.DateField('最后登录时间',auto_created=False,auto_now=False) #最后登录时间
@@ -19,3 +28,6 @@ class Account(models.Model):
 
     def __str__(self):
         return self.nickname
+
+
+

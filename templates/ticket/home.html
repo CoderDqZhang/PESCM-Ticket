@@ -1,0 +1,58 @@
+{% extends "ticket/base_site.html" %}
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{rootUrl}}/api/ticket/create/">提交工单</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    工单列表
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item"
+                       href="{{rootUrl}}/api/ticket/myticket/?page=1&status=4&dateType=100">我的工单</a>
+                    <a class="dropdown-item" href="{{rootUrl}}/api/ticket/list/?page=1&status=4&dateType=100">工单列表</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarTicket" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    工单设置
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">工单模型</a>
+                </div>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" action="../logout/">
+        <span class="navbar-text" style="margin-right: 30px;">
+      您好，{{ user.nickname }}
+    </span>
+            <button type="submit" class="btn btn-primary btn-sm">退出登录</button>
+        </form>
+    </div>
+</nav>
+<div class="input-group ml-3 mr-3 ceter">
+    <input type="text" class="form-control" placeholder="请输入工单号吗" name="ticket"
+           aria-label="Recipient's username with two button addons" aria-describedby="button-addon4">
+    <div class="input-group-append" id="button-addon4">
+        <button class="btn btn-outline-secondary" type="button" onclick="postTicket()">提交工单</button>
+        <button class="btn btn-outline-secondary" type="button" onclick="searchTicket()">查询工单</button>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    function postTicket(ticket_status) {
+        var urls = location.href.split('?')
+        window.location.href = urls[0] + '/api/ticket/create';
+    }
+    function searchTicket(ticket_status) {
+        var urls = location.href.split('?')
+        window.location.href = urls[0] + '/api/ticket/detail/?ticket_id=' + $("#ticket").val();;
+    }
+</script>
+{% endblock %}
