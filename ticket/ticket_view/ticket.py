@@ -223,12 +223,15 @@ class TicketDetailView(View):
         username_session = request.session.get("username")
         if username_session:
             user = Account.objects.get(user_id=username_session)
-            ticket = Ticket.objects.get(ticket_id=request.GET.get('ticket_id'))
-            return render(request, 'ticket/ticket_detail.html', {'ticket': ticket,
-                                                                 'confirms': ticket.ticket_listsort.all(),
-                                                                 'rootUrl': config.rootUrl,
-                                                                 'user': user
-                                                                 })
+            try:
+                ticket = Ticket.objects.get(ticket_id=request.GET.get('ticket_id'))
+                return render(request, 'ticket/ticket_detail.html', {'ticket': ticket,
+                                                                     'confirms': ticket.ticket_listsort.all(),
+                                                                     'rootUrl': config.rootUrl,
+                                                                     'user': user
+                                                                     })
+            except Ticket.DoesNotExist:
+                return JsonResponse({'error':'数据出错'})
         else:
             return redirect("../../../api/login/")
 
