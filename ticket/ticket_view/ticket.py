@@ -77,7 +77,8 @@ class TicketListView(View):
         username_session = request.session.get("username")
         if username_session:
             user = Account.objects.get(user_id=username_session)
-            ticket = Ticket.objects.all()
+            ticket = Ticket.objects.all().order_by(
+                '-create_time')
             if request.GET.get('dateType') is not None:
                 dateType = int(request.GET.get('dateType'))
                 now = timezone.now()
@@ -136,7 +137,8 @@ class MyticketView(View):
         username_session = request.session.get("username")
         if username_session:
             user = Account.objects.get(user_id=username_session)
-            myticket = Ticket.objects.get_queryset().filter(ticket_create_user__user_id=username_session)
+            myticket = Ticket.objects.get_queryset().filter(ticket_create_user__user_id=username_session).order_by(
+                '-create_time')
             if request.GET.get('dateType') is not None:
                 dateType = int(request.GET.get('dateType'))
                 now = timezone.now()
@@ -231,7 +233,7 @@ class TicketDetailView(View):
                                                                      'user': user
                                                                      })
             except Ticket.DoesNotExist:
-                return JsonResponse({'error':'数据出错'})
+                return JsonResponse({'error': '数据出错'})
         else:
             return redirect("../../../api/login/")
 
@@ -259,7 +261,10 @@ class TicketServerDetailView(View):
             if tickt_form.is_valid():
                 ticket_confirm = ticket.ticket_listsort.filter(user__user_id=request.session.get("username")).update(
                     status=1, content=tickt_form.data['ticket_content'], confirm_time=timezone.now())
+                if ticket.ticket_listsort.filter(status=0).count() == 0:
+                    ticket.ticket_status = 3
                 ticket.save()
+                print(ticket.ticket_status)
                 return render(request, 'ticket/server_ticket_detail.html', {'ticket': ticket,
                                                                             'confirms': ticket.ticket_listsort.all(),
                                                                             'rootUrl': config.rootUrl,

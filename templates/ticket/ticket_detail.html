@@ -38,7 +38,7 @@
                 </div>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" action="../logout/">
+        <form class="form-inline my-2 my-lg-0" action="{{rootUrl}}/api/logout/">
         <span class="navbar-text" style="margin-right: 30px;">
       您好，{{ user.nickname }}
     </span>
@@ -63,7 +63,11 @@
             </div>
             <div class="flex-row d-flex justify-content-start">
                 <p class="font-weight-light">工单状态：</p>
-                <p class="font-weight-bold">{{ticket.ticket_status}}</p>
+                {% if ticket.ticket_status == 3 %}
+                <p class="font-weight-bold text-success">完成</p>
+                {% else %}
+                <p class="font-weight-bold font-italic text-danger">未处理</p>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -88,7 +92,11 @@
         </div>
         <div class="flex-row d-flex justify-content-start">
             <p class="font-weight-light">处理状态：</p>
-            <p class="font-weight-bold">{{confirm.status}}</p>
+            {% if confirm.status == 3 %}
+            <p class="font-weight-bold text-success">完成</p>
+            {% else %}
+            <p class="font-weight-bold font-italic text-danger">未处理</p>
+            {% endif %}
         </div>
     </div>
     {% endfor %}
