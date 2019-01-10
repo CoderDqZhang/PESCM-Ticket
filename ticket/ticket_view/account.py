@@ -27,8 +27,7 @@ class LoginView(View):
                 print('用户不存在')
                 return JsonResponse({'error':'登录错误'})
         else:
-
-            return render(request, 'ticket/login.html', {'form': form})
+            return redirect("../../api/login/")
 
 
 def logout(request):

@@ -20,6 +20,7 @@ class TicketView(View):
     def get(self, request):
         username_session = request.session.get("username")
         if username_session:
+            user = Account.objects.get(user_id=username_session)
             if request.GET.get('ticket_id') is not None:
                 ticket = TicketModel.objects.get(ticket_id=request.GET.get('ticket_id'))
                 departments = Department.objects.all()
@@ -30,17 +31,20 @@ class TicketView(View):
                                                                      "ticket_id": request.GET.get('ticket_id'),
                                                                      "category_id": request.GET.get('category_id'),
                                                                      'users': users,
+                                                                     'user': user,
                                                                      'departments': departments,
                                                                      'rootUrl': config.rootUrl})
             elif request.GET.get('category_id') is not None:
                 tickets = TicketModel.objects.filter(ticket_model=request.GET.get('category_id'))
                 return render(request, 'ticket/ticket_create.html', {"tickets": tickets,
                                                                      'category_id': request.GET.get('category_id'),
+                                                                     'user': user,
                                                                      'rootUrl': config.rootUrl
                                                                      })
             else:
                 catgorys = Category.objects.all()
                 return render(request, 'ticket/ticket_create.html', {"catgorys": catgorys,
+                                                                     'user': user,
                                                                      'rootUrl': config.rootUrl})
         else:
             return redirect("../../../api/login/")
