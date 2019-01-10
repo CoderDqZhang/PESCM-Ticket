@@ -1,7 +1,7 @@
 # 引入我们创建的表单类
 # coding:utf-8
 from django.shortcuts import render, redirect, render_to_response
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from django.views import View
 from ticket.ticke_model.account import Account
 from ticket.until import define, config
@@ -24,7 +24,8 @@ class LoginView(View):
                 return redirect("../../api/home/")
             else:
                 # 用户不存在
-                return render(request, 'ticket/login.html', {'form': form})
+                print('用户不存在')
+                return JsonResponse({'error':'登录错误'})
         else:
 
             return render(request, 'ticket/login.html', {'form': form})

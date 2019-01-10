@@ -20,5 +20,8 @@ urlpatterns = [
     url(r'^ticket/detail/$', ticket.TicketDetailView.as_view()),
     url(r'^ticket/server/detail/$', ticket.TicketServerDetailView.as_view()),
 
+
+    url(r'^ticket/test/', ticket.test),
+
     url(r'^ticket/create/department/user/', ticket.get_department_user)
 ]

@@ -65,9 +65,9 @@ class TicketView(View):
                     )
                     ticket.ticket_listsort.add(ticket_confim)
                 ticket.save()
-                return render(request, 'ticket/my_ticket.html')
+                return render(request, 'ticket/myticket/my_ticket.html')
             else:
-                return render(request, 'ticket/my_ticket.html')
+                return render(request, 'ticket/myticket/my_ticket.html')
         else:
             return redirect("../../../api/login/")
 
@@ -264,7 +264,6 @@ class TicketServerDetailView(View):
                 if ticket.ticket_listsort.filter(status=0).count() == 0:
                     ticket.ticket_status = 3
                 ticket.save()
-                print(ticket.ticket_status)
                 return render(request, 'ticket/server_ticket_detail.html', {'ticket': ticket,
                                                                             'confirms': ticket.ticket_listsort.all(),
                                                                             'rootUrl': config.rootUrl,
@@ -279,6 +278,9 @@ class TicketServerDetailView(View):
         else:
             return redirect("../../../api/login/")
 
+
+def test(request):
+    return render(request,'ticket/test.html')
 
 def get_department_user(request):
     users = Account.objects.filter(department__partment_code=request.GET.get('department_code'))

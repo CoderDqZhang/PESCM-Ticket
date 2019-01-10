@@ -14,20 +14,18 @@
 <div class="container">
     <div class="row myCenter">
         <div class="col-xs-6 col-md-4 col-center-block">
-            <form action="../../api/login/" method="POST" id="loginForm">
+            <form method="POST" id="loginForm">
                 <div class="form-group has_feedback">
-                    <label for="user_id">UserID</label>
-                    <input type="number" class="form-control" id="user_id" name="user_id"
-                           placeholder="用户名">
-                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    <label for="user_id" class="control-label">用户名</label>
+                    <input type="number" class="form-control" min="6" id="user_id" name="user_id"
+                           placeholder="用户名" required>
                 </div>
                 <div class="form-group has_feedback">
-                    <label for="inputPassword">Password</label>
-                    <input type="password" class="form-control" id="inputPassword" name="password"
-                           placeholder="Password">
-                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    <label for="password">密码</label>
+                    <input type="password" class="form-control" id="password" name="password"
+                           placeholder="请输入密码" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" onclick="login()">Submit</button>
             </form>
         </div>
     </div>
@@ -35,23 +33,57 @@
 {% endblock %}
 {% block js %}
 <script>
-    $('#loginForm').bootstrapValidator({
-//        live: 'disabled',
-        message: 'This value is not valid',
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            username: {
-                validators: {
-                    notEmpty: {
-                        message: 'The username is required and cannot be empty'
-                    }
+
+    $().ready(function () {
+        // validate the comment form when it is submitted
+        // validate signup form on keyup and submit
+        $("#loginForm").validate({
+            rules: {
+                user_id: "required",
+                password: "required",
+                user_id: {
+                    required: true,
+                    minlength: 6
+                },
+                password: {
+                    required: true,
+                    minlength: 6
+                }
+            },
+            messages: {
+                user_id: "请输入账号",
+                password: "请输入密码",
+                username: {
+                    required: "请输入账号",
+                    minlength: "你的账号不小于6位数"
+                },
+                password: {
+                    required: "请输入密码",
+                    minlength: "请输入不少于6位数密码"
                 }
             }
-        }
+        });
     });
+
+
+    function login() {
+        var user_id = $("#user_id").val();
+        var password = $("#password").val();
+        var postdata = {'user_id': user_id, 'password': password}
+        $.ajax({
+            url: "../../api/login/",
+            type: "POST",
+            data: postdata,
+            success: function (data) {
+                if (data['error'] != null){
+                    window.location.href = location.href
+                    alert('用户名密码错误！请重新登录')
+                }
+            }
+        });
+    }
+
+
+
 </script>
 {% endblock %}

@@ -11,7 +11,7 @@
     }
 </style>{% endblock %}
 {% block content %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
@@ -82,17 +82,19 @@
             <p class="font-weight-light">处理人：</p>
             <p class="font-weight-bold">{{confirm.user}}</p>
         </div>
+        {% if confirm.status == 1 %}
         <div class="flex-row d-flex justify-content-start">
-            <p class="font-weight-light">处理内容：</p>
+            <p class="font-weight-light">内容：</p>
             <p class="font-weight-bold">{{confirm.content}}</p>
         </div>
         <div class="flex-row d-flex justify-content-start">
-            <p class="font-weight-light">处理时间：</p>
+            <p class="font-weight-light">时间：</p>
             <p class="font-weight-bold">{{confirm.confirm_time}}</p>
         </div>
+        {% endif %}
         <div class="flex-row d-flex justify-content-start">
-            <p class="font-weight-light">处理状态：</p>
-            {% if confirm.status == 3 %}
+            <p class="font-weight-light">状态：</p>
+            {% if confirm.status == 1 %}
             <p class="font-weight-bold text-success">完成</p>
             {% else %}
             <p class="font-weight-bold font-italic text-danger">未处理</p>
