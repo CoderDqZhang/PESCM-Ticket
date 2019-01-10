@@ -17,13 +17,13 @@
             <form method="POST" id="loginForm">
                 <div class="form-group has_feedback">
                     <label for="user_id" class="control-label">用户名</label>
-                    <input type="number" class="form-control" min="6" id="user_id" name="user_id"
-                           placeholder="用户名" required>
+                    <input type="number" class="form-control" id="user_id" name="user_id"
+                           placeholder="用户名">
                 </div>
                 <div class="form-group has_feedback">
                     <label for="password">密码</label>
                     <input type="password" class="form-control" id="password" name="password"
-                           placeholder="请输入密码" required>
+                           placeholder="请输入密码">
                 </div>
                 <button type="submit" class="btn btn-primary" onclick="login()">Submit</button>
             </form>
@@ -39,8 +39,6 @@
         // validate signup form on keyup and submit
         $("#loginForm").validate({
             rules: {
-                user_id: "required",
-                password: "required",
                 user_id: {
                     required: true,
                     minlength: 6
@@ -51,8 +49,6 @@
                 }
             },
             messages: {
-                user_id: "请输入账号",
-                password: "请输入密码",
                 username: {
                     required: "请输入账号",
                     minlength: "你的账号不小于6位数"

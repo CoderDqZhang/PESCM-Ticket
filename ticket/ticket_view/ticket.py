@@ -65,7 +65,8 @@ class TicketView(View):
                     )
                     ticket.ticket_listsort.add(ticket_confim)
                 ticket.save()
-                return render(request, 'ticket/myticket/my_ticket.html')
+                url =  "../../../api/ticket/detail/?ticket_id=" + str(ticket.ticket_id)
+                return redirect(url)
             else:
                 return render(request, 'ticket/myticket/my_ticket.html')
         else:
