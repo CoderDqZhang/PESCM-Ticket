@@ -12,11 +12,20 @@
 </style>{% endblock %}
 {% block content %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top navbar-inverse">
+    {% if user.status == 1 %}
+    <a class="navbar-brand" href="{{rootUrl}}/api/home/">首页</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    {% endif %}
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+            {% if user.status == 0 %}
             <li class="nav-item">
                 <a class="nav-link" href="{{rootUrl}}/api/ticket/create/">提交工单</a>
             </li>
+            {% endif %}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
@@ -33,7 +42,7 @@
                     工单设置
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">工单模型</a>
+                    <a class="dropdown-item" href="#">工单模型(待开发)</a>
                 </div>
             </li>
         </ul>

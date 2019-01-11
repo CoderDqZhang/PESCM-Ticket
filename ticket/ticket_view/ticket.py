@@ -69,20 +69,26 @@ class TicketView(View):
                     )
                     ticket.ticket_listsort.add(ticket_confim)
                 ticket.save()
-                url =  "../../../api/ticket/detail/?ticket_id=" + str(ticket.ticket_id)
+                url = "../../../api/ticket/detail/?ticket_id=" + str(ticket.ticket_id)
                 return redirect(url)
             else:
                 return render(request, 'ticket/myticket/my_ticket.html')
         else:
             return redirect("../../../api/login/")
 
+
 class MyticketView(View):
     def get(self, request):
         username_session = request.session.get("username")
         if username_session:
             user = Account.objects.get(user_id=username_session)
-            myticket = Ticket.objects.get_queryset().filter(ticket_create_user__user_id=username_session).order_by(
-                '-create_time')
+            if user.status == 1:
+                myticket = Ticket.objects.get_queryset().filter(
+                    ticket_listsort__user__user_id__exact=username_session).order_by(
+                    '-create_time')
+            else:
+                myticket = Ticket.objects.get_queryset().filter(ticket_create_user__user_id=username_session).order_by(
+                    '-create_time')
             if request.GET.get('dateType') is not None:
                 dateType = int(request.GET.get('dateType'))
                 now = timezone.now()
@@ -231,6 +237,12 @@ class TicketDetailView(View):
             user = Account.objects.get(user_id=username_session)
             try:
                 ticket = Ticket.objects.get(ticket_id=request.GET.get('ticket_id'))
+                if ticket.ticket_listsort.filter(user__user_id=username_session):
+                    return render(request, 'ticket/server_ticket_detail.html', {'ticket': ticket,
+                                                                                'confirms': ticket.ticket_listsort.all(),
+                                                                                'rootUrl': config.rootUrl,
+                                                                                'user': user
+                                                                                })
                 return render(request, 'ticket/ticket_detail.html', {'ticket': ticket,
                                                                      'confirms': ticket.ticket_listsort.all(),
                                                                      'rootUrl': config.rootUrl,
@@ -284,7 +296,8 @@ class TicketServerDetailView(View):
 
 
 def test(request):
-    return render(request,'ticket/test.html')
+    return render(request, 'ticket/test.html')
+
 
 def get_department_user(request):
     users = Account.objects.filter(department__partment_code=request.GET.get('department_code'))
