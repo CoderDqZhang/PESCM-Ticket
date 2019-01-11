@@ -86,6 +86,8 @@ class MyticketView(View):
                 myticket = Ticket.objects.get_queryset().filter(
                     ticket_listsort__user__user_id__exact=username_session).order_by(
                     '-create_time')
+                for ticket in myticket:
+                    ticket.ticket_status = ticket.ticket_listsort.get(user__user_id=username_session).status
             else:
                 myticket = Ticket.objects.get_queryset().filter(ticket_create_user__user_id=username_session).order_by(
                     '-create_time')
@@ -177,6 +179,11 @@ class TicketListView(View):
             user = Account.objects.get(user_id=username_session)
             ticket = Ticket.objects.all().order_by(
                 '-create_time')
+            if user.status == 1:
+                for ticket1 in ticket:
+                    if ticket1.ticket_listsort.filter(user__user_id=username_session).count() == 1:
+                        ticket1.ticket_status = ticket1.ticket_listsort.get(user__user_id=username_session).status
+
             if request.GET.get('dateType') is not None:
                 dateType = int(request.GET.get('dateType'))
                 now = timezone.now()
