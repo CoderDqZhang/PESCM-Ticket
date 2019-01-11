@@ -76,67 +76,6 @@ class TicketView(View):
         else:
             return redirect("../../../api/login/")
 
-
-class TicketListView(View):
-    def get(self, request):
-        username_session = request.session.get("username")
-        if username_session:
-            user = Account.objects.get(user_id=username_session)
-            ticket = Ticket.objects.all().order_by(
-                '-create_time')
-            if request.GET.get('dateType') is not None:
-                dateType = int(request.GET.get('dateType'))
-                now = timezone.now()
-                yeastoday = now - datetime.timedelta(days=1)
-                yeastoday1 = now - datetime.timedelta(days=2)
-                week = now - datetime.timedelta(days=7)
-                if int(request.GET.get('dateType')) == 1:
-                    ticket = ticket.filter(create_time__gt=yeastoday)
-                elif int(request.GET.get('dateType')) == -1:
-                    ticket = ticket.filter(create_time__range=(yeastoday, yeastoday1))
-                elif int(request.GET.get('dateType')) == -7:
-                    ticket = ticket.filter(create_time__lt=week)
-            else:
-                dateType = 100
-
-            if request.GET.get('status') is not None:
-                status = int(request.GET.get('status'))
-                if int(request.GET.get('status')) != 4:
-                    ticket = ticket.filter(ticket_status=request.GET.get('status'))
-            else:
-                status = 4
-
-            ticket_list = Paginator(ticket, 10)
-            # 分页控制
-
-            if request.GET.get('page') != None:
-                page = int(request.GET.get('page'))
-
-            # 当前分页
-            try:
-                ticket_list = paginator.page(page)  # 获取当前页码的记录
-            except PageNotAnInteger:
-                ticket_list = paginator.page(1)  # 如果用户输入的页码不是整数时,显示第1页的内容
-            except EmptyPage:
-                ticket_list = paginator.page(paginator.num_pages)  # 如果用户输入的页数不在系统的页码列表中时,显示最后一页的内容
-
-            if ticket_list.__len__() == 0:
-                page = 0
-
-            return render(request, 'ticket/ticketlist/ticket_list.html', {'ticket_list': ticket_list,
-                                                                          'page': paginator,
-                                                                          'status': status,
-                                                                          'dateType': dateType,
-                                                                          'rootUrl': config.rootUrl,
-                                                                          'user': user
-                                                                          })
-        else:
-            return redirect("../../../api/login/")
-
-    def post(self, request):
-        return HttpResponse({"": ""})
-
-
 class MyticketView(View):
     def get(self, request):
         username_session = request.session.get("username")
@@ -223,6 +162,66 @@ class MyticketView(View):
         data['has_prev'] = has_prev
         # 将状态码与上下博客传递给前端页面
         return data
+
+
+class TicketListView(View):
+    def get(self, request):
+        username_session = request.session.get("username")
+        if username_session:
+            user = Account.objects.get(user_id=username_session)
+            ticket = Ticket.objects.all().order_by(
+                '-create_time')
+            if request.GET.get('dateType') is not None:
+                dateType = int(request.GET.get('dateType'))
+                now = timezone.now()
+                yeastoday = now - datetime.timedelta(days=1)
+                yeastoday1 = now - datetime.timedelta(days=2)
+                week = now - datetime.timedelta(days=7)
+                if int(request.GET.get('dateType')) == 1:
+                    ticket = ticket.filter(create_time__gt=yeastoday)
+                elif int(request.GET.get('dateType')) == -1:
+                    ticket = ticket.filter(create_time__range=(yeastoday, yeastoday1))
+                elif int(request.GET.get('dateType')) == -7:
+                    ticket = ticket.filter(create_time__lt=week)
+            else:
+                dateType = 100
+
+            if request.GET.get('status') is not None:
+                status = int(request.GET.get('status'))
+                if int(request.GET.get('status')) != 4:
+                    ticket = ticket.filter(ticket_status=request.GET.get('status'))
+            else:
+                status = 4
+
+            paginator = Paginator(ticket, 10)
+            # 分页控制
+
+            if request.GET.get('page') != None:
+                page = int(request.GET.get('page'))
+
+            # 当前分页
+            try:
+                ticket_list = paginator.page(page)  # 获取当前页码的记录
+            except PageNotAnInteger:
+                ticket_list = paginator.page(1)  # 如果用户输入的页码不是整数时,显示第1页的内容
+            except EmptyPage:
+                ticket_list = paginator.page(paginator.num_pages)  # 如果用户输入的页数不在系统的页码列表中时,显示最后一页的内容
+
+            if ticket_list.__len__() == 0:
+                page = 0
+
+            return render(request, 'ticket/ticketlist/ticket_list.html', {'ticket_list': ticket_list,
+                                                                          'page': paginator,
+                                                                          'status': status,
+                                                                          'dateType': dateType,
+                                                                          'rootUrl': config.rootUrl,
+                                                                          'user': user
+                                                                          })
+        else:
+            return redirect("../../../api/login/")
+
+    def post(self, request):
+        return HttpResponse({"": ""})
 
 
 class TicketDetailView(View):

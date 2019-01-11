@@ -22,8 +22,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'j93wy3&@%q!0lv-is+f*gs2(@50kc9dqsjrgljcv3cm%c(y$go'
 
+
+from ticket.until import define
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if (define.get_mac_address() == '00:50:56:82:19:40') :
+    DEBUG = False
+else:
+    DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 

@@ -1,6 +1,6 @@
 {% extends "ticket/base_site.html" %}
 {% block content %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <a class="navbar-brand" href="#">首页</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +37,8 @@
         </form>
     </div>
 </nav>
-<div class="bg-white border rounded d-block p-4 h-auto w-95 mt-4 ml-2 mr-2 flex-row d-flex justify-content-around">
+<div class="bg-white border rounded d-block p-4 h-auto w-95 ml-2 mr-2 flex-row d-flex justify-content-around"
+     style="margin-top: 60px;">
     <div class="d-flex flex-column bd-highlight w-50 mr-3 border border-primary shadow-sm bg-white rounded">
         <div class="w-100 text-center bg-primary" style="height: 40px;">
             <p class="text-white pt-2">未解决工单</p>
