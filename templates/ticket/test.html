@@ -1,61 +1,373 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+    <!--<title>Bootstrap 实例</title>-->
+    <!--<meta charset="utf-8">-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"-->
+    <!--integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">-->
+
+    <!--<script src="../../../static/lib/jquery.js"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"-->
+            <!--integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"-->
+            <!--crossorigin="anonymous"></script>-->
+    <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"-->
+            <!--integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"-->
+            <!--crossorigin="anonymous"></script>-->
+    <!--<script src='https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.js'></script>-->
+    <!--<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>-->
+<!--</head>-->
+<!--<body style="height:1500px">-->
+
+<!--<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">-->
+    <!--<a class="navbar-brand" href="#">Logo</a>-->
+    <!--<ul class="navbar-nav">-->
+        <!--<li class="nav-item">-->
+            <!--<a class="nav-link" href="#">Link</a>-->
+        <!--</li>-->
+        <!--<li class="nav-item">-->
+            <!--<a class="nav-link" href="#">Link</a>-->
+        <!--</li>-->
+    <!--</ul>-->
+<!--</nav>-->
+
+<!--<div class="container-fluid" >-->
+    <!--<h3>固定导航栏</h3>-->
+    <!--<p>导航栏可以固定在头部或者底部。</p>-->
+    <!--<h1>滚动页面查看效果。</h1>-->
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+<!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>菜鸟教程(runoob.com)</title>
+    <title>PESCM</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-            integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-            crossorigin="anonymous"></script>
-    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
-    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
-    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
 
-    <script>
-        $.validator.setDefaults({
-            submitHandler: function () {
-                alert("提交事件!");
-            }
-        });
-        $().ready(function () {
-            $("#commentForm").validate();
-        });
-    </script>
+<style>
+    .col-center-block {
+        float: none;
+        display: block;
+        margin-top: 5%;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: white;
+    }
+</style>
     <style>
-        .error {
+        .breadcrumb-item + .breadcrumb-item::before {
+            display: inline-block;
+            padding-right: 0.5rem;
+            color: #6c757d;
+            content: ">";
+        }
+        .error{
             color: red;
         }
+
     </style>
 </head>
-<body>
-<form class="cmxform" id="commentForm" method="get" action="">
-    <fieldset>
-        <legend>输入您的名字，邮箱，URL，备注。</legend>
-        <p>
-            <label for="cname">Name (必需, 最小两个字母)</label>
-            <input id="cname" name="name" minlength="2" type="text" required>
-        </p>
-        <p>
-            <label for="cemail">E-Mail (必需)</label>
-            <input id="cemail" type="email" name="email" required>
-        </p>
-        <p>
-            <label for="curl">URL (可选)</label>
-            <input id="curl" type="url" name="url">
-        </p>
-        <p>
-            <label for="ccomment">备注 (必需)</label>
-            <textarea id="ccomment" name="comment" required></textarea>
-        </p>
-        <p>
-            <input class="submit" type="submit" value="Submit">
-        </p>
-    </fieldset>
-</form>
+<body style="background-color: #eeeeee; height: 100%;" class="page-header-fixed">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="http://127.0.0.1:8000/api/ticket/create/">提交工单</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    工单列表
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="http://127.0.0.1:8000/api/ticket/myticket/?page=1&status=4&dateType=100">我的工单</a>
+                    <a class="dropdown-item" href="http://127.0.0.1:8000/api/ticket/list/?page=1&status=4&dateType=100">工单列表</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarTicket" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    工单设置
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">工单模型(待开发)</a>
+                </div>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" action="../logout/">
+        <span class="navbar-text" style="margin-right: 30px;">
+      您好，张德全
+    </span>
+            <button type="submit" class="btn btn-primary btn-sm">退出登录</button>
+        </form>
+    </div>
+</nav>
+<div class="bg-white border rounded d-block p-4 h-auto w-95 ml-2 mr-2" style="margin-top: 60px;">
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+
+            <button type="button" class="btn btn-secondary bg-primary border-light text-white"
+                    onclick="statusClick(4)">全部
+            </button>
+
+
+
+            <button type="button" class="btn btn-secondary bg-light border-light text-dark"
+                    onclick="statusClick(0)">待回复
+            </button>
+
+
+            <button type="button" class="btn btn-secondary bg-light border-light text-dark"
+                    onclick="statusClick(3)">已完成
+            </button>
+
+        </div>
+        <div class="btn-group mr-2" role="group" aria-label="Second group">
+
+            <button type="button" class="btn btn-secondary bg-primary border-light text-white"
+                    onclick="dateTypeClick(100)">全部
+            </button>
+
+
+            <button type="button" class="btn btn-secondary bg-light border-light text-dark" onclick="dateTypeClick(1)">
+                今天
+            </button>
+
+
+            <button type="button" class="btn btn-secondary bg-light border-light text-dark" onclick="dateTypeClick(-1)">
+                昨天
+            </button>
+
+
+            <button type="button" class="btn btn-secondary bg-light border-light text-dark" onclick="dateTypeClick(-7)">
+                本周
+            </button>
+
+        </div>
+    </div>
+    <table class="table mt-4">
+        <thead>
+        <tr>
+            <th scope="col">工单编号</th>
+            <th scope="col">相关产品</th>
+            <th scope="col">问题内容</th>
+            <th scope="col">状态</th>
+            <th scope="col">提交时间</th>
+            <th scope="col">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+        <tr>
+            <th scope="col">1000012</th>
+            <td scope="col">PS需求开发</td>
+            <td scope="col">这是一条测试数据</td>
+
+            <td scope="col" class="text-danger">未完成</td>
+
+            <td scope="col">2019年1月10日</td>
+            <td scope="col"><a href="">工单详情</a></td>
+        </tr>
+
+
+        <tr>
+            <th scope="col">1000013</th>
+            <td scope="col">PS需求开发</td>
+            <td scope="col">这是一条测试数据</td>
+
+            <td scope="col" class="text-danger">未完成</td>
+
+            <td scope="col">2019年1月10日</td>
+            <td scope="col"><a href="">工单详情</a></td>
+        </tr>
+
+
+        <tr>
+            <th scope="col">1000014</th>
+            <td scope="col">PS需求开发</td>
+            <td scope="col">这是一条测试数据</td>
+
+            <td scope="col" class="text-danger">未完成</td>
+
+            <td scope="col">2019年1月10日</td>
+            <td scope="col"><a href="">工单详情</a></td>
+        </tr>
+
+
+        <tr>
+            <th scope="col">1000015</th>
+            <td scope="col">PS需求开发</td>
+            <td scope="col">这是一条测试数据</td>
+
+            <td scope="col" class="text-danger">未完成</td>
+
+            <td scope="col">2019年1月10日</td>
+            <td scope="col"><a href="">工单详情</a></td>
+        </tr>
+
+
+        <tr>
+            <th scope="col">1000016</th>
+            <td scope="col">PS需求开发</td>
+            <td scope="col">这是一条测试数据</td>
+
+            <td scope="col" class="text-danger">未完成</td>
+
+            <td scope="col">2019年1月10日</td>
+            <td scope="col"><a href="">工单详情</a></td>
+        </tr>
+
+
+        <tr>
+            <th scope="col">1000017</th>
+            <td scope="col">PS需求开发</td>
+            <td scope="col">这是一条测试数据</td>
+
+            <td scope="col" class="text-danger">未完成</td>
+
+            <td scope="col">2019年1月10日</td>
+            <td scope="col"><a href="">工单详情</a></td>
+        </tr>
+
+
+        <tr>
+            <th scope="col">1000009</th>
+            <td scope="col">PS需求开发</td>
+            <td scope="col">这是一条测试数据</td>
+
+            <td scope="col" class="text-success">已完成</td>
+
+            <td scope="col">2019年1月9日</td>
+            <td scope="col"><a href="">工单详情</a></td>
+        </tr>
+
+
+        <tr>
+            <th scope="col">1000000</th>
+            <td scope="col">PS需求开发</td>
+            <td scope="col">这是一条测试数据</td>
+
+            <td scope="col" class="text-danger">未完成</td>
+
+            <td scope="col">2019年1月4日</td>
+            <td scope="col"><a href="">工单详情</a></td>
+        </tr>
+
+
+        <tr>
+            <th scope="col">1000001</th>
+            <td scope="col">PS需求开发</td>
+            <td scope="col">这是一条测试数据</td>
+
+            <td scope="col" class="text-danger">未完成</td>
+
+            <td scope="col">2019年1月4日</td>
+            <td scope="col"><a href="">工单详情</a></td>
+        </tr>
+
+
+        <tr>
+            <th scope="col">1000002</th>
+            <td scope="col">PS需求开发</td>
+            <td scope="col">这是一条测试数据</td>
+
+            <td scope="col" class="text-danger">未完成</td>
+
+            <td scope="col">2019年1月4日</td>
+            <td scope="col"><a href="">工单详情</a></td>
+        </tr>
+
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+
+
+
+
+                <li class="page-item "><a class="page-link bg-primary border-light text-white"
+                                         href="?page=1&status=4&dateType=100">1</a>
+                </li>
+
+
+
+                <li class="page-item"><a class="page-link"
+                                         href="?page=2&status=4&dateType=100">2</a>
+                </li>
+
+
+
+
+                <li class="page-item">
+                    <a class="page-link"
+                       href="?page=2&status=4&dateType=100">下一页</a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<script src="../../../static/lib/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+<script src='https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.js'></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+
+<script>
+
+    function changeUrlArg(url, arg, arg_val) {
+        var pattern = arg + '=([^&]*)';
+        var replaceText = arg + '=' + arg_val;
+        if (url.match(pattern)) {
+            var tmp = '/(' + arg + '=)([^&]*)/gi';
+            tmp = url.replace(eval(tmp), replaceText);
+            return tmp;
+        } else {
+            if (url.match('[\?]')) {
+                return url + '&' + replaceText;
+            } else {
+                return url + '?' + replaceText;
+            }
+        }
+        return url + '\n' + arg + '\n' + arg_val;
+    }
+
+    function statusClick(ticket_status) {
+        var urls = location.href.split('?')
+        var parms = urls[1].split('&')
+        var newurl1 = urls[0] + '?' + parms[0] + '&status=' + ticket_status + '&' + parms[2]
+        window.location.href = newurl1;
+    }
+
+    function dateTypeClick(dateType_id) {
+        var urls = location.href.split('?')
+        var parms = urls[1].split('&')
+        var newurl1 = urls[0] + '?' + parms[0] + '&' + parms[1] + '&dateType=' + dateType_id
+        window.location.href = newurl1;
+    }
+
+
+</script>
+
 </body>
 </html>

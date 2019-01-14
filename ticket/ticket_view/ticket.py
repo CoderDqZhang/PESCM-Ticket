@@ -69,7 +69,7 @@ class TicketView(View):
                     )
                     ticket.ticket_listsort.add(ticket_confim)
                 ticket.save()
-                url =  "../../../api/ticket/detail/?ticket_id=" + str(ticket.ticket_id)
+                url = "../../../api/ticket/detail/?ticket_id=" + str(ticket.ticket_id)
                 return redirect(url)
             else:
                 return render(request, 'ticket/myticket/my_ticket.html')
@@ -77,73 +77,20 @@ class TicketView(View):
             return redirect("../../../api/login/")
 
 
-class TicketListView(View):
-    def get(self, request):
-        username_session = request.session.get("username")
-        if username_session:
-            user = Account.objects.get(user_id=username_session)
-            ticket = Ticket.objects.all().order_by(
-                '-create_time')
-            if request.GET.get('dateType') is not None:
-                dateType = int(request.GET.get('dateType'))
-                now = timezone.now()
-                yeastoday = now - datetime.timedelta(days=1)
-                yeastoday1 = now - datetime.timedelta(days=2)
-                week = now - datetime.timedelta(days=7)
-                if int(request.GET.get('dateType')) == 1:
-                    ticket = ticket.filter(create_time__gt=yeastoday)
-                elif int(request.GET.get('dateType')) == -1:
-                    ticket = ticket.filter(create_time__range=(yeastoday, yeastoday1))
-                elif int(request.GET.get('dateType')) == -7:
-                    ticket = ticket.filter(create_time__lt=week)
-            else:
-                dateType = 100
-
-            if request.GET.get('status') is not None:
-                status = int(request.GET.get('status'))
-                if int(request.GET.get('status')) != 4:
-                    ticket = ticket.filter(ticket_status=request.GET.get('status'))
-            else:
-                status = 4
-
-            ticket_list = Paginator(ticket, 10)
-            # 分页控制
-
-            if request.GET.get('page') != None:
-                page = int(request.GET.get('page'))
-
-            # 当前分页
-            try:
-                ticket_list = paginator.page(page)  # 获取当前页码的记录
-            except PageNotAnInteger:
-                ticket_list = paginator.page(1)  # 如果用户输入的页码不是整数时,显示第1页的内容
-            except EmptyPage:
-                ticket_list = paginator.page(paginator.num_pages)  # 如果用户输入的页数不在系统的页码列表中时,显示最后一页的内容
-
-            if ticket_list.__len__() == 0:
-                page = 0
-
-            return render(request, 'ticket/ticketlist/ticket_list.html', {'ticket_list': ticket_list,
-                                                                          'page': paginator,
-                                                                          'status': status,
-                                                                          'dateType': dateType,
-                                                                          'rootUrl': config.rootUrl,
-                                                                          'user': user
-                                                                          })
-        else:
-            return redirect("../../../api/login/")
-
-    def post(self, request):
-        return HttpResponse({"": ""})
-
-
 class MyticketView(View):
     def get(self, request):
         username_session = request.session.get("username")
         if username_session:
             user = Account.objects.get(user_id=username_session)
-            myticket = Ticket.objects.get_queryset().filter(ticket_create_user__user_id=username_session).order_by(
-                '-create_time')
+            if user.status == 1:
+                myticket = Ticket.objects.get_queryset().filter(
+                    ticket_listsort__user__user_id__exact=username_session).order_by(
+                    '-create_time')
+                for ticket in myticket:
+                    ticket.ticket_status = ticket.ticket_listsort.get(user__user_id=username_session).status
+            else:
+                myticket = Ticket.objects.get_queryset().filter(ticket_create_user__user_id=username_session).order_by(
+                    '-create_time')
             if request.GET.get('dateType') is not None:
                 dateType = int(request.GET.get('dateType'))
                 now = timezone.now()
@@ -225,6 +172,71 @@ class MyticketView(View):
         return data
 
 
+class TicketListView(View):
+    def get(self, request):
+        username_session = request.session.get("username")
+        if username_session:
+            user = Account.objects.get(user_id=username_session)
+            ticket = Ticket.objects.all().order_by(
+                '-create_time')
+            if user.status == 1:
+                for ticket1 in ticket:
+                    if ticket1.ticket_listsort.filter(user__user_id=username_session).count() == 1:
+                        ticket1.ticket_status = ticket1.ticket_listsort.get(user__user_id=username_session).status
+
+            if request.GET.get('dateType') is not None:
+                dateType = int(request.GET.get('dateType'))
+                now = timezone.now()
+                yeastoday = now - datetime.timedelta(days=1)
+                yeastoday1 = now - datetime.timedelta(days=2)
+                week = now - datetime.timedelta(days=7)
+                if int(request.GET.get('dateType')) == 1:
+                    ticket = ticket.filter(create_time__gt=yeastoday)
+                elif int(request.GET.get('dateType')) == -1:
+                    ticket = ticket.filter(create_time__range=(yeastoday, yeastoday1))
+                elif int(request.GET.get('dateType')) == -7:
+                    ticket = ticket.filter(create_time__lt=week)
+            else:
+                dateType = 100
+
+            if request.GET.get('status') is not None:
+                status = int(request.GET.get('status'))
+                if int(request.GET.get('status')) != 4:
+                    ticket = ticket.filter(ticket_status=request.GET.get('status'))
+            else:
+                status = 4
+
+            paginator = Paginator(ticket, 10)
+            # 分页控制
+
+            if request.GET.get('page') != None:
+                page = int(request.GET.get('page'))
+
+            # 当前分页
+            try:
+                ticket_list = paginator.page(page)  # 获取当前页码的记录
+            except PageNotAnInteger:
+                ticket_list = paginator.page(1)  # 如果用户输入的页码不是整数时,显示第1页的内容
+            except EmptyPage:
+                ticket_list = paginator.page(paginator.num_pages)  # 如果用户输入的页数不在系统的页码列表中时,显示最后一页的内容
+
+            if ticket_list.__len__() == 0:
+                page = 0
+
+            return render(request, 'ticket/ticketlist/ticket_list.html', {'ticket_list': ticket_list,
+                                                                          'page': paginator,
+                                                                          'status': status,
+                                                                          'dateType': dateType,
+                                                                          'rootUrl': config.rootUrl,
+                                                                          'user': user
+                                                                          })
+        else:
+            return redirect("../../../api/login/")
+
+    def post(self, request):
+        return HttpResponse({"": ""})
+
+
 class TicketDetailView(View):
     def get(self, request):
         username_session = request.session.get("username")
@@ -232,6 +244,12 @@ class TicketDetailView(View):
             user = Account.objects.get(user_id=username_session)
             try:
                 ticket = Ticket.objects.get(ticket_id=request.GET.get('ticket_id'))
+                if ticket.ticket_listsort.filter(user__user_id=username_session):
+                    return render(request, 'ticket/server_ticket_detail.html', {'ticket': ticket,
+                                                                                'confirms': ticket.ticket_listsort.all(),
+                                                                                'rootUrl': config.rootUrl,
+                                                                                'user': user
+                                                                                })
                 return render(request, 'ticket/ticket_detail.html', {'ticket': ticket,
                                                                      'confirms': ticket.ticket_listsort.all(),
                                                                      'rootUrl': config.rootUrl,
@@ -285,7 +303,8 @@ class TicketServerDetailView(View):
 
 
 def test(request):
-    return render(request,'ticket/test.html')
+    return render(request, 'ticket/test.html')
+
 
 def get_department_user(request):
     users = Account.objects.filter(department__partment_code=request.GET.get('department_code'))
