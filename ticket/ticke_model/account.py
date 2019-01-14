@@ -17,6 +17,7 @@ class Account(models.Model):
     nickname = models.CharField('用户名', max_length=255, default='', null=True) #用户名
     user_id = models.CharField('用户id', primary_key=True, max_length=10,
                                default='', null=False, blank=False) #用户ID
+    email = models.EmailField('邮件地址',max_length=254, null=True,blank=True)
     password = models.CharField('密码', max_length=16, default='123456', null=False) #密码
     department = models.ForeignKey(Department,verbose_name='部门',on_delete=models.CASCADE)#多对一（博客--类别）
     group = models.ForeignKey(AccountGroup, verbose_name='群组', on_delete=models.CASCADE,null=True)  # 多对一（博客--类别）
