@@ -12,6 +12,8 @@ class TicketConfim(models.Model):
     content = models.TextField('处理描述',null=True,blank=True)
     confirm_time = models.DateField('处理时间',auto_created=False,null=True,blank=True,auto_now=False)
 
+    confirm_file = models.FileField(upload_to="handle/%Y/%m/%d",null=True)
+
     def __str__(self):
         return self.user.nickname
 
@@ -25,6 +27,8 @@ class Ticket(models.Model):
     ticket_listsort = models.ManyToManyField(TicketConfim,'工单处理人员',null=False,blank=False)
     ticket_create_user = models.ForeignKey(Account,'创建人',null=False,blank=False)
     create_time = models.DateField('创建时间',auto_created=True,auto_now=True)
+
+    ticket_file = models.FileField(upload_to="ticket/%Y/%m/%d", null=True)
 
     def __str__(self):
         return self.ticket_title
