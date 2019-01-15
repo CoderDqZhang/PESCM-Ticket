@@ -40,4 +40,6 @@ nosetests.xml
 
 .idea
 logs/
+media/
+ticket/migrations/
 .DS_Store

@@ -13,6 +13,7 @@ class TicketConfim(models.Model):
     confirm_time = models.DateField('处理时间',auto_created=False,null=True,blank=True,auto_now=False)
 
     confirm_file = models.FileField(upload_to="handle/%Y/%m/%d",null=True)
+    file_name = models.CharField('文件名称',max_length=255,null=True,blank=True)
 
     def __str__(self):
         return self.user.nickname
@@ -29,6 +30,7 @@ class Ticket(models.Model):
     create_time = models.DateField('创建时间',auto_created=True,auto_now=True)
 
     ticket_file = models.FileField(upload_to="ticket/%Y/%m/%d", null=True)
+    file_name = models.CharField('文件名称', max_length=255, null=True, blank=True)
 
     def __str__(self):
         return self.ticket_title

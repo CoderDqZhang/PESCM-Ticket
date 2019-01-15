@@ -63,6 +63,13 @@ class TicketView(View):
                     ticket_create_user=Account.objects.get(user_id=request.session.get("username")),
                     ticket_model_ticket=TicketModel.objects.get(ticket_id=request.GET.get('ticket_id'))
                 )
+
+                try:
+                    ticket.ticket_file = request.FILES.get('file_data',None)
+                    ticket.file_name = str(request.FILES.get('file_data', None))
+                except:
+                    ticket.ticket_file = ''
+
                 for model in tickt_form.cleaned_data["ticket_listsort"]:
                     ticket_confim = TicketConfim.objects.create(
                         user=model
@@ -265,6 +272,7 @@ class TicketServerDetailView(View):
     def get(self, request):
         username_session = request.session.get("username")
         if username_session:
+
             user = Account.objects.get(user_id=username_session)
             ticket = Ticket.objects.get(ticket_id=request.GET.get('ticket_id'))
             return render(request, 'ticket/server_ticket_detail.html', {'ticket': ticket,
@@ -279,11 +287,22 @@ class TicketServerDetailView(View):
         username_session = request.session.get("username")
         if username_session:
             user = Account.objects.get(user_id=username_session)
-            tickt_form = TicketConfimForm(request.POST)
+            tickt_form = TicketConfimForm(request.POST, )
             ticket = Ticket.objects.get(ticket_id=request.GET.get('ticket_id'))
+            print(tickt_form)
             if tickt_form.is_valid():
-                ticket_confirm = ticket.ticket_listsort.filter(user__user_id=request.session.get("username")).update(
-                    status=1, content=tickt_form.data['ticket_content'], confirm_time=timezone.now())
+                ticket_confirm = ticket.ticket_listsort.get(user__user_id=request.session.get("username"))
+                try:
+                    ticket_confirm.confirm_file = request.FILES.get('file_data',None)
+                    ticket_confirm.file_name = str(request.FILES.get('file_data',None))
+                except:
+                    ticket_confirm.confirm_file = ''
+
+                ticket_confirm.status = 1
+                ticket_confirm.content = tickt_form.data['ticket_content']
+                ticket_confirm.confirm_time = timezone.now()
+                ticket_confirm.save()
+
                 if ticket.ticket_listsort.filter(status=0).count() == 0:
                     ticket.ticket_status = 3
                 ticket.save()

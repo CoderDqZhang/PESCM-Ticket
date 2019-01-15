@@ -12,4 +12,4 @@ class TicketForm(forms.Form):
 
 class TicketConfimForm(forms.Form):
     ticket_content = forms.Textarea()
-
+    # file_data = forms.FileField()
