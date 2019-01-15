@@ -68,7 +68,7 @@ class TicketView(View):
                     ticket.ticket_file = request.FILES.get('file_data',None)
                     ticket.file_name = str(request.FILES.get('file_data', None))
                 except:
-                    ticket.ticket_file = ''
+                    ticket.ticket_file = None
 
                 for model in tickt_form.cleaned_data["ticket_listsort"]:
                     ticket_confim = TicketConfim.objects.create(
@@ -272,13 +272,18 @@ class TicketServerDetailView(View):
     def get(self, request):
         username_session = request.session.get("username")
         if username_session:
-
             user = Account.objects.get(user_id=username_session)
             ticket = Ticket.objects.get(ticket_id=request.GET.get('ticket_id'))
+            departments = Department.objects.all()
+            users = []
+            if request.GET.get('department_code') is not None:
+                users = Account.objects.filter(department__partment_code=request.GET.get('department_code'))
             return render(request, 'ticket/server_ticket_detail.html', {'ticket': ticket,
                                                                         'confirms': ticket.ticket_listsort.all(),
                                                                         'rootUrl': config.rootUrl,
-                                                                        'user': user
+                                                                        'user': user,
+                                                                        'departments':departments,
+                                                                        'users':users
                                                                         })
         else:
             return redirect("../../../api/login/")
@@ -289,33 +294,66 @@ class TicketServerDetailView(View):
             user = Account.objects.get(user_id=username_session)
             tickt_form = TicketConfimForm(request.POST, )
             ticket = Ticket.objects.get(ticket_id=request.GET.get('ticket_id'))
-            print(tickt_form)
-            if tickt_form.is_valid():
+
+            departments = Department.objects.all()
+            users = []
+            if request.GET.get('department_code') is not None:
+                users = Account.objects.filter(department__partment_code=request.GET.get('department_code'))
+
+            isCheckForm = True
+            try:
+                tickt_form.data['check_box']
+                isCheckForm = False
+            except:
+                isCheckForm = True
+
+            if tickt_form.is_valid() | isCheckForm:
                 ticket_confirm = ticket.ticket_listsort.get(user__user_id=request.session.get("username"))
                 try:
                     ticket_confirm.confirm_file = request.FILES.get('file_data',None)
-                    ticket_confirm.file_name = str(request.FILES.get('file_data',None))
+                    ticket_confirm.file_name = str(request.FILES.get('file_data'))
                 except:
-                    ticket_confirm.confirm_file = ''
+                    ticket_confirm.confirm_file = None
 
                 ticket_confirm.status = 1
                 ticket_confirm.content = tickt_form.data['ticket_content']
                 ticket_confirm.confirm_time = timezone.now()
-                ticket_confirm.save()
 
-                if ticket.ticket_listsort.filter(status=0).count() == 0:
-                    ticket.ticket_status = 3
+                try:
+                    #根据是否选中checkbox来选择转派人员
+                    tickt_form.data['check_box']
+
+                    #处理完成后转派给他人
+                    ticket_confirm.transfer = 1
+
+                    for model in tickt_form.cleaned_data["ticket_listsort"]:
+                        if ticket.ticket_listsort.filter(user__user_id=model.user_id):
+                            ticket_confim = TicketConfim.objects.create(
+                                user=model,
+                                transfer = 2,
+                            )
+                            ticket.ticket_listsort.add(ticket_confim)
+
+                except:
+                    if ticket.ticket_listsort.filter(status=0).count() == 0:
+                        ticket.ticket_status = 3
+
+                ticket_confirm.save()
                 ticket.save()
                 return render(request, 'ticket/server_ticket_detail.html', {'ticket': ticket,
                                                                             'confirms': ticket.ticket_listsort.all(),
                                                                             'rootUrl': config.rootUrl,
-                                                                            'user': user
+                                                                            'user': user,
+                                                                            'departments': departments,
+                                                                            'users': users
                                                                             })
             else:
                 return render(request, 'ticket/server_ticket_detail.html', {'ticket': ticket,
                                                                             'confirms': ticket.ticket_listsort.all(),
                                                                             'rootUrl': config.rootUrl,
-                                                                            'user': user
+                                                                            'user': user,
+                                                                            'departments': departments,
+                                                                            'users': users
                                                                             })
         else:
             return redirect("../../../api/login/")

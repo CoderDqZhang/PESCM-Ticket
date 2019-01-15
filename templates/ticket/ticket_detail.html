@@ -79,6 +79,15 @@
                 {% endif %}
             </div>
         </div>
+        {% if ticket.ticket_file != None and ticket.file_name != 'None' %}
+        <div class="flex-row d-flex justify-content-start mb-3">
+            <a href="{{rootUrl}}/media/{{ticket.ticket_file}}" target="_blank">
+                <button type="button" class="btn btn-primary btn-sm"
+                >附件({{ticket.file_name}})
+                </button>
+            </a>
+        </div>
+        {% endif %}
     </div>
 </div>
 <div class="bg-white border rounded d-block p-4 h-auto w-95 mt-4 ml-2 mr-2">
@@ -86,33 +95,41 @@
         <p class="font-weight-bold">处理记录</p>
     </div>
     {% for confirm in confirms %}
-    <div class="flex-column d-flex justify-content-start mt-1">
-        <div class="flex-row d-flex justify-content-start">
-            <p class="font-weight-light">处理人：</p>
-            <p class="font-weight-bold">{{confirm.user}}</p>
+    <div class="flex-column d-flex justify-content-start mt-1 ml-2 mr-2 border-bottom">
+        <div class="d-flex justify-content-between w-100">
+            <div class="flex-row d-flex justify-content-between">
+                <p class="font-weight-light">处理人：</p>
+                <p class="font-weight-bold">{{confirm.user}}</p>
+            </div>
+            <div class="flex-row d-flex justify-content-start">
+                <p class="font-weight-light">时间：</p>
+                <p class="font-weight-bold">{{confirm.confirm_time}}</p>
+            </div>
+            <div class="flex-row d-flex justify-content-start">
+                <p class="font-weight-light">状态：</p>
+                {% if confirm.status == 1 %}
+                <p class="font-weight-bold text-success">完成</p>
+                {% else %}
+                <p class="font-weight-bold font-italic text-danger">未处理</p>
+                {% endif %}
+            </div>
         </div>
         {% if confirm.status == 1 %}
         <div class="flex-row d-flex justify-content-start">
-            <p class="font-weight-light">处理内容：</p>
-            <p class="font-weight-bold">{{confirm.content}}</p>
+            <label for="formFile">处理内容：</label>
         </div>
         <div class="flex-row d-flex justify-content-start">
-            <p class="font-weight-light">处理时间：</p>
-            <p class="font-weight-bold">{{confirm.confirm_time}}</p>
+            <p class="font-weight-bold border p-2">{{confirm.content}}</p>
         </div>
-        <div class="flex-row d-flex justify-content-start">
-            <p class="font-weight-light">处理状态：</p>
-            {% if confirm.status == 1 %}
-            <p class="font-weight-bold text-success">完成</p>
-            {% else %}
-            <p class="font-weight-bold font-italic text-danger">未处理</p>
-            {% endif %}
+        {% if confirm.confirm_file != Null %}
+        <div class="flex-row d-flex justify-content-start mb-3">
+            <a href="{{rootUrl}}/media/{{confirm.confirm_file}}" target="_blank">
+                <button type="button" class="btn btn-primary btn-sm"
+                >附件({{confirm.file_name}})
+                </button>
+            </a>
         </div>
-        {% else %}
-        <div class="flex-row d-flex justify-content-start">
-            <p class="font-weight-light">处理状态：</p>
-            <p class="font-weight-bold font-italic text-danger">未处理</p>
-        </div>
+        {% endif %}
         {% endif %}
     </div>
     {% endfor %}

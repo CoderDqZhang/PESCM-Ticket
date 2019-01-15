@@ -23,8 +23,8 @@ class Account(models.Model):
     group = models.ForeignKey(AccountGroup, verbose_name='群组', on_delete=models.CASCADE,null=True)  # 多对一（博客--类别）
     status = models.IntegerField('甲乙区分', default = 0, null=True) #甲乙区分 0代表甲方，1代表乙方
     desc = models.CharField('负责项目', max_length=255, default='', null=True) #人员介绍
-    create_time = models.DateField('创建时间',auto_created=True,auto_now=True) #创建时间
-    last_login = models.DateField('最后登录时间',auto_created=False,auto_now=False) #最后登录时间
+    create_time = models.DateTimeField('创建时间',auto_created=True,auto_now=True) #创建时间
+    last_login = models.DateTimeField('最后登录时间',auto_created=False,auto_now=False) #最后登录时间
     avatar = models.ImageField('头像', upload_to="avatar/%Y/%m", default=u"image/default.png", blank=True, null=True)
 
     def __str__(self):

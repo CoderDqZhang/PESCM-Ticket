@@ -79,11 +79,11 @@
                 {% endif %}
             </div>
         </div>
-        {% if ticket.ticket_file != Null %}
+        {% if ticket.ticket_file != None and ticket.file_name != 'None' %}
         <div class="flex-row d-flex justify-content-start mb-3">
             <a href="{{rootUrl}}/media/{{ticket.ticket_file}}" target="_blank">
                 <button type="button" class="btn btn-primary btn-sm"
-                        >附件({{ticket.file_name}})
+                >附件({{ticket.file_name}})
                 </button>
             </a>
         </div>
@@ -121,11 +121,11 @@
         <div class="flex-row d-flex justify-content-start">
             <p class="font-weight-bold border p-2">{{confirm.content}}</p>
         </div>
-        {% if confirm.confirm_file != Null %}
+        {% if confirm.confirm_file != None and confirm.file_name != 'None' %}
         <div class="flex-row d-flex justify-content-start mb-3">
             <a href="{{rootUrl}}/media/{{confirm.confirm_file}}" target="_blank">
                 <button type="button" class="btn btn-primary btn-sm"
-                        >附件({{confirm.file_name}})
+                >附件({{confirm.file_name}})
                 </button>
             </a>
         </div>
@@ -146,9 +146,104 @@
             <label for="formFile">请选择上传文件</label>
             <input type="file" class="form-control-file" id="formFile" , name="file_data" value="选择文件" multiple>
         </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2"
+                       onchange="changeValue(this)" name="check_box">
+                <label class="form-check-label" for="invalidCheck2">
+                    是否转派给其他人员
+                </label>
+            </div>
+        </div>
+        <div id="transfer" style="display: none;">
+            <div class="flex-column mt-2 mb-2">
+                <label for="exampleFormControlSelect2">部门选择</label>
+                <select class=" custom-select" id="inputGroupSelect01">
+                    <option selected>选择部门</option>
+                    {% for department in departments %}
+                    <option value="{{department.partment_code}}">{{department.partment_desc}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect2">人员列表</label>
+                <select multiple class="form-control" id="exampleFormControlSelect2" name="ticket_listsort">
+                    {% for user in users %}
+                    <option>{{user.nickname}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="selectUser">已选择人员</label>
+                <div class="d-flex flex-row bd-highlight mb-3" id="selectUser">
+                </div>
+            </div>
+        </div>
         <button type="submit" class="btn btn-primary">确定</button>
     </form>
 </div>
+{% endblock %}
+
+{% block js %}
+<script>
+
+    function changeValue(checkbox) {
+        console.log(checkbox.checked)
+        if (checkbox.checked == true) {
+            $("#transfer").show();
+        } else {
+            $("#transfer").hide();
+        }
+    }
+
+
+    $("select#inputGroupSelect01").change(function () {
+        var getdata = {"department_code": $(this).val()}
+        var get_url = '../../../../api/ticket/create/department/user/'
+        $.ajax({
+            url: get_url,
+            type: "GET",
+            data: getdata,
+            success: function (res) {
+                console.log(res['user_list'].length)
+                var strs = ''
+                $("#exampleFormControlSelect2").empty();
+                for (var i = 0; i < res['user_list'].length; i++) {
+                    var user = res['user_list'][i]
+                    var nickname = user["nickname"]
+                    var user_id = user["user_id"]
+                    strs = strs + "<option value=" + user_id + ">" + nickname + "</option>"
+                }
+                $("#exampleFormControlSelect2").html(strs);
+
+            }
+        });
+    });
+
+    $("select#exampleFormControlSelect2").change(function () {
+        var users = []
+        var obj = document.getElementById("exampleFormControlSelect2");
+        console.log(obj)
+        console.log(document.getElementById("selectData"));
+
+        for (var i = 0; i < obj.options.length; i++) {
+            if (obj.options[i].selected) {
+                var user = {'user_id': obj.options[i].value, 'nickname': obj.options[i].text}
+                users.push(user);// 收集选中项
+            }
+        }
+        var strs = ''
+        for (var i = 0; i < users.length; i++) {
+            var nickname = users[i]['nickname']
+            var user_id = users[i]['user_id']
+            strs = strs + "<options id='selectData' class='p-2 bd-highlight' value=" + user_id + ">" + nickname + "</options>"
+        }
+        $("#selectUser").html(strs)
+
+    });
+
+</script>
+
 {% endblock %}
 
 

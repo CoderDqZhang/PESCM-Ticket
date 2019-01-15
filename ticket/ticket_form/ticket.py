@@ -12,4 +12,6 @@ class TicketForm(forms.Form):
 
 class TicketConfimForm(forms.Form):
     ticket_content = forms.Textarea()
+    check_box = forms.CheckboxInput()
+    ticket_listsort = forms.ModelMultipleChoiceField(queryset=Account.objects.all())
     # file_data = forms.FileField()
