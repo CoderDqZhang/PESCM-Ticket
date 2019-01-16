@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 from rest_framework import routers
-from ticket.ticket_view import account,department,ticket
+from ticket.ticket_view import account,department,ticket,send_email
 
 
 # router = routers.DefaultRouter()
@@ -23,5 +23,8 @@ urlpatterns = [
 
     url(r'^ticket/test/', ticket.test),
 
-    url(r'^ticket/create/department/user/', ticket.get_department_user)
+    url(r'^ticket/create/department/user/', ticket.get_department_user),
+
+
+    url(r'^ticket/send/', send_email.sender_email),
 ]

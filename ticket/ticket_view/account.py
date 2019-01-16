@@ -49,8 +49,6 @@ def home(request):
             done_tickets = Ticket.objects.filter(
                 ticket_listsort__user__user_id__exact=request.session.get("username")).filter(
                 ticket_status=3)
-            print(actions_tickets)
-            print(done_tickets)
             return render(request, 'ticket/server.html', {'user': user,
                                                           'actions_tickets': actions_tickets,
                                                           'rootUrl': config.rootUrl,
