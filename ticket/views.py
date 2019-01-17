@@ -11,3 +11,7 @@ def page_error(request):
 
 def permission_denied(request):
     return render(request, 'blog/403.html')
+
+
+def test_time():
+    print('this is test')
