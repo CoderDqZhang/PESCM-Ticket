@@ -121,22 +121,25 @@
             <button type="submit" class="btn btn-primary">创建</button>
         </form>
         {% elif category_id %}
-        {% for ticket in tickets %}
-        <button type="button" class="btn btn-light" id="ticket_button"
-                onclick="ticketClick('{{ticket.ticket_id}}')">
-            <div class="card bg-light" style="width: 18rem; height: 9rem;">
-                <div class="card-body">
-                    <h5 class="card-title">{{ ticket.ticket_model_name }}</h5>
-                    <p class="card-text text-black-50">{{ ticket.ticket_model_desc }}</p>
+        <div class="w-100">
+            {% for ticket in tickets %}
+            <button type="button" class="btn btn-light mt-2" style="width: 18rem; height: 9rem;" id="ticket_button"
+                    onclick="ticketClick('{{ticket.ticket_id}}')">
+                <div class="card bg-light" style="width: 16.5rem; height: 8rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ ticket.ticket_model_name }}</h5>
+                        <p class="card-text text-black-50">{{ ticket.ticket_model_desc }}</p>
+                    </div>
                 </div>
-            </div>
-        </button>
-        {% endfor %}
+            </button>
+            {% endfor %}
+        </div>
         {% else %}
+        <div class="w-100">
         {% for category in catgorys %}
-        <button type="button" class="btn btn-light" id="category_button"
+        <button type="button" class="btn btn-light mt-2" style="width: 18rem; height: 9rem;" id="category_button"
                 onclick="categoryClick('{{category.category_id}}')">
-            <div class="card bg-light" style="width: 18rem; height: 9rem;">
+            <div class="card bg-light" style="width: 16.5rem; height: 8rem;">
                 <div class="card-body">
                     <h5 class="card-title">{{ category.category_name }}</h5>
                     <p class="card-text text-black-50">{{ category.category_desc }}</p>
@@ -144,6 +147,7 @@
             </div>
         </button>
         {% endfor %}
+        </div>
         {% endif %}
     </div>
 </div>
