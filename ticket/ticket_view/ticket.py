@@ -7,6 +7,7 @@ from ticket.ticke_model.ticket import Ticket, TicketConfim
 from ticket.ticke_model.account import Account
 from ticket.ticke_model.category import Category, TicketModel
 from ticket.ticke_model.department import Department
+from ticket.ticket_view.send_email import sender_email_ticket
 from ticket.ticket_form.ticket import TicketForm, TicketConfimForm
 from ticket.until import define, config
 
@@ -76,6 +77,7 @@ class TicketView(View):
                     )
                     ticket.ticket_listsort.add(ticket_confim)
                 ticket.save()
+                sender_email_ticket(ticket)
                 url = "../../../api/ticket/detail/?ticket_id=" + str(ticket.ticket_id)
                 return redirect(url)
             else:
