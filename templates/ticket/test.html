@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>form validation</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
     <script src="../../../../static/lib/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
             integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
@@ -10,46 +15,60 @@
             crossorigin="anonymous"></script>
     <script src='https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.js'></script>
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+
     <script type="text/javascript">
-        $(document).ready(function () {
-            $("#hide").click(function () {
-                $("p").hide();
-                $("#transfer").hide()
-            });
-            $("#show").click(function () {
-                $("p").show();
-                $("#transfer").show()
-            });
-        });
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+//                var form = document.getElementById('needs-validation');
+//                var form1 = document.getElementsByName('needs-validation');
+                var form2 = document.getElementsByClassName('needs-validation');
+                var form = form2[0]
+                console.log(form)
+                form2[0].addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            }, false);
+        })();
     </script>
 </head>
 <body>
-<p id="p1">如果点击“隐藏”按钮，我就会消失。</p>
-<div id="transfer">
-            <div class="flex-column mt-2 mb-2">
-                <label for="exampleFormControlSelect2">部门选择</label>
-                <select class=" custom-select" id="inputGroupSelect01">
-                    <option selected>选择部门</option>
-                    {% for department in departments %}
-                    <option value="{{department.partment_code}}">{{department.partment_desc}}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlSelect2">人员列表</label>
-                <select multiple class="form-control" id="exampleFormControlSelect2" name="ticket_listsort" required>
-                    {% for user in users %}
-                    <option>{{user.nickname}}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="selectUser">已选择人员</label>
-                <div class="d-flex flex-row bd-highlight mb-3" id="selectUser">
+<div class="container py-5">
+    <div class="row">
+        <div class="offset-md-2 col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="card-title text-uppercase">Employee Form</h4>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" name="needs-validation" method="POST" id="loginForm" novalidate>
+                        <div class="form-group">
+                            <label for="user_id" class="control-label">用户名</label>
+                            <input type="number" class="form-control" id="user_id" name="user_id"
+                                   placeholder="用户名" required>
+                            <div class="invalid-feedback">
+                                请输入用户名
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">密码</label>
+                            <input type="password" class="form-control" id="password" name="password"
+                                   placeholder="请输入密码" required>
+                            <div class="invalid-feedback">
+                                请输入密码
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" onclick="login()">登录</button>
+                    </form>
                 </div>
             </div>
         </div>
-<button id="hide" type="button">隐藏</button>
-<button id="show" type="button">显示</button>
+    </div>
+</div>
 </body>
 </html>

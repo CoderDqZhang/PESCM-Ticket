@@ -68,7 +68,8 @@
     </nav>
     <div class="d-flex flex-row">
         {% if ticket_id %}
-        <form class="w-100" action="{{location.href}}" method="POST" id="ticketForm" enctype="multipart/form-data">
+        <form class="needs-validation w-100" action="{{location.href}}" method="POST" id="ticketForm"
+              enctype="multipart/form-data" novalidate>
             <div class="form-group">
                 <label for="exampleFormControlInput1">问题工单</label>
                 <input class="form-control" type="text" id="exampleFormControlInput1"
@@ -79,11 +80,17 @@
                 <label for="exampleFormControlInput2">问题标题</label>
                 <input class="form-control" type="text" id="exampleFormControlInput2" placeholder="请输入问题标题"
                        name="ticket_title" required>
+                <div class="invalid-feedback">
+                    请输入标题
+                </div>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">问题详细描述</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="请输入问题描述内容"
                           name="ticket_desc" required></textarea>
+                <div class="invalid-feedback">
+                    请输入问题详细描述
+                </div>
             </div>
             <div class="form-group">
                 <label for="formFile">请选择上传文件</label>
@@ -111,6 +118,9 @@
                     <option>{{user.nickname}}</option>
                     {% endfor %}
                 </select>
+                <div class="invalid-feedback">
+                    请选择人员
+                </div>
             </div>
             <div class="form-group">
                 <label for="selectUser">已选择人员</label>
@@ -136,23 +146,24 @@
         </div>
         {% else %}
         <div class="w-100">
-        {% for category in catgorys %}
-        <button type="button" class="btn btn-light mt-2" style="width: 18rem; height: 9rem;" id="category_button"
-                onclick="categoryClick('{{category.category_id}}')">
-            <div class="card bg-light" style="width: 16.5rem; height: 8rem;">
-                <div class="card-body">
-                    <h5 class="card-title">{{ category.category_name }}</h5>
-                    <p class="card-text text-black-50">{{ category.category_desc }}</p>
+            {% for category in catgorys %}
+            <button type="button" class="btn btn-light mt-2" style="width: 18rem; height: 9rem;" id="category_button"
+                    onclick="categoryClick('{{category.category_id}}')">
+                <div class="card bg-light" style="width: 16.5rem; height: 8rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ category.category_name }}</h5>
+                        <p class="card-text text-black-50">{{ category.category_desc }}</p>
+                    </div>
                 </div>
-            </div>
-        </button>
-        {% endfor %}
+            </button>
+            {% endfor %}
         </div>
         {% endif %}
     </div>
 </div>
 {% endblock %}
 {% block js %}
+
 <script>
 
     function categoryClick(category_id) {
@@ -208,24 +219,6 @@
         }
         $("#selectUser").html(strs)
 
-    });
-
-
-    $().ready(function () {
-        // validate the comment form when it is submitted
-        // validate signup form on keyup and submit
-        $("#ticketForm").validate({
-            rules: {
-                exampleFormControlInput2: "required",
-                exampleFormControlTextarea1: "required",
-                exampleFormControlSelect2: "required"
-            },
-            messages: {
-                exampleFormControlInput2: "请输入问题标题",
-                exampleFormControlTextarea1: "请输入描述信息",
-                exampleFormControlSelect2: "请至少选择1名人员"
-            }
-        });
     });
 
 </script>

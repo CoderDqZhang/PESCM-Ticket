@@ -34,6 +34,23 @@
         crossorigin="anonymous"></script>
 <script src='https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.js'></script>
 <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+<script type="text/javascript">
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var form1 = document.getElementsByClassName('needs-validation');
+            var form = form1[0]
+            form.addEventListener('submit', function (event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        }, false);
+    })();
+</script>
+
 {% block js %}
 {% endblock %}
 </body>
