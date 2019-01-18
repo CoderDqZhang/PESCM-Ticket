@@ -112,6 +112,16 @@
                 {% endif %}
             </div>
         </div>
+        <div class="flex-row d-flex justify-content-between">
+            <div class="flex-row d-flex justify-content-start">
+                <p class="font-weight-light">测试机部署时间：</p>
+                <p class="font-weight-bold">{{ticket.dev_push_time}}</p>
+            </div>
+            <div class="flex-row d-flex justify-content-start">
+                <p class="font-weight-light">生产机部署时间：</p>
+                <p class="font-weight-bold">{{ticket.pub_push_time}}</p>
+            </div>
+        </div>
         <div class="flex-row d-flex justify-content-start">
             <label>工单详细描述：</label>
         </div>

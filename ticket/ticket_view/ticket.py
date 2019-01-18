@@ -66,6 +66,8 @@ class TicketView(View):
                     ticket_title=tickt_form.data['ticket_title'],
                     ticket_desc=tickt_form.data['ticket_desc'],
                     ticket_lev = isCheckForm,
+                    dev_push_time = tickt_form.data['dev_push_time'],
+                    pub_push_time = tickt_form.data['pub_push_time'],
                     ticket_remark = tickt_form.data['ticket_remark'],
                     handel_time = tickt_form.data['handel_time'],
                     ticket_create_user=Account.objects.get(user_id=request.session.get("username")),
@@ -349,8 +351,6 @@ class TicketServerDetailView(View):
                 except:
                     if ticket.ticket_listsort.filter(status=0).count() == 0:
                         ticket.ticket_status = 3
-                        print("实际执行天数")
-                        print(timezone.now() - ticket.create_time)
 
 
                 ticket_confirm.save()

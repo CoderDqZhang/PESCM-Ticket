@@ -9,6 +9,8 @@ class TicketForm(forms.Form):
     ticket_lev = forms.CheckboxInput()  # 状态，一般，紧急，
     ticket_listsort = forms.ModelMultipleChoiceField(queryset=Account.objects.all())
     handel_time = forms.NumberInput()
+    dev_push_time = forms.DateField()
+    pub_push_time = forms.DateField()
     ticket_remark = forms.Textarea()
 
 class TicketConfimForm(forms.Form):

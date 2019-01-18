@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from ticket.ticke_model.department import Department
 from ticket.ticke_model.account import Account
 from ticket.ticke_model.category import TicketModel
+import django.utils.timezone as timezone
+import datetime
 
 
 class TicketConfim(models.Model):
@@ -45,6 +47,9 @@ class Ticket(models.Model):
                                    default='')  # 问题及现状描述
     handel_time = models.IntegerField('执行天数', default=1)  # 创建工单者执行天数
     done_time = models.IntegerField('实际执行天数', default=0)  # 实际执行天数
+
+    dev_push_time = models.DateField('测试机部署时间', auto_created=True, auto_now=True)  # 测试机部署时间
+    pub_push_time = models.DateField('生产机部署时间', auto_created=True, auto_now=True)  # 生产机部署时间
 
     def __str__(self):
         return self.ticket_title
