@@ -57,30 +57,29 @@ class TicketView(View):
             ticketModel = TicketModel.objects.get(ticket_id=request.GET.get('ticket_id'))
             ticketModel.ticket_model = Category.objects.get(category_id=request.GET.get('category_id'))
             if tickt_form.is_valid():
-                # ticket = Ticket.objects.create(
-                #     ticket_title=tickt_form.data['ticket_title'],
-                #     ticket_desc=tickt_form.data['ticket_desc'],
-                #     ticket_lev=1,
-                #     ticket_create_user=Account.objects.get(user_id=request.session.get("username")),
-                #     ticket_model_ticket=TicketModel.objects.get(ticket_id=request.GET.get('ticket_id'))
-                # )
-                #
-                # try:
-                #     ticket.ticket_file = request.FILES.get('file_data',None)
-                #     ticket.file_name = str(request.FILES.get('file_data', None))
-                # except:
-                #     ticket.ticket_file = None
-                #
-                # for model in tickt_form.cleaned_data["ticket_listsort"]:
-                #     ticket_confim = TicketConfim.objects.create(
-                #         user=model
-                #     )
-                #     ticket.ticket_listsort.add(ticket_confim)
-                # ticket.save()
-                # sender_email_ticket(ticket)
-                # url = "../../../api/ticket/detail/?ticket_id=" + str(ticket.ticket_id)
-                # return redirect(url)
-                return render(request, 'ticket/myticket/my_ticket.html')
+                ticket = Ticket.objects.create(
+                    ticket_title=tickt_form.data['ticket_title'],
+                    ticket_desc=tickt_form.data['ticket_desc'],
+                    ticket_lev=1,
+                    ticket_create_user=Account.objects.get(user_id=request.session.get("username")),
+                    ticket_model_ticket=TicketModel.objects.get(ticket_id=request.GET.get('ticket_id'))
+                )
+
+                try:
+                    ticket.ticket_file = request.FILES.get('file_data',None)
+                    ticket.file_name = str(request.FILES.get('file_data', None))
+                except:
+                    ticket.ticket_file = None
+
+                for model in tickt_form.cleaned_data["ticket_listsort"]:
+                    ticket_confim = TicketConfim.objects.create(
+                        user=model
+                    )
+                    ticket.ticket_listsort.add(ticket_confim)
+                ticket.save()
+                sender_email_ticket(ticket)
+                url = "../../../api/ticket/detail/?ticket_id=" + str(ticket.ticket_id)
+                return redirect(url)
             else:
                 return render(request, 'ticket/myticket/my_ticket.html')
         else:
