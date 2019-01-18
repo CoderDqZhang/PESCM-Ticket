@@ -65,7 +65,7 @@ class CategoryAdmin(object):
     list_display = ('category_name','category_desc')
 
 class TicketModelAdmin(object):
-    list_display = ('ticket_id','ticket_title','ticket_model_desc',)
+    list_display = ('ticket_model_name','ticket_model_desc',)
 
 
 class TicketAdmin(object):
