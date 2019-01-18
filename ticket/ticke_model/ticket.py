@@ -48,8 +48,8 @@ class Ticket(models.Model):
     handel_time = models.IntegerField('执行天数', default=1)  # 创建工单者执行天数
     done_time = models.IntegerField('实际执行天数', default=0)  # 实际执行天数
 
-    dev_push_time = models.DateField('测试机部署时间', auto_created=True, auto_now=True)  # 测试机部署时间
-    pub_push_time = models.DateField('生产机部署时间', auto_created=True, auto_now=True)  # 生产机部署时间
+    dev_push_time = models.DateField('测试机部署时间', auto_created=True, auto_now_add=True)  # 测试机部署时间
+    pub_push_time = models.DateField('生产机部署时间', auto_created=True, auto_now_add=True)  # 生产机部署时间
 
     def __str__(self):
         return self.ticket_title
