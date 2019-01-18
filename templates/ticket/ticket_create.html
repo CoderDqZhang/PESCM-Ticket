@@ -71,7 +71,7 @@
         <form class="needs-validation w-100" action="{{location.href}}" method="POST" id="ticketForm"
               enctype="multipart/form-data" novalidate>
             <div class="form-group">
-                <label for="exampleFormControlInput1">问题工单</label>
+                <label for="exampleFormControlInput1">问题类别</label>
                 <input class="form-control" type="text" id="exampleFormControlInput1"
                        placeholder="{{ticket.ticket_model}}-{{ticket.ticket_model_name}}"
                        name="ticket_model" readonly>
@@ -85,25 +85,45 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">问题详细描述</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="请输入问题描述内容"
+                <label for="exampleFormControlTextarea1">问题及现状描述</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="问题及现状描述"
                           name="ticket_desc" required></textarea>
                 <div class="invalid-feedback">
-                    请输入问题详细描述
+                    问题及现状描述
                 </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea2">备注</label>
+                <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" placeholder="请输入问题备注"
+                          name="ticket_remark"></textarea>
+                <div class="invalid-feedback">
+                    备注
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">执行天数</label>
+                <select class="form-control" id="exampleFormControlSelect1" name="handel_time">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="formFile">请选择上传文件</label>
                 <input type="file" class="form-control-file" id="formFile" , name="file_data" value="选择文件" multiple>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" name="ticket_lev">
+                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" name="check_box">
                 <label class="form-check-label" for="defaultCheck1">
                     是否紧急
                 </label>
             </div>
             <div class="flex-column mt-2 mb-2">
-                <label for="exampleFormControlSelect2">部门选择</label>
+                <label for="exampleFormControlSelect2">顾问部门选择</label>
                 <select class=" custom-select" id="inputGroupSelect01">
                     <option selected>选择部门</option>
                     {% for department in departments %}
@@ -112,7 +132,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlSelect2">人员列表</label>
+                <label for="exampleFormControlSelect2">实施顾问列表</label>
                 <select multiple class="form-control" id="exampleFormControlSelect2" name="ticket_listsort" required>
                     {% for user in users %}
                     <option>{{user.nickname}}</option>

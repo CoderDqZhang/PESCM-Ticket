@@ -57,13 +57,22 @@ class TicketView(View):
             ticketModel = TicketModel.objects.get(ticket_id=request.GET.get('ticket_id'))
             ticketModel.ticket_model = Category.objects.get(category_id=request.GET.get('category_id'))
             if tickt_form.is_valid():
+                try:
+                    tickt_form.data['check_box']
+                    isCheckForm = 1 #为紧急状态
+                except:
+                    isCheckForm = 0
                 ticket = Ticket.objects.create(
                     ticket_title=tickt_form.data['ticket_title'],
                     ticket_desc=tickt_form.data['ticket_desc'],
-                    ticket_lev=1,
+                    ticket_lev = isCheckForm,
+                    ticket_remark = tickt_form.data['ticket_remark'],
+                    handel_time = tickt_form.data['handel_time'],
                     ticket_create_user=Account.objects.get(user_id=request.session.get("username")),
                     ticket_model_ticket=TicketModel.objects.get(ticket_id=request.GET.get('ticket_id'))
                 )
+
+
 
                 try:
                     ticket.ticket_file = request.FILES.get('file_data',None)
@@ -111,7 +120,7 @@ class MyticketView(View):
                 elif int(request.GET.get('dateType')) == -1:
                     myticket = myticket.filter(create_time__range=(yeastoday, yeastoday1))
                 elif int(request.GET.get('dateType')) == -7:
-                    myticket = myticket.filter(create_time__lt=week)
+                    myticket = myticket.filter(create_time__gt=week)
             else:
                 dateType = 100
 
@@ -319,6 +328,7 @@ class TicketServerDetailView(View):
 
                 ticket_confirm.status = 1
                 ticket_confirm.content = tickt_form.data['ticket_content']
+                ticket_confirm.confirm_remark = tickt_form.data['confirm_remark']
                 ticket_confirm.confirm_time = timezone.now()
 
                 try:
@@ -339,6 +349,9 @@ class TicketServerDetailView(View):
                 except:
                     if ticket.ticket_listsort.filter(status=0).count() == 0:
                         ticket.ticket_status = 3
+                        print("实际执行天数")
+                        print(timezone.now() - ticket.create_time)
+
 
                 ticket_confirm.save()
                 ticket.save()

@@ -58,13 +58,13 @@
 <div class="bg-white border rounded d-block p-4 h-auto w-95 ml-2 mr-2" style="margin-top: 60px;">
     <div class="flex-column d-flex bg-light justify-content-start">
         <div class="flex-row d-flex justify-content-start">
-            <p class="font-weight-light">问题标题：</p>
-            <p class="font-weight-bold">{{ticket.ticket_title}}</p>
+            <p class="font-weight-light">工单编号：</p>
+            <p class="font-weight-bold">{{ticket.ticket_id}}</p>
         </div>
         <div class="flex-row d-flex justify-content-between">
             <div class="flex-row d-flex justify-content-start">
-                <p class="font-weight-light">工单编号：</p>
-                <p class="font-weight-bold">{{ticket.ticket_id}}</p>
+                <p class="font-weight-light">问题标题：</p>
+                <p class="font-weight-bold">{{ticket.ticket_title}}</p>
             </div>
             <div class="flex-row d-flex justify-content-start">
                 <p class="font-weight-light">创建时间：</p>
@@ -79,6 +79,38 @@
                 {% endif %}
             </div>
         </div>
+        <div class="flex-row d-flex justify-content-between">
+            <div class="flex-row d-flex justify-content-start">
+                <p class="font-weight-light">工单类型：</p>
+                <p class="font-weight-bold">{{ticket.ticket_model_ticket}}</p>
+            </div>
+            <div class="flex-row d-flex justify-content-start">
+                <p class="font-weight-light">创建人：</p>
+                <p class="font-weight-bold">{{ticket.ticket_create_user}}</p>
+            </div>
+            <div class="flex-row d-flex justify-content-start">
+                <p class="font-weight-light">紧急转态：</p>
+                {% if ticket.ticket_lev == 0 %}
+                <p class="font-weight-bold text-success">一般</p>
+                {% else %}
+                <p class="font-weight-bold font-italic text-danger">紧急</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="flex-row d-flex justify-content-start">
+            <label>工单详细描述：</label>
+        </div>
+        <div class="flex-row d-flex justify-content-start">
+            <p class="font-weight-bold border p-2">{{ticket.ticket_desc}}</p>
+        </div>
+        {% if ticket.ticket_remark != '' %}
+        <div class="flex-row d-flex justify-content-start">
+            <label>备注：</label>
+        </div>
+        <div class="flex-row d-flex justify-content-start">
+            <p class="font-weight-bold border p-2">{{ticket.ticket_remark}}</p>
+        </div>
+        {% endif %}
         {% if ticket.ticket_file != None and ticket.file_name != 'None' %}
         <div class="flex-row d-flex justify-content-start mb-3">
             <a href="{{rootUrl}}/media/{{ticket.ticket_file}}" target="_blank">
