@@ -23,6 +23,9 @@
         <ul class="navbar-nav mr-auto">
             {% if user.status == 0 %}
             <li class="nav-item">
+                <a class="nav-link" href="{{rootUrl}}/api/home/">首页</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{rootUrl}}/api/ticket/create/">提交工单</a>
             </li>
             {% endif %}
@@ -60,7 +63,11 @@
         <div class="flex-row d-flex justify-content-between">
             <div class="flex-row d-flex justify-content-start">
                 <p class="font-weight-light">工单编号：</p>
+                {% if ticket.ticket_show_id != ''%}
+                <p class="font-weight-bold">{{ticket.ticket_show_id}}</p>
+                {% else %}
                 <p class="font-weight-bold">{{ticket.ticket_id}}</p>
+                {% endif %}
             </div>
             <div class="flex-row d-flex justify-content-start">
                 <p class="font-weight-light">应执行天数：</p>

@@ -12,6 +12,9 @@
         <ul class="navbar-nav mr-auto">
             {% if user.status == 0 %}
             <li class="nav-item">
+                <a class="nav-link" href="{{rootUrl}}/api/home/">首页</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{rootUrl}}/api/ticket/create/">提交工单</a>
             </li>
             {% endif %}

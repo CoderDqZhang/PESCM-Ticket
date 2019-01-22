@@ -29,6 +29,8 @@ class TicketConfim(models.Model):
 
 
 class Ticket(models.Model):
+    ticket_show_id = models.CharField('工单显示ID',default='',null=False, blank=False, max_length=255)
+
     ticket_id = models.AutoField('工单ID', primary_key=True, null=False, blank=False)
     ticket_title = models.CharField('工单标题', help_text='输入工单标题', max_length=255, null=False, blank=False)
     ticket_desc = models.TextField('工单描述', help_text='输入工单详细描述', max_length=255, null=True, blank=False,

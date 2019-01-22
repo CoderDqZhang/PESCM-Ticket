@@ -9,8 +9,7 @@ from ticket.ticke_model.category import Category, TicketModel
 from ticket.ticke_model.department import Department
 from ticket.ticket_view.send_email import sender_email_ticket
 from ticket.ticket_form.ticket import TicketForm, TicketConfimForm
-from ticket.until import define, config
-
+from ticket.until import define, config, serial_number
 from django.forms.models import model_to_dict
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils import timezone
@@ -56,28 +55,30 @@ class TicketView(View):
             tickt_form = TicketForm(request.POST)
             ticketModel = TicketModel.objects.get(ticket_id=request.GET.get('ticket_id'))
             ticketModel.ticket_model = Category.objects.get(category_id=request.GET.get('category_id'))
+            user = Account.objects.get(user_id=username_session)
             if tickt_form.is_valid():
                 try:
                     tickt_form.data['check_box']
-                    isCheckForm = 1 #为紧急状态
+                    isCheckForm = 1  # 为紧急状态
                 except:
                     isCheckForm = 0
+
+                ticket_id = serial_number.get_ticket_id(ticketModel)
                 ticket = Ticket.objects.create(
+                    ticket_show_id = ticket_id,
                     ticket_title=tickt_form.data['ticket_title'],
                     ticket_desc=tickt_form.data['ticket_desc'],
-                    ticket_lev = isCheckForm,
-                    dev_push_time = tickt_form.data['dev_push_time'],
-                    pub_push_time = tickt_form.data['pub_push_time'],
-                    ticket_remark = tickt_form.data['ticket_remark'],
-                    handel_time = tickt_form.data['handel_time'],
-                    ticket_create_user=Account.objects.get(user_id=request.session.get("username")),
-                    ticket_model_ticket=TicketModel.objects.get(ticket_id=request.GET.get('ticket_id'))
+                    ticket_lev=isCheckForm,
+                    dev_push_time=tickt_form.data['dev_push_time'],
+                    pub_push_time=tickt_form.data['pub_push_time'],
+                    ticket_remark=tickt_form.data['ticket_remark'],
+                    handel_time=tickt_form.data['handel_time'],
+                    ticket_create_user=user,
+                    ticket_model_ticket=ticketModel
                 )
 
-
-
                 try:
-                    ticket.ticket_file = request.FILES.get('file_data',None)
+                    ticket.ticket_file = request.FILES.get('file_data', None)
                     ticket.file_name = str(request.FILES.get('file_data', None))
                 except:
                     ticket.ticket_file = None
@@ -263,7 +264,10 @@ class TicketDetailView(View):
         if username_session:
             user = Account.objects.get(user_id=username_session)
             try:
-                ticket = Ticket.objects.get(ticket_id=request.GET.get('ticket_id'))
+                try:
+                    ticket = Ticket.objects.get(ticket_show_id=request.GET.get('ticket_id'))
+                except Ticket.DoesNotExist:
+                    ticket = Ticket.objects.get(ticket_id=request.GET.get('ticket_id'))
                 if ticket.ticket_listsort.filter(user__user_id=username_session):
                     return render(request, 'ticket/server_ticket_detail.html', {'ticket': ticket,
                                                                                 'confirms': ticket.ticket_listsort.all(),
@@ -295,8 +299,8 @@ class TicketServerDetailView(View):
                                                                         'confirms': ticket.ticket_listsort.all(),
                                                                         'rootUrl': config.rootUrl,
                                                                         'user': user,
-                                                                        'departments':departments,
-                                                                        'users':users
+                                                                        'departments': departments,
+                                                                        'users': users
                                                                         })
         else:
             return redirect("../../../api/login/")
@@ -323,7 +327,7 @@ class TicketServerDetailView(View):
             if tickt_form.is_valid() | isCheckForm:
                 ticket_confirm = ticket.ticket_listsort.get(user__user_id=request.session.get("username"))
                 try:
-                    ticket_confirm.confirm_file = request.FILES.get('file_data',None)
+                    ticket_confirm.confirm_file = request.FILES.get('file_data', None)
                     ticket_confirm.file_name = str(request.FILES.get('file_data'))
                 except:
                     ticket_confirm.confirm_file = None
@@ -334,24 +338,23 @@ class TicketServerDetailView(View):
                 ticket_confirm.confirm_time = timezone.now()
 
                 try:
-                    #根据是否选中checkbox来选择转派人员
+                    # 根据是否选中checkbox来选择转派人员
                     tickt_form.data['check_box']
 
-                    #处理完成后转派给他人
+                    # 处理完成后转派给他人
                     ticket_confirm.transfer = 1
 
                     for model in tickt_form.cleaned_data["ticket_listsort"]:
                         if ticket.ticket_listsort.filter(user__user_id=model.user_id):
                             ticket_confim = TicketConfim.objects.create(
                                 user=model,
-                                transfer = 2,
+                                transfer=2,
                             )
                             ticket.ticket_listsort.add(ticket_confim)
 
                 except:
                     if ticket.ticket_listsort.filter(status=0).count() == 0:
                         ticket.ticket_status = 3
-
 
                 ticket_confirm.save()
                 ticket.save()

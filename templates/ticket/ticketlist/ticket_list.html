@@ -23,6 +23,9 @@
         <ul class="navbar-nav mr-auto">
             {% if user.status == 0 %}
             <li class="nav-item">
+                <a class="nav-link" href="{{rootUrl}}/api/home/">首页</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{rootUrl}}/api/ticket/create/">提交工单</a>
             </li>
             {% endif %}
@@ -142,7 +145,11 @@
         {% for ticket in ticket_list%}
 
         <tr>
+            {% if ticket.ticket_show_id != ''%}
+            <th scope="col">{{ticket.ticket_show_id}}</th>
+            {% else %}
             <th scope="col">{{ticket.ticket_id}}</th>
+            {% endif %}
             <td scope="col">{{ticket.ticket_model_ticket}}</td>
             <td scope="col">{{ticket.ticket_title}}</td>
             {% if ticket.ticket_status == 0 %}

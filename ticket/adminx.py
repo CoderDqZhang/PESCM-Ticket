@@ -69,7 +69,7 @@ class TicketModelAdmin(object):
 
 
 class TicketAdmin(object):
-    list_display = ('ticket_id','ticket_title','ticket_desc','ticket_model_ticket',
+    list_display = ('ticket_id','ticket_show_id','ticket_title','ticket_desc','ticket_model_ticket',
                     'ticket_lev','ticket_listsort',)
 
 class BaseSetting(object):
