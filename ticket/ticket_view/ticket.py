@@ -89,7 +89,10 @@ class TicketView(View):
                     )
                     ticket.ticket_listsort.add(ticket_confim)
                 ticket.save()
-                sender_email_ticket(ticket)
+                try:
+                    sender_email_ticket(ticket)
+                except:
+                    print('sender error')
                 url = "../../../api/ticket/detail/?ticket_id=" + str(ticket.ticket_id)
                 return redirect(url)
             else:
