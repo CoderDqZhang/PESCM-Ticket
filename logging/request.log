@@ -1,0 +1,27 @@
+ERROR 2019-01-24 17:40:34,616 log Internal Server Error: /api/ticket/create/
+Traceback (most recent call last):
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "./ticket/ticket_view/ticket.py", line 92, in post
+    sender_email_ticket(ticket)
+  File "./ticket/ticket_view/send_email.py", line 13, in sender_email_ticket
+    senderuser, fail_silently=False)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/mail/__init__.py", line 60, in send_mail
+    return mail.send()
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/mail/message.py", line 291, in send
+    return self.get_connection(fail_silently).send_messages([self])
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/mail/backends/smtp.py", line 110, in send_messages
+    sent = self._send(message)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/mail/backends/smtp.py", line 126, in _send
+    self.connection.sendmail(from_email, recipients, message.as_bytes(linesep='\r\n'))
+  File "/usr/local/python3/lib/python3.6/smtplib.py", line 888, in sendmail
+    raise SMTPDataError(code, resp)
+smtplib.SMTPDataError: (554, b'DT:SPM 163 smtp14,EsCowABXoN8SiElcRiPGCw--.30064S2 1548322834,please see http://mail.163.com/help/help_spam_16.htm?ip=219.141.250.88&hostid=smtp14&time=1548322834')
