@@ -19,7 +19,7 @@ class TicketConfim(models.Model):
     confirm_time = models.DateTimeField('处理时间', auto_created=False, null=True, blank=True, auto_now=False)
 
     confirm_remark = models.TextField('处理人工单备注', help_text='处理人工单备注', max_length=255, null=True, blank=False,
-                                     default='')  # 问题及现状描述
+                                      default='')  # 问题及现状描述
 
     confirm_file = models.FileField(upload_to="handle/%Y/%m/%d", null=True, )
     file_name = models.CharField('文件名称', max_length=255, null=True, default='None')
@@ -29,7 +29,7 @@ class TicketConfim(models.Model):
 
 
 class Ticket(models.Model):
-    ticket_show_id = models.CharField('工单显示ID',default='',null=False, blank=False, max_length=255)
+    ticket_show_id = models.CharField('工单显示ID', default='', null=False, blank=False, max_length=255)
 
     ticket_id = models.AutoField('工单ID', primary_key=True, null=False, blank=False)
     ticket_title = models.CharField('工单标题', help_text='输入工单标题', max_length=255, null=False, blank=False)
@@ -42,16 +42,18 @@ class Ticket(models.Model):
     ticket_create_user = models.ForeignKey(Account, '创建人', null=False, blank=False)  # 提报人
     create_time = models.DateTimeField('创建时间', auto_created=True, auto_now=True)  # 提报时间
 
-    ticket_file = models.FileField(upload_to="ticket/%Y/%m/%d", null=True) #提交附件
+    ticket_file = models.FileField(upload_to="ticket/%Y/%m/%d", null=True)  # 提交附件
     file_name = models.CharField('文件名称', max_length=255, null=True, default='None')
 
     ticket_remark = models.TextField('工单备注', help_text='工单备注', max_length=255, null=True, blank=False,
-                                   default='')  # 问题及现状描述
+                                     default='')  # 问题及现状描述
     handel_time = models.IntegerField('执行天数', default=1)  # 创建工单者执行天数
     done_time = models.IntegerField('实际执行天数', default=0)  # 实际执行天数
 
-    dev_push_time = models.DateField('测试机部署时间', auto_created=False, auto_now_add=False)  # 测试机部署时间
-    pub_push_time = models.DateField('生产机部署时间', auto_created=False, auto_now_add=False)  # 生产机部署时间
+    dev_push_time = models.DateField('测试机部署时间', auto_created=False, auto_now_add=False, null=True,
+                                     blank=True)  # 测试机部署时间
+    pub_push_time = models.DateField('生产机部署时间', auto_created=False, auto_now_add=False, null=True,
+                                     blank=True)  # 生产机部署时间
 
     def __str__(self):
         return self.ticket_title
