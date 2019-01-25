@@ -416,7 +416,7 @@ class TicketServerDetailView(View):
 
 
 def test(request):
-    sender_email()
+    sender_email_ticket(Ticket.objects.get(ticket_id='1000016'))
     return JsonResponse({'success':"OK"})
 
 

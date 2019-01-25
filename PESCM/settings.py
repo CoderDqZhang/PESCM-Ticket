@@ -25,7 +25,7 @@ from ticket.until import define
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if (define.get_mac_address() == '00:50:56:82:19:40'):
-    DEBUG = True
+    DEBUG = False
 else:
     DEBUG = True
 
