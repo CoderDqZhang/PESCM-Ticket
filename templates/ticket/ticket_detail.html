@@ -157,10 +157,37 @@
             <div class="flex-row d-flex justify-content-start">
                 <p class="font-weight-light">状态：</p>
                 {% if confirm.status == 1 %}
-                <p class="font-weight-bold text-success">完成</p>
+                {% if confirm.check == 1 %}
+                <p class="font-weight-bold text-success">已完成</p>
+                {% else %}
+                <p class="font-weight-bold text-warning">待审核</p>
+                {% endif %}
                 {% else %}
                 <p class="font-weight-bold font-italic text-danger">未处理</p>
                 {% endif %}
+            </div>
+        </div>
+        <div class="d-flex justify-content-between w-100">
+            <div class="flex-row d-flex justify-content-between">
+                <p class="font-weight-light">执行时间：</p>
+                <p class="font-weight-bold">{{confirm.handel_time}}</p>
+            </div>
+            <div class="flex-row d-flex justify-content-start">
+                {% if confirm.status == 1 %}
+                {% if confirm.check == 1 %}
+                <button type="submit" class="btn btn-secondary disabled">审核通过</button>
+                {% else %}
+                <form class="w-100 needs-validation" action="{{location.href}}" method="POST" id="ticketForm"
+                      enctype="multipart/form-data">
+                    <div class="form-group" style="display: none;">
+                        <label for="exampleFormControlInput2">问题标题</label>
+                        <input class="form-control" type="text" id="exampleFormControlInput2" placeholder="请输入问题标题"
+                               name="ticket_id" value="{{confirm.id}}" required>
+                    </div>
+                    <button type="submit" class="btn btn-warning text-white">审核</button>
+                    {% endif %}
+                    {% endif %}
+                </form>
             </div>
         </div>
         {% if confirm.status == 1 %}

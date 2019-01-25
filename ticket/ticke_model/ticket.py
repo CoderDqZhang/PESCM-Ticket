@@ -24,6 +24,9 @@ class TicketConfim(models.Model):
     confirm_file = models.FileField(upload_to="handle/%Y/%m/%d", null=True, )
     file_name = models.CharField('文件名称', max_length=255, null=True, default='None')
 
+    handel_time = models.FloatField('执行天数', default=0.3)  # 创建工单者执行天数
+    check = models.IntegerField('是否审核',default=0) # 状态 0否，1是
+
     def __str__(self):
         return self.user.nickname
 
@@ -47,8 +50,8 @@ class Ticket(models.Model):
 
     ticket_remark = models.TextField('工单备注', help_text='工单备注', max_length=255, null=True, blank=False,
                                      default='')  # 问题及现状描述
-    handel_time = models.IntegerField('执行天数', default=1)  # 创建工单者执行天数
-    done_time = models.IntegerField('实际执行天数', default=0)  # 实际执行天数
+    handel_time = models.FloatField('执行天数', default=0.3)  # 创建工单者执行天数
+    done_time = models.FloatField('实际执行天数', default=0.3)  # 实际执行天数
 
     dev_push_time = models.DateField('测试机部署时间', auto_created=False, auto_now_add=False, null=True,
                                      blank=True)  # 测试机部署时间

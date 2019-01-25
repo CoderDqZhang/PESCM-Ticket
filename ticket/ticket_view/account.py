@@ -45,13 +45,17 @@ def home(request):
         else:
             actions_tickets = Ticket.objects.filter(
                 ticket_listsort__user__user_id__exact=request.session.get("username")).filter(
-                ticket_status=0)
+                ticket_status=0).order_by("-create_time")
+            todo_actions_tickets = Ticket.objects.filter(
+                ticket_listsort__user__user_id__exact=request.session.get("username")).filter(
+                ticket_status=0).filter(ticket_listsort__status=1).order_by("-create_time")
             done_tickets = Ticket.objects.filter(
                 ticket_listsort__user__user_id__exact=request.session.get("username")).filter(
-                ticket_status=3)
+                ticket_status=3).order_by("-create_time")
             return render(request, 'ticket/server.html', {'user': user,
                                                           'actions_tickets': actions_tickets,
                                                           'rootUrl': config.rootUrl,
-                                                          'done_tickets': done_tickets})
+                                                          'done_tickets': done_tickets,
+                                                          'todo_actions_tickets':todo_actions_tickets})
     else:
         return redirect("../../api/login/")

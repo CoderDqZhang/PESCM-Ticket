@@ -104,25 +104,11 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlSelect1">执行天数</label>
-                <select class="form-control" id="exampleFormControlSelect1" name="handel_time">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                </select>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="date1">测试机部署时间</label>
-                    <input type="date" class="form-control" id="date1" name="dev_push_time" placeholder="测试机部署时间" >
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="data2">生产机部署时间</label>
-                    <input type="date" class="form-control" id="data2" name="pub_push_time" placeholder="生产机部署时间" >
+                <label for="number_time">执行天数</label>
+                <input class="form-control" id="number_time" type="number" step="0.1" placeholder="请输入执行时间"
+                          name="handel_time" required></input>
+                <div class="invalid-feedback">
+                    请输入执行时间
                 </div>
             </div>
             <div class="form-group">
