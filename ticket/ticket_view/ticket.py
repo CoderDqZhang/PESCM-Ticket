@@ -7,7 +7,7 @@ from ticket.ticke_model.ticket import Ticket, TicketConfim
 from ticket.ticke_model.account import Account
 from ticket.ticke_model.category import Category, TicketModel
 from ticket.ticke_model.department import Department
-from ticket.ticket_view.send_email import sender_email_ticket
+from ticket.ticket_view.send_email import sender_email_ticket,sender_email
 from ticket.ticket_form.ticket import TicketForm, TicketConfimForm, TicketCheckForm
 from ticket.until import define, config, serial_number
 from django.forms.models import model_to_dict
@@ -416,7 +416,8 @@ class TicketServerDetailView(View):
 
 
 def test(request):
-    return render(request, 'ticket/test.html')
+    sender_email()
+    return JsonResponse({'success':"OK"})
 
 
 def get_department_user(request):
