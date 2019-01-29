@@ -46,5 +46,4 @@ logging/error.log
 logging/info.log
 logging/warn.log
 logging/request.log
-logging/scprits.log
 .DS_Store
