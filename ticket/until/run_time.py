@@ -40,4 +40,4 @@ def runTask(func, day=0, hour=0, min=0, second=0):
             continue
 
 
-runTask(sender_email, day=1)
+runTask(sender_email, min=10)
