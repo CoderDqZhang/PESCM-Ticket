@@ -16,7 +16,7 @@ def sender_email_ticket(ticket):
     return
 
 
-def sender_email():
+def sender_email(request):
     all_ticket = Ticket.objects.filter(ticket_status=0)
     for ticket in all_ticket:
         senderuser = []

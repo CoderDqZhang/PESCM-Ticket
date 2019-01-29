@@ -171,3 +171,75 @@ Traceback (most recent call last):
   File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
     response = wrapped_callback(request, *callback_args, **callback_kwargs)
 TypeError: sender_email() takes 0 positional arguments but 1 was given
+ERROR 2019-01-29 12:51:32,998 log Internal Server Error: /api/ticket/send/
+Traceback (most recent call last):
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: sender_email() takes 0 positional arguments but 1 was given
+ERROR 2019-01-29 12:51:39,069 log Internal Server Error: /api/ticket/send/
+Traceback (most recent call last):
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: sender_email() takes 0 positional arguments but 1 was given
+ERROR 2019-01-29 12:51:42,798 log Internal Server Error: /api/ticket/send/
+Traceback (most recent call last):
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: sender_email() takes 0 positional arguments but 1 was given
+ERROR 2019-01-29 12:54:50,594 log Internal Server Error: /api/ticket/send/
+Traceback (most recent call last):
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: sender_email() takes 0 positional arguments but 1 was given
+ERROR 2019-01-29 12:54:59,081 log Internal Server Error: /api/ticket/send/
+Traceback (most recent call last):
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: sender_email() takes 0 positional arguments but 1 was given
+ERROR 2019-01-29 12:55:01,089 log Internal Server Error: /api/ticket/send/
+Traceback (most recent call last):
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: sender_email() takes 0 positional arguments but 1 was given
+ERROR 2019-01-29 12:55:24,007 log Internal Server Error: /api/ticket/send/
+Traceback (most recent call last):
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: sender_email() takes 0 positional arguments but 1 was given
+ERROR 2019-01-29 12:56:39,075 log Internal Server Error: /api/ticket/send/
+Traceback (most recent call last):
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: sender_email() takes 0 positional arguments but 1 was given
