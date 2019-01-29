@@ -114,3 +114,38 @@ WARNING 2019-01-25 09:32:13,814 log Not Found: /favicon.ico
 WARNING 2019-01-25 09:32:17,316 log Not Found: /favicon.ico
 WARNING 2019-01-25 09:52:41,775 log Not Found: /favicon.ico
 WARNING 2019-01-25 10:18:16,348 log Not Found: /favicon.ico
+WARNING 2019-01-29 12:23:40,736 log Not Found: /
+ERROR 2019-01-29 12:23:56,425 log Internal Server Error: /api/ticket/send/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: sender() takes 0 positional arguments but 1 was given
+ERROR 2019-01-29 12:24:24,047 log Internal Server Error: /api/ticket/send/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: sender() takes 0 positional arguments but 1 was given
+ERROR 2019-01-29 12:24:27,369 log Internal Server Error: /api/ticket/send/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: sender() takes 0 positional arguments but 1 was given
+ERROR 2019-01-29 12:24:54,184 log Internal Server Error: /api/ticket/send/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view ticket.ticket_view.send_email.sender didn't return an HttpResponse object. It returned None instead.

@@ -155,9 +155,11 @@ EMAIL_HOST_USER = 'redbullticket@163.com'  # 发送邮件的邮箱地址
 EMAIL_HOST_PASSWORD = 'Redbullwork888'  # 发送邮件的邮箱密码(这里使用的是授权码)
 
 CRONJOBS = [
-    # ('*/1 * * * *', 'ticket.ticket_view.sende_email.sender'),
+    ('*/5 * * * *', 'ticket.ticket_view.send_email.sender'),
 
-    ('35 18 * * *', 'ticket.ticket_view.sende_email.sender_email'),
+    ('0   0 1 * *', 'ticket.ticket_view.send_email.sender', '>> logging/my_scheduled_job.log'),
+
+    ('35 18 * * *', 'ticket.ticket_view.send_email.sender_email'),
 
     # ('*/5 * * * *', 'ticket.ticket_view.sende_email.my_scheduled_job'),
     #

@@ -1,6 +1,8 @@
 from django.core.mail import send_mail
 from ticket.ticke_model.ticket import Ticket, TicketConfim
 from ticket.ticke_model.account import Account
+from datetime import date, time, datetime, timedelta
+from django.http import HttpResponse, JsonResponse
 
 
 def sender_email_ticket(ticket):
@@ -24,13 +26,15 @@ def sender_email():
         send_mail('未完成工单提醒', '工单标题' + ticket.ticket_title + '   ' + '工单编号' + str(ticket.ticket_id),
                   'redbullticket@163.com',
                   senderuser, fail_silently=False)
-    return
+    return JsonResponse({'success': 'OK'})
 
 
-def sender():
+def sender(request):
     print("sdfsdfsf")
+    return JsonResponse({'success':'OK'})
 
 
 def my_scheduled_job():
     print('sdf')
     pass
+
