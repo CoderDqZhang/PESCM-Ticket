@@ -23,9 +23,12 @@ def sender_email():
         for confirm in ticket.ticket_listsort.filter(status=0):
             if confirm.user.email != None:
                 senderuser.append(confirm.user.email)
-        send_mail('未完成工单提醒', '工单标题' + ticket.ticket_title + '   ' + '工单编号' + str(ticket.ticket_id),
+        try:
+            send_mail('未完成工单提醒', '工单标题' + ticket.ticket_title + '   ' + '工单编号' + str(ticket.ticket_id),
                   'redbullticket@163.com',
                   senderuser, fail_silently=False)
+        except:
+            print('error')
     return JsonResponse({'success': 'OK'})
 
 
