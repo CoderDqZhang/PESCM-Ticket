@@ -7,7 +7,7 @@ from ticket.ticke_model.ticket import Ticket, TicketConfim
 from ticket.ticke_model.account import Account
 from ticket.ticke_model.category import Category, TicketModel
 from ticket.ticke_model.department import Department
-from ticket.ticket_view.send_email import sender_email_ticket,sender_email
+from ticket.ticket_view.send_email import sender_email_ticket, sender_email
 from ticket.ticket_form.ticket import TicketForm, TicketConfimForm, TicketCheckForm
 from ticket.until import define, config, serial_number
 from django.forms.models import model_to_dict
@@ -65,7 +65,7 @@ class TicketView(View):
 
                 ticket_id = serial_number.get_ticket_id(ticketModel)
                 ticket = Ticket.objects.create(
-                    ticket_show_id = ticket_id,
+                    ticket_show_id=ticket_id,
                     ticket_title=tickt_form.data['ticket_title'],
                     ticket_desc=tickt_form.data['ticket_desc'],
                     ticket_lev=isCheckForm,
@@ -316,7 +316,6 @@ class TicketDetailView(View):
             return redirect("../../../api/login/")
 
 
-
 class TicketServerDetailView(View):
     def get(self, request):
         username_session = request.session.get("username")
@@ -344,7 +343,7 @@ class TicketServerDetailView(View):
             tickt_form = TicketConfimForm(request.POST, )
             ticket = Ticket.objects.get(ticket_id=request.GET.get('ticket_id'))
 
-            #测试机部署时间 生产机部署时间
+            # 测试机部署时间 生产机部署时间
             ticket.dev_push_time = tickt_form.data['dev_push_time']
             ticket.pub_push_time = tickt_form.data['pub_push_time']
 
@@ -415,9 +414,36 @@ class TicketServerDetailView(View):
             return redirect("../../../api/login/")
 
 
+class TicketAllDetailView(View):
+    def get(self, request):
+        username_session = request.session.get("username")
+        if username_session:
+            user = Account.objects.get(user_id=username_session)
+            ticket = []
+            ticket_status = int(request.GET.get('ticket_status'))
+            if ticket_status == 1:
+                all_ticket = Ticket.objects.filter(
+                    ticket_listsort__user__user_id__exact=request.session.get("username")).filter(
+                    ticket_status=0).order_by("-create_time")
+            elif ticket_status == 2:
+                all_ticket = Ticket.objects.filter(
+                    ticket_listsort__user__user_id__exact=request.session.get("username")).filter(
+                    ticket_status=0).filter(ticket_listsort__status=1).order_by("-create_time")
+            else:
+                all_ticket = Ticket.objects.filter(
+                    ticket_listsort__user__user_id__exact=request.session.get("username")).filter(
+                    ticket_status=3).order_by("-create_time")[:10]
+
+            return render(request, 'ticket/all_ticket.html', {'all_ticket': all_ticket,
+                                                              'rootUrl': config.rootUrl,
+                                                              'user': user,
+                                                              })
+        else:
+            return redirect("../../../api/login/")
+
+
 def test(request):
-    sender_email_ticket(Ticket.objects.get(ticket_id='1000016'))
-    return JsonResponse({'success':"OK"})
+    return render(request, 'ticket/test.html')
 
 
 def get_department_user(request):

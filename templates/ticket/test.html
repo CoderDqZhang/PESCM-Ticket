@@ -3,9 +3,13 @@
 <head>
     <title>form validation</title>
     <meta charset="utf-8"/>
+    <link href="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"
+          type="text/css" media="all">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+          media="all" type="text/css">
 
+    <link href="http://cdn.staticfile.org/highlight.js/7.3/styles/github.min.css" rel="stylesheet" type="text/css"
+          media="all">
     <script src="../../../../static/lib/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
             integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
@@ -15,27 +19,139 @@
             crossorigin="anonymous"></script>
     <script src='https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.js'></script>
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
-
-    <script type="text/javascript">
-        (function () {
-            'use strict';
-            window.addEventListener('load', function () {
-//                var form = document.getElementById('needs-validation');
-//                var form1 = document.getElementsByName('needs-validation');
-                var form2 = document.getElementsByClassName('needs-validation');
-                var form = form2[0]
-                console.log(form)
-                form2[0].addEventListener('submit', function (event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            }, false);
-        })();
-    </script>
+    <script src="../../../../static/page/jq-paginator.js"></script>
 </head>
 <body>
+<div>sdfsfsd</div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td width="60" align="right">商品名：</td>
+        <td width="200" align="left"><input type="text" id="txtKeywords" class="keyword"/></td>
+        <td width="200" align="left"><input id="search" type="button" value=" 查 找 " class="submit"/></td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table id="Result" cellspacing="0" cellpadding="0">
+    <tr>
+        <th>商品编号</th>
+        <th>商品名称</th>
+    </tr>
+</table>
+<div class="d-flex flex-column bd-highlight w-50 mr-3 h-auto border border-success shadow-sm bg-white rounded"
+     id="data-container">
+    <div class="w-100 text-center bg-success" style="height: 40px;">
+        <p class="text-white pt-2">已完成工单</p>
+    </div>
+</div>
+<div id="test" class="pagination"></div>
+<div id="Pagination" class="pagination"></div>
+<div class="demo customBootstrap">
+    <p id="demo2-text">当前第99页</p>
+    <ul id="demo2" class="pagination">
+        <li class="first" jp-role="first" jp-data="1"><a href="javascript:void(0);">首页</a></li>
+        <li class="prev" jp-role="prev" jp-data="98"><a href="javascript:void(0);"><i class="arrow arrow2"></i>上一页</a>
+        </li>
+        <li class="page" jp-role="page" jp-data="91"><a href="javascript:void(0);">91</a></li>
+        <li class="page" jp-role="page" jp-data="92"><a href="javascript:void(0);">92</a></li>
+        <li class="page" jp-role="page" jp-data="93"><a href="javascript:void(0);">93</a></li>
+        <li class="page" jp-role="page" jp-data="94"><a href="javascript:void(0);">94</a></li>
+        <li class="page" jp-role="page" jp-data="95"><a href="javascript:void(0);">95</a></li>
+        <li class="page" jp-role="page" jp-data="96"><a href="javascript:void(0);">96</a></li>
+        <li class="page" jp-role="page" jp-data="97"><a href="javascript:void(0);">97</a></li>
+        <li class="page" jp-role="page" jp-data="98"><a href="javascript:void(0);">98</a></li>
+        <li class="page active" jp-role="page" jp-data="99"><a href="javascript:void(0);">99</a></li>
+        <li class="page" jp-role="page" jp-data="100"><a href="javascript:void(0);">100</a></li>
+        <li class="next" jp-role="next" jp-data="100"><a href="javascript:void(0);">下一页<i class="arrow arrow3"></i></a>
+        </li>
+        <li class="last" jp-role="last" jp-data="100"><a href="javascript:void(0);">末页</a></li>
+    </ul>
+</div>
+<script type="text/javascript">
+
+    function simpleTemplating(data) {
+        var html = '';
+        $.each(data, function (index, item) {
+        html += "<div class='w-100 text-left bg-white' style='height: 40px;'>" +
+                "<p class='text-white pt-2 border-bottom pl-3' style='height: 40px;'>" + "<a href=" +
+                "/api/ticket/server/detail/?ticket_id="+ item.ticket_id + ">" + item.ticket_title + "</a>" +
+                "</p>" +
+                "</div>"
+        });
+        html += '';
+        return html;
+    }
+
+    $(document).ready(function () {
+        alert('hhhh')
+        $.ajax({
+            url: "api/",
+            type: "GET",
+            data: null,
+            success: function (response) {
+//                alert("上传成功!")
+                var data = response['actions_tickets']
+
+                var totalpage = parseInt(data.length / 10) + (data.length % 10 == 0 ? 0 : 1)
+                console.log(parseInt(data.length / 10))
+                console.log(data.length % 10 == 0 ? 0 : 1)
+//                $('#data-container').html(html);
+                $('#test').jqPaginator({
+                    totalPages: totalpage,
+                    visiblePages: 10,
+                    currentPage: 1,
+                    onPageChange: function (num, type) {
+                        if (num < totalpage){
+                            var i = (num - 1) * 10
+                            var showData = []
+                            for (i; i< num * 10; i++ ){
+                                showData.push(data[i])
+                            }
+                            var html = simpleTemplating(showData)
+                            $('#data-container').html(html);
+                        }else{
+                            var i = (num - 1) * 10
+                            var showData = []
+                            for (i; i< data.length; i++ ){
+                                showData.push(data[i])
+                            }
+                            var html = simpleTemplating(showData)
+                            $('#data-container').html(html);
+                        }
+                    }
+                });
+            }
+        });
+
+    });
+
+
+    //    $('#Pagination').pagination({
+    //        dataSource: 'http://127.0.0.1:8000/api/home/api/',
+    //
+    ////        dataSource: 'https://api.flickr.com/services/feeds/photos_public.gne?tags=cat&tagmode=any&format=json&jsoncallback=?',
+    //        locator: 'items',
+    //        totalNumber: 120,
+    //        totalNumberLocator: function (response) {
+    //            // you can return totalNumber by analyzing response content
+    //            var html = simpleTemplating(response['actions_tickets']);
+    //            $('#data-container').html(html);
+    //            return response['actions_tickets'].lenght;
+    //        },
+    //        pageSize: 20,
+    //        ajax: {
+    //            beforeSend: function () {
+    //                $('#data-container').html('Loading data from flickr.com ...');
+    //            }
+    //        },
+    //        callback: function (data, pagination) {
+    //            // template method of yourself
+    //            var html = simpleTemplating(data['actions_tickets']);
+    //            console.log(data)
+    //            $('#data-container').html(html);
+    //        }
+    //    })
+
+
+</script>
 </body>
 </html>

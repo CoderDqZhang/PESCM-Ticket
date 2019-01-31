@@ -7,6 +7,7 @@ from ticket.ticke_model.account import Account
 from ticket.until import define, config
 from ticket.ticket_form.account import LoginForm
 from ticket.ticke_model.ticket import Ticket
+from django.forms.models import model_to_dict
 
 
 class LoginView(View):
@@ -45,13 +46,15 @@ def home(request):
         else:
             actions_tickets = Ticket.objects.filter(
                 ticket_listsort__user__user_id__exact=request.session.get("username")).filter(
-                ticket_status=0).order_by("-create_time")
+                ticket_status=0).order_by("-create_time")[:10]
             todo_actions_tickets = Ticket.objects.filter(
                 ticket_listsort__user__user_id__exact=request.session.get("username")).filter(
-                ticket_status=0).filter(ticket_listsort__status=1).order_by("-create_time")
+                ticket_status=0).filter(ticket_listsort__status=1).order_by("-create_time")[:10]
             done_tickets = Ticket.objects.filter(
                 ticket_listsort__user__user_id__exact=request.session.get("username")).filter(
-                ticket_status=3).order_by("-create_time")
+                ticket_status=3).order_by("-create_time")[:10]
+
+            # 分页控制
             return render(request, 'ticket/server.html', {'user': user,
                                                           'actions_tickets': actions_tickets,
                                                           'rootUrl': config.rootUrl,
@@ -59,3 +62,16 @@ def home(request):
                                                           'todo_actions_tickets':todo_actions_tickets})
     else:
         return redirect("../../api/login/")
+
+
+
+def home_api(request):
+
+    actions_tickets = Ticket.objects.filter(
+        ticket_listsort__user__user_id__exact=request.session.get("username")).filter(
+        ticket_status=0).order_by("-create_time")
+    jsonData = []
+
+    for actions_ticket in actions_tickets:
+        jsonData.append(model_to_dict(actions_ticket, exclude=['ticket_file','ticket_listsort']))
+    return JsonResponse({"actions_tickets": jsonData})
