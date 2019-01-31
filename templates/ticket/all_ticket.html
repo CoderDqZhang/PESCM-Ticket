@@ -54,7 +54,11 @@
             <tbody>
             {% for ticket in all_ticket%}
             <tr>
-                <th>{{ticket.ticket_id}}</th>
+                {% if ticket.ticket_show_id != ''%}
+                <th scope="col">{{ticket.ticket_show_id}}</th>
+                {% else %}
+                <th scope="col">{{ticket.ticket_id}}</th>
+                {% endif %}
                 <td>{{ticket.ticket_title}}</td>
                 <td>{{ticket.create_time}}</td>
                 <td>{{ticket.ticket_create_user}}</td>
