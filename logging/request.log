@@ -868,3 +868,22 @@ WARNING 2019-03-05 09:54:55,118 log Not Found: /xadmin/static/server_images/erro
 WARNING 2019-03-05 09:55:09,478 log Not Found: /favicon.ico
 WARNING 2019-03-05 09:55:26,093 log Not Found: /uploads/image/default.png
 WARNING 2019-03-05 09:56:06,817 log Not Found: /uploads/image/default.png
+WARNING 2019-03-05 17:32:28,000 log Not Found: /api/api/login/
+WARNING 2019-03-05 17:32:28,237 log Not Found: /favicon.ico
+WARNING 2019-03-05 17:32:42,964 log Not Found: /favicon.ico
+WARNING 2019-03-05 17:32:58,045 log Not Found: /favicon.ico
+ERROR 2019-03-05 17:50:58,222 log Internal Server Error: /api/ticket/detail/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/zhang/Documents/Python/PESCM/ticket/ticket_view/ticket.py", line 325, in post
+    ticket.done_time = tickt_form.handel_time
+AttributeError: 'ChangeTimeForm' object has no attribute 'handel_time'

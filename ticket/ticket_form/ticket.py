@@ -22,6 +22,9 @@ class TicketConfimForm(forms.Form):
 class TicketConfirmForm(forms.Form):
     ticket_listsort = forms.ModelMultipleChoiceField(queryset=Account.objects.all())
 
+class ChangeTimeForm(forms.Form):
+    handel_time = forms.FloatField()
+
 
 class TicketCheckForm(forms.Form):
     ticket_id = forms.CharField()

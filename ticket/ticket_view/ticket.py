@@ -8,7 +8,7 @@ from ticket.ticke_model.account import Account
 from ticket.ticke_model.category import Category, TicketModel
 from ticket.ticke_model.department import Department
 from ticket.ticket_view.send_email import sender_email_ticket, sender_email
-from ticket.ticket_form.ticket import TicketForm, TicketConfimForm,TicketConfirmForm, TicketCheckForm
+from ticket.ticket_form.ticket import TicketForm, TicketConfimForm,TicketConfirmForm, ChangeTimeForm, TicketCheckForm
 from ticket.until import define, config, serial_number
 from django.forms.models import model_to_dict
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -290,29 +290,52 @@ class TicketDetailView(View):
         username_session = request.session.get("username")
         if username_session:
             user = Account.objects.get(user_id=username_session)
-            tickt_form = TicketCheckForm(request.POST, )
-            ticket = Ticket.objects.get(ticket_id=request.GET.get('ticket_id'))
+            try:
+                request.POST['handel_time']
+                tickt_form = ChangeTimeForm(request.POST, )
+                isCheckForm = False
+            except:
+                tickt_form = TicketConfimForm(request.POST, )
+                isCheckForm = True
+            if isCheckForm:
+                ticket = Ticket.objects.get(ticket_id=request.GET.get('ticket_id'))
+                if tickt_form.is_valid():
+                    ticket_confirm = ticket.ticket_listsort.get(id=tickt_form.data['ticket_id'])
 
-            if tickt_form.is_valid():
-                ticket_confirm = ticket.ticket_listsort.get(id=tickt_form.data['ticket_id'])
+                    ticket_confirm.check = 1
+                    ticket_confirm.save()
 
-                ticket_confirm.check = 1
-                ticket_confirm.save()
-
-                if ticket.ticket_listsort.filter(check=0).count() == 0:
-                    ticket.ticket_status = 3
-                ticket.save()
-                return render(request, 'ticket/ticket_detail.html', {'ticket': ticket,
-                                                                     'confirms': ticket.ticket_listsort.all(),
-                                                                     'rootUrl': config.rootUrl,
-                                                                     'user': user
-                                                                     })
+                    if ticket.ticket_listsort.filter(check=0).count() == 0:
+                        ticket.ticket_status = 3
+                    ticket.save()
+                    return render(request, 'ticket/ticket_detail.html', {'ticket': ticket,
+                                                                         'confirms': ticket.ticket_listsort.all(),
+                                                                         'rootUrl': config.rootUrl,
+                                                                         'user': user
+                                                                         })
+                else:
+                    return render(request, 'ticket/ticket_detail.html', {'ticket': ticket,
+                                                                         'confirms': ticket.ticket_listsort.all(),
+                                                                         'rootUrl': config.rootUrl,
+                                                                         'user': user
+                                                                         })
             else:
-                return render(request, 'ticket/ticket_detail.html', {'ticket': ticket,
-                                                                     'confirms': ticket.ticket_listsort.all(),
-                                                                     'rootUrl': config.rootUrl,
-                                                                     'user': user
-                                                                     })
+                ticket = Ticket.objects.get(ticket_id=request.GET.get('ticket_id'))
+                if tickt_form.is_valid():
+                    ticket.done_time = tickt_form.data['handel_time']
+                    ticket.save()
+                    return render(request, 'ticket/ticket_detail.html', {'ticket': ticket,
+                                                                         'confirms': ticket.ticket_listsort.all(),
+                                                                         'rootUrl': config.rootUrl,
+                                                                         'user': user
+                                                                         })
+                else:
+                    return render(request, 'ticket/ticket_detail.html', {'ticket': ticket,
+                                                                         'confirms': ticket.ticket_listsort.all(),
+                                                                         'rootUrl': config.rootUrl,
+                                                                         'user': user
+                                                                         })
+
         else:
             return redirect("../../../api/login/")
 
