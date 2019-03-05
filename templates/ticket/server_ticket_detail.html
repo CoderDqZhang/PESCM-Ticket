@@ -182,6 +182,7 @@
                 {% endif %}
             </div>
         </div>
+        {% if confirm.transfer == 0%}
         {% if confirm.status == 1 %}
         <div class="flex-row d-flex justify-content-between">
             <p class="font-weight-light">执行时间：{{confirm.handel_time}}</p>
@@ -210,13 +211,48 @@
         </div>
         {% endif %}
         {% endif %}
+        {% endif %}
     </div>
     {% endfor %}
 </div>
 <div class="bg-white border rounded d-block p-4 h-auto w-95 mt-4 ml-2 mr-2">
-    <form class="w-100 needs-validation" action="{{location.href}}" method="POST" id="ticketForm"
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="invalidCheck2"
+                   onchange="changeValue(this)" name="check_box">
+            <label class="form-check-label" for="invalidCheck2">
+                是否转派给其他人员
+            </label>
+        </div>
+    </div>
+    <form class="w-100 needs-validation ticketForm1" action="{{location.href}}" method="POST" id="trainForm"
+          enctype="multipart/form-data" style="display: none">
+        <div class="flex-column mt-2 mb-2">
+            <label for="exampleFormControlSelect2">部门选择</label>
+            <select class=" custom-select" id="inputGroupSelect01">
+                <option selected>选择部门</option>
+                {% for department in departments %}
+                <option value="{{department.partment_code}}">{{department.partment_desc}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect2">人员列表</label>
+            <select multiple class="form-control" id="exampleFormControlSelect2" name="listsort">
+                {% for user in users %}
+                <option>{{user.nickname}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="selectUser">已选择人员</label>
+            <div class="d-flex flex-row bd-highlight mb-3" id="selectUser">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">确定</button>
+    </form>
+    <form class="w-100 needs-validation ticketForm" action="{{location.href}}" method="POST" id="ticketForm"
           enctype="multipart/form-data">
-
         <div class="form-group">
             <label for="exampleFormControlTextarea1">处理内容</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
@@ -244,49 +280,16 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="date1">测试机部署时间</label>
-                <input type="date" class="form-control" id="date1" name="dev_push_time" placeholder="测试机部署时间">
+                <input type="text" class="form-control" id="date1" name="dev_push_time" placeholder="测试机部署时间">
             </div>
             <div class="form-group col-md-6">
                 <label for="data2">生产机部署时间</label>
-                <input type="date" class="form-control" id="data2" name="pub_push_time" placeholder="生产机部署时间">
+                <input type="text" class="form-control" id="data2" name="pub_push_time" placeholder="生产机部署时间">
             </div>
         </div>
         <div class="form-group">
             <label for="formFile">请选择上传文件</label>
             <input type="file" class="form-control-file" id="formFile" , name="file_data" value="选择文件" multiple>
-        </div>
-        <div class="form-group">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2"
-                       onchange="changeValue(this)" name="check_box">
-                <label class="form-check-label" for="invalidCheck2">
-                    是否转派给其他人员
-                </label>
-            </div>
-        </div>
-        <div id="transfer" style="display: none;">
-            <div class="flex-column mt-2 mb-2">
-                <label for="exampleFormControlSelect2">部门选择</label>
-                <select class=" custom-select" id="inputGroupSelect01">
-                    <option selected>选择部门</option>
-                    {% for department in departments %}
-                    <option value="{{department.partment_code}}">{{department.partment_desc}}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlSelect2">人员列表</label>
-                <select multiple class="form-control" id="exampleFormControlSelect2" name="ticket_listsort">
-                    {% for user in users %}
-                    <option>{{user.nickname}}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="selectUser">已选择人员</label>
-                <div class="d-flex flex-row bd-highlight mb-3" id="selectUser">
-                </div>
-            </div>
         </div>
         <button type="submit" class="btn btn-primary">确定</button>
     </form>
@@ -296,12 +299,25 @@
 {% block js %}
 <script>
 
+
+
+    //执行一个laydate实例
+    laydate.render({
+        elem: '#date1', //指定元素
+    });
+
+    //执行一个laydate实例
+    laydate.render({
+        elem: '#data2', //指定元素
+    });
+
     function changeValue(checkbox) {
-        console.log(checkbox.checked)
         if (checkbox.checked == true) {
-            $("#transfer").show();
+            $("#trainForm").show();
+            $("#ticketForm").hide();
         } else {
-            $("#transfer").hide();
+            $("#trainForm").hide();
+            $("#ticketForm").show();
         }
     }
 
