@@ -130,7 +130,9 @@ class MyticketView(View):
 
             if request.GET.get('status') is not None:
                 status = int(request.GET.get('status'))
-                if int(request.GET.get('status')) != 4:
+                if user.status != 1 and int(request.GET.get('status')) == 0:
+                    myticket = myticket.filter(ticket_status=1)
+                elif int(request.GET.get('status')) != 4:
                     myticket = myticket.filter(ticket_status=request.GET.get('status'))
             else:
                 status = 4

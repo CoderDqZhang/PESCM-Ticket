@@ -41,7 +41,19 @@ def home(request):
     if username_session:
         user = Account.objects.get(user_id=username_session)
         if user.status == 0:
+            actions_tickets = Ticket.objects.filter(ticket_create_user=request.session.get("username")).\
+                filter(ticket_status=0).order_by("-create_time")[:10]
+            todo_actions_tickets = Ticket.objects.filter(
+                ticket_create_user=request.session.get("username")).filter(
+                ticket_status=0).filter(ticket_listsort__status=1).order_by("-create_time")[:10]
+            done_tickets = Ticket.objects.filter(
+                ticket_create_user=request.session.get("username")).filter(
+                ticket_status=3).order_by("-create_time")[:10]
+
             return render(request, 'ticket/home.html', {'user': user,
+                                                        'actions_tickets': actions_tickets,
+                                                        'done_tickets': done_tickets,
+                                                        'todo_actions_tickets': todo_actions_tickets,
                                                         'rootUrl': config.rootUrl, })
         else:
             actions_tickets = Ticket.objects.filter(
