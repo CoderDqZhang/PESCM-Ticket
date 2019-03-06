@@ -49,7 +49,7 @@ def home(request):
 
             todo_actions_tickets = Ticket.objects.filter(Q(ticket_listsort__status=1) &
                                                          Q(ticket_create_user=request.session.get("username")) &
-                                                         Q(ticket_listsort__transfer=0)).\
+                                                         Q(ticket_listsort__check=0)).\
                 exclude(ticket_status=3).distinct().order_by("-create_time")[:10]
 
             done_tickets = Ticket.objects.filter(
@@ -65,9 +65,13 @@ def home(request):
             actions_tickets = Ticket.objects.filter(
                 ticket_listsort__user__user_id__exact=request.session.get("username")).filter(
                 ticket_status=0).order_by("-create_time")[:10]
-            todo_actions_tickets = Ticket.objects.filter(
-                ticket_listsort__user__user_id__exact=request.session.get("username")).filter(
-                ticket_status=0).filter(ticket_listsort__status=1).order_by("-create_time")[:10]
+            todo_actions_tickets = Ticket.objects.filter(Q(ticket_listsort__status=1) &
+                                                         Q(ticket_listsort__user__user_id__exact=request.session.get("username")) &
+                                                         Q(ticket_listsort__check=0)). \
+                                       exclude(ticket_status=3).distinct().order_by("-create_time")[:10]
+            # todo_actions_tickets = Ticket.objects.filter(
+            #     ticket_listsort__user__user_id__exact=request.session.get("username")).filter(
+            #     ticket_status=0).filter(ticket_listsort__status=1).order_by("-create_time")[:10]
             done_tickets = Ticket.objects.filter(
                 ticket_listsort__user__user_id__exact=request.session.get("username")).filter(
                 ticket_status=3).order_by("-create_time")[:10]
