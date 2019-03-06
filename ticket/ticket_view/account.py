@@ -42,13 +42,10 @@ def home(request):
     if username_session:
         user = Account.objects.get(user_id=username_session)
         if user.status == 0:
-            actions_tickets = Ticket.objects.filter(ticket_create_user=request.session.get("username")).\
-                filter(ticket_status=0).order_by("-create_time")[:10]
 
-            Ticket.objects.filter(
-                ticket_create_user=request.session.get("username")).filter(
-                ticket_status=0).filter(Q(ticket_listsort__check=1) | Q(ticket_listsort__status=1)).order_by(
-                "-create_time")[:10]
+            actions_tickets = Ticket.objects.filter(Q(ticket_listsort__status=0) &
+                                                    Q(ticket_create_user=request.session.get("username"))).\
+                exclude(ticket_status=3).distinct().order_by("-create_time")[:10]
 
             todo_actions_tickets = Ticket.objects.filter(Q(ticket_listsort__status=1) &
                                                          Q(ticket_create_user=request.session.get("username")) &

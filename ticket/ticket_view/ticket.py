@@ -8,7 +8,7 @@ from ticket.ticke_model.account import Account
 from ticket.ticke_model.category import Category, TicketModel
 from ticket.ticke_model.department import Department
 from ticket.ticket_view.send_email import sender_email_ticket, sender_email
-from ticket.ticket_form.ticket import TicketForm, TicketConfimForm,TicketConfirmForm, ChangeTimeForm, TicketCheckForm
+from ticket.ticket_form.ticket import TicketForm, TicketConfimForm, TicketConfirmForm, ChangeTimeForm, TicketCheckForm
 from ticket.until import define, config, serial_number
 from django.forms.models import model_to_dict
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -133,9 +133,9 @@ class MyticketView(View):
                 status = int(request.GET.get('status'))
                 if user.status != 1 and int(request.GET.get('status')) == 0:
                     myticket = myticket.filter(Q(ticket_listsort__status=1) &
-                                                         Q(ticket_create_user=request.session.get("username")) &
-                                                         Q(ticket_listsort__transfer=0)).\
-                exclude(ticket_status=3).distinct().order_by("-create_time")[:10]
+                                               Q(ticket_create_user=request.session.get("username")) &
+                                               Q(ticket_listsort__transfer=0)). \
+                                   exclude(ticket_status=3).distinct().order_by("-create_time")[:10]
                 elif int(request.GET.get('status')) != 4:
                     myticket = myticket.filter(ticket_status=request.GET.get('status'))
             else:
@@ -264,6 +264,7 @@ class TicketListView(View):
     def post(self, request):
         return HttpResponse({"": ""})
 
+
 # 甲方详情页面
 
 class TicketDetailView(View):
@@ -378,7 +379,6 @@ class TicketServerDetailView(View):
                 tickt_form = TicketConfimForm(request.POST, )
                 isCheckForm = True
 
-
             ticket = Ticket.objects.get(ticket_id=request.GET.get('ticket_id'))
 
             # 测试机部署时间 生产机部署时间
@@ -470,6 +470,35 @@ class TicketAllDetailView(View):
                     ticket_status=3).order_by("-create_time")[:10]
 
             return render(request, 'ticket/all_ticket.html', {'all_ticket': all_ticket,
+                                                              'rootUrl': config.rootUrl,
+                                                              'user': user,
+                                                              })
+        else:
+            return redirect("../../../api/login/")
+
+
+class TicketServerAllDetailView(View):
+    def get(self, request):
+        username_session = request.session.get("username")
+        if username_session:
+            user = Account.objects.get(user_id=username_session)
+            ticket = []
+            ticket_status = int(request.GET.get('ticket_status'))
+            if ticket_status == 1:
+                all_ticket = Ticket.objects.filter(Q(ticket_listsort__status=0) &
+                                                   Q(ticket_create_user=request.session.get("username"))). \
+                    exclude(ticket_status=3).distinct().order_by("-create_time")
+            elif ticket_status == 2:
+                all_ticket = Ticket.objects.filter(Q(ticket_listsort__status=1) &
+                                                   Q(ticket_create_user=request.session.get("username")) &
+                                                   Q(ticket_listsort__transfer=0)). \
+                    exclude(ticket_status=3).distinct().order_by("-create_time")
+            else:
+                all_ticket = Ticket.objects.filter(
+                    ticket_create_user=request.session.get("username")).filter(
+                    ticket_status=3).order_by("-create_time")[:10]
+
+            return render(request, 'ticket/server_all_ticket.html', {'all_ticket': all_ticket,
                                                               'rootUrl': config.rootUrl,
                                                               'user': user,
                                                               })
