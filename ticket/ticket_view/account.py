@@ -10,7 +10,6 @@ from ticket.ticke_model.ticket import Ticket
 from django.forms.models import model_to_dict
 from django.db.models import Q
 
-
 class LoginView(View):
     def get(self, request):
         return render(request, 'ticket/login.html')
@@ -69,9 +68,6 @@ def home(request):
                                                          Q(ticket_listsort__user__user_id__exact=request.session.get("username")) &
                                                          Q(ticket_listsort__check=0)). \
                                        exclude(ticket_status=3).distinct().order_by("-create_time")[:10]
-            # todo_actions_tickets = Ticket.objects.filter(
-            #     ticket_listsort__user__user_id__exact=request.session.get("username")).filter(
-            #     ticket_status=0).filter(ticket_listsort__status=1).order_by("-create_time")[:10]
             done_tickets = Ticket.objects.filter(
                 ticket_listsort__user__user_id__exact=request.session.get("username")).filter(
                 ticket_status=3).order_by("-create_time")[:10]
@@ -97,3 +93,6 @@ def home_api(request):
     for actions_ticket in actions_tickets:
         jsonData.append(model_to_dict(actions_ticket, exclude=['ticket_file','ticket_listsort']))
     return JsonResponse({"actions_tickets": jsonData})
+
+
+

@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_crontab',
-    'ticket'
+    'ticket',
+    'django_apscheduler',#定时执行任务
 ]
 
 MIDDLEWARE = [
