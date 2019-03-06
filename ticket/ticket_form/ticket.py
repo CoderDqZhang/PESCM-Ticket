@@ -14,12 +14,16 @@ class TicketForm(forms.Form):
 class TicketConfimForm(forms.Form):
     ticket_content = forms.Textarea()
     check_box = forms.CheckboxInput()
-    dev_push_time = forms.DateField()
-    pub_push_time = forms.DateField()
+    dev_push_time = forms.TextInput()
+    pub_push_time = forms.TextInput()
     handel_time = forms.FloatField()
-    ticket_listsort = forms.ModelMultipleChoiceField(queryset=Account.objects.all())
     confirm_remark = forms.Textarea()
-    # file_data = forms.FileField()
+
+class TicketConfirmForm(forms.Form):
+    ticket_listsort = forms.ModelMultipleChoiceField(queryset=Account.objects.all())
+
+class ChangeTimeForm(forms.Form):
+    handel_time = forms.FloatField()
 
 
 class TicketCheckForm(forms.Form):
