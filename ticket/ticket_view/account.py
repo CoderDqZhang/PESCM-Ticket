@@ -8,6 +8,7 @@ from ticket.until import define, config
 from ticket.ticket_form.account import LoginForm
 from ticket.ticke_model.ticket import Ticket
 from django.forms.models import model_to_dict
+from django.db.models import Q
 
 
 class LoginView(View):
@@ -43,9 +44,17 @@ def home(request):
         if user.status == 0:
             actions_tickets = Ticket.objects.filter(ticket_create_user=request.session.get("username")).\
                 filter(ticket_status=0).order_by("-create_time")[:10]
-            todo_actions_tickets = Ticket.objects.filter(
+
+            Ticket.objects.filter(
                 ticket_create_user=request.session.get("username")).filter(
-                ticket_status=0).filter(ticket_listsort__status=1).order_by("-create_time")[:10]
+                ticket_status=0).filter(Q(ticket_listsort__check=1) | Q(ticket_listsort__status=1)).order_by(
+                "-create_time")[:10]
+
+            todo_actions_tickets = Ticket.objects.filter(Q(ticket_listsort__status=1) &
+                                                         Q(ticket_create_user=request.session.get("username")) &
+                                                         Q(ticket_listsort__transfer=0)).\
+                exclude(ticket_status=3).distinct().order_by("-create_time")[:10]
+
             done_tickets = Ticket.objects.filter(
                 ticket_create_user=request.session.get("username")).filter(
                 ticket_status=3).order_by("-create_time")[:10]

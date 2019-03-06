@@ -13,6 +13,7 @@ from ticket.until import define, config, serial_number
 from django.forms.models import model_to_dict
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils import timezone
+from django.db.models import Q
 import datetime
 
 
@@ -131,7 +132,10 @@ class MyticketView(View):
             if request.GET.get('status') is not None:
                 status = int(request.GET.get('status'))
                 if user.status != 1 and int(request.GET.get('status')) == 0:
-                    myticket = myticket.filter(ticket_status=1)
+                    myticket = myticket.filter(Q(ticket_listsort__status=1) &
+                                                         Q(ticket_create_user=request.session.get("username")) &
+                                                         Q(ticket_listsort__transfer=0)).\
+                exclude(ticket_status=3).distinct().order_by("-create_time")[:10]
                 elif int(request.GET.get('status')) != 4:
                     myticket = myticket.filter(ticket_status=request.GET.get('status'))
             else:
