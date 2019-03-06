@@ -1236,8 +1236,222 @@ Traceback (most recent call last):
   File "/Users/zhang/Documents/Python/PESCM/ticket/ticket_view/ticket.py", line 325, in post
     ticket.done_time = tickt_form.handel_time
 AttributeError: 'ChangeTimeForm' object has no attribute 'handel_time'
+<<<<<<< HEAD
 >>>>>>> 82deee809cfacc2240e225fc59c1c0adc6ec60ff
 WARNING 2019-03-06 10:04:52,481 log Not Found: /favicon.ico
 WARNING 2019-03-06 10:05:07,389 log Not Found: /favicon.ico
 WARNING 2019-03-06 10:31:45,511 log Not Found: /favicon.ico
 WARNING 2019-03-06 11:00:52,991 log Not Found: /favicon.ico
+=======
+WARNING 2019-03-06 10:31:56,802 log Not Found: /favicon.ico
+WARNING 2019-03-06 10:31:56,804 log Not Found: /
+WARNING 2019-03-06 10:32:05,220 log Not Found: /
+WARNING 2019-03-06 10:32:05,229 log Not Found: /favicon.ico
+WARNING 2019-03-06 10:32:06,933 log Not Found: /api
+WARNING 2019-03-06 10:32:07,001 log Not Found: /favicon.ico
+WARNING 2019-03-06 10:32:18,551 log Not Found: /favicon.ico
+WARNING 2019-03-06 10:32:42,014 log Not Found: /favicon.ico
+ERROR 2019-03-06 10:34:43,229 log Internal Server Error: /api/ticket/detail/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/template/smartif.py", line 175, in translate_token
+    op = OPERATORS[token]
+KeyError: '|'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/zhang/Documents/Python/PESCM/ticket/ticket_view/ticket.py", line 282, in get
+    'user': user
+  File "/usr/local/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/usr/local/lib/python3.6/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/usr/local/lib/python3.6/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/usr/local/lib/python3.6/site-packages/django/template/backends/django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/usr/local/lib/python3.6/site-packages/django/template/engine.py", line 144, in get_template
+    template, origin = self.find_template(template_name)
+  File "/usr/local/lib/python3.6/site-packages/django/template/engine.py", line 126, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/usr/local/lib/python3.6/site-packages/django/template/loaders/base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python3.6/site-packages/django/template/loader_tags.py", line 266, in do_extends
+    nodelist = parser.parse()
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python3.6/site-packages/django/template/loader_tags.py", line 209, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python3.6/site-packages/django/template/defaulttags.py", line 810, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python3.6/site-packages/django/template/defaulttags.py", line 950, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+  File "/usr/local/lib/python3.6/site-packages/django/template/defaulttags.py", line 883, in __init__
+    super().__init__(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/template/smartif.py", line 166, in __init__
+    mapped_tokens.append(self.translate_token(token))
+  File "/usr/local/lib/python3.6/site-packages/django/template/smartif.py", line 177, in translate_token
+    return self.create_var(token)
+  File "/usr/local/lib/python3.6/site-packages/django/template/defaulttags.py", line 886, in create_var
+    return TemplateLiteral(self.template_parser.compile_filter(value), value)
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 663, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '|' from '|'
+ERROR 2019-03-06 10:34:57,461 log Internal Server Error: /api/ticket/detail/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/template/smartif.py", line 175, in translate_token
+    op = OPERATORS[token]
+KeyError: '||'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/zhang/Documents/Python/PESCM/ticket/ticket_view/ticket.py", line 282, in get
+    'user': user
+  File "/usr/local/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/usr/local/lib/python3.6/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/usr/local/lib/python3.6/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/usr/local/lib/python3.6/site-packages/django/template/backends/django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/usr/local/lib/python3.6/site-packages/django/template/engine.py", line 144, in get_template
+    template, origin = self.find_template(template_name)
+  File "/usr/local/lib/python3.6/site-packages/django/template/engine.py", line 126, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/usr/local/lib/python3.6/site-packages/django/template/loaders/base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python3.6/site-packages/django/template/loader_tags.py", line 266, in do_extends
+    nodelist = parser.parse()
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python3.6/site-packages/django/template/loader_tags.py", line 209, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python3.6/site-packages/django/template/defaulttags.py", line 810, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python3.6/site-packages/django/template/defaulttags.py", line 950, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+  File "/usr/local/lib/python3.6/site-packages/django/template/defaulttags.py", line 883, in __init__
+    super().__init__(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/template/smartif.py", line 166, in __init__
+    mapped_tokens.append(self.translate_token(token))
+  File "/usr/local/lib/python3.6/site-packages/django/template/smartif.py", line 177, in translate_token
+    return self.create_var(token)
+  File "/usr/local/lib/python3.6/site-packages/django/template/defaulttags.py", line 886, in create_var
+    return TemplateLiteral(self.template_parser.compile_filter(value), value)
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 663, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '||' from '||'
+WARNING 2019-03-06 10:36:06,123 log Not Found: /favicon.ico
+WARNING 2019-03-06 10:36:17,872 log Not Found: /favicon.ico
+WARNING 2019-03-06 10:39:34,977 log Not Found: /favicon.ico
+WARNING 2019-03-06 10:48:42,227 log Not Found: /favicon.ico
+WARNING 2019-03-06 10:48:49,400 log Not Found: /favicon.ico
+WARNING 2019-03-06 10:49:10,288 log Not Found: /favicon.ico
+WARNING 2019-03-06 10:49:12,371 log Not Found: /favicon.ico
+WARNING 2019-03-06 10:49:13,520 log Not Found: /favicon.ico
+WARNING 2019-03-06 10:51:01,477 log Not Found: /favicon.ico
+WARNING 2019-03-06 10:56:01,288 log Not Found: /favicon.ico
+WARNING 2019-03-06 10:56:09,879 log Not Found: /favicon.ico
+WARNING 2019-03-06 10:56:17,677 log Not Found: /favicon.ico
+WARNING 2019-03-06 10:56:24,183 log Not Found: /favicon.ico
+WARNING 2019-03-06 10:58:50,706 log Not Found: /favicon.ico
+WARNING 2019-03-06 10:59:17,442 log Not Found: /favicon.ico
+WARNING 2019-03-06 11:00:24,882 log Not Found: /favicon.ico
+WARNING 2019-03-06 11:01:54,387 log Not Found: /favicon.ico
+WARNING 2019-03-06 11:06:34,164 log Not Found: /favicon.ico
+WARNING 2019-03-06 11:19:00,149 log Not Found: /favicon.ico
+WARNING 2019-03-06 11:19:08,936 log Not Found: /favicon.ico
+WARNING 2019-03-06 11:19:32,508 log Not Found: /favicon.ico
+WARNING 2019-03-06 11:22:30,403 log Not Found: /favicon.ico
+WARNING 2019-03-06 11:22:46,758 log Not Found: /favicon.ico
+WARNING 2019-03-06 11:22:52,326 log Not Found: /favicon.ico
+WARNING 2019-03-06 11:22:56,267 log Not Found: /favicon.ico
+WARNING 2019-03-06 11:23:21,041 log Not Found: /favicon.ico
+WARNING 2019-03-06 13:13:33,649 log Not Found: /favicon.ico
+WARNING 2019-03-06 13:13:37,841 log Not Found: /favicon.ico
+WARNING 2019-03-06 13:14:29,108 log Not Found: /favicon.ico
+WARNING 2019-03-06 13:23:23,865 log Not Found: /favicon.ico
+WARNING 2019-03-06 13:30:01,856 log Not Found: /favicon.ico
+WARNING 2019-03-06 13:30:59,889 log Not Found: /favicon.ico
+WARNING 2019-03-06 13:31:23,410 log Not Found: /favicon.ico
+WARNING 2019-03-06 13:37:01,061 log Not Found: /favicon.ico
+WARNING 2019-03-06 13:46:18,030 log Not Found: /favicon.ico
+>>>>>>> 9a816512e27e100b553365cabac5f55de2850ec8
+WARNING 2019-03-06 13:51:07,177 log Not Found: /
+WARNING 2019-03-06 13:51:08,207 log Not Found: /404.html
+WARNING 2019-03-06 13:51:09,185 log Not Found: /favicon.ico
+WARNING 2019-03-06 13:51:25,567 log Not Found: /favicon.ico
+WARNING 2019-03-06 13:51:46,879 log Not Found: /favicon.ico
+WARNING 2019-03-06 14:12:10,875 log Not Found: /favicon.ico
+WARNING 2019-03-06 14:12:22,826 log Not Found: /favicon.ico
+WARNING 2019-03-06 14:12:25,262 log Not Found: /favicon.ico
+WARNING 2019-03-06 14:12:28,131 log Not Found: /favicon.ico
+WARNING 2019-03-06 14:12:33,891 log Not Found: /favicon.ico
+WARNING 2019-03-06 14:12:37,513 log Not Found: /favicon.ico
+WARNING 2019-03-06 14:15:35,121 log Not Found: /favicon.ico
+WARNING 2019-03-06 14:15:48,315 log Not Found: /favicon.ico
+WARNING 2019-03-06 14:16:22,935 log Not Found: /favicon.ico
+WARNING 2019-03-06 14:18:16,756 log Not Found: /favicon.ico
+WARNING 2019-03-06 14:19:33,816 log Not Found: /favicon.ico

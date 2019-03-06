@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^ticket/myticket/$', ticket.MyticketView.as_view()),
     url(r'^ticket/list/$', ticket.TicketListView.as_view()),
     url(r'^ticket/list/all/$', ticket.TicketAllDetailView.as_view()),
+    url(r'^ticket/server/all/$', ticket.TicketServerAllDetailView.as_view()),
 
     url(r'^ticket/detail/$', ticket.TicketDetailView.as_view()),
     url(r'^ticket/server/detail/$', ticket.TicketServerDetailView.as_view()),

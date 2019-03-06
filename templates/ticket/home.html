@@ -38,8 +38,7 @@
         </form>
     </div>
 </nav>
-<p>{{body.offsetHeight}}</p>
-<div class="d-flex justify-content-center mr-3 ml-3" style="margin-top: 250px;">
+<div class="d-flex justify-content-center mr-3 ml-3" style="margin-top: 90px;">
     <div class="input-group mr-3 ml-3">
         <input type="text" class="form-control" placeholder="请输入工单号吗" id="ticket_id" name="ticket_id"
                aria-label="Recipient's username with two button addons" aria-describedby="button-addon4">
@@ -49,8 +48,63 @@
         </div>
     </div>
 </div>
-
-
+<div class="bg-white border rounded d-block p-4 h-auto w-95 ml-2 mr-2 flex-row d-flex justify-content-around"
+     style="margin-top: 20px;">
+    <div class="d-flex flex-column bd-highlight w-50 mr-3 h-auto border border-primary shadow-sm bg-white rounded">
+        <div class="w-100 text-center bg-primary" style="height: 40px;">
+            <p class="text-white pt-2">未解决工单</p>
+        </div>
+        {% for actions_ticket in actions_tickets%}
+        <div class="w-100 text-left bg-white" style="height: 40px;">
+            <p class="text-white pt-2 border-bottom pl-3" style="height: 40px;"><a
+                    href="{{rootUrl}}/api/ticket/server/detail/?ticket_id={{actions_ticket.ticket_id}}">{{actions_ticket.ticket_title}}</a>
+            </p>
+        </div>
+        {% endfor %}
+        {% if actions_tickets.count == 10 %}
+        <div class="w-100 text-center bg-white" style="height: 40px;">
+            <p class="text-white pt-2"><a
+                    href="{{rootUrl}}/api/ticket/server/all/?ticket_status=1" target="_blank">查看全部</a></p>
+        </div>
+        {% endif %}
+    </div>
+    <div class="d-flex flex-column bd-highlight w-50 mr-3 h-auto border border-warning shadow-sm bg-white rounded">
+        <div class="w-100 text-center bg-warning" style="height: 40px;">
+            <p class="text-white pt-2">待审核工单</p>
+        </div>
+        {% for actions_ticket in todo_actions_tickets%}
+        <div class="w-100 text-left bg-white" style="height: 40px;">
+            <p class="text-white pt-2 border-bottom pl-3" style="height: 40px;"><a
+                    href="{{rootUrl}}/api/ticket/server/detail/?ticket_id={{actions_ticket.ticket_id}}">{{actions_ticket.ticket_title}}</a>
+            </p>
+        </div>
+        {% endfor %}
+        {% if todo_actions_tickets.count == 10 %}
+        <div class="w-100 text-center bg-white" style="height: 40px;">
+            <p class="text-white pt-2"><a
+                    href="{{rootUrl}}/api/ticket/server/all/?ticket_status=2" target="_blank">查看全部</a></p>
+        </div>
+        {% endif %}
+    </div>
+    <div class="d-flex flex-column bd-highlight w-50 mr-3 h-auto border border-success shadow-sm bg-white rounded">
+        <div class="w-100 text-center bg-success" style="height: 40px;">
+            <p class="text-white pt-2">已完成工单</p>
+        </div>
+        {% for done_ticket in done_tickets%}
+        <div class="w-100 text-left bg-white" style="height: 40px;">
+            <p class="text-white pt-2 border-bottom pl-3" style="height: 40px;"><a
+                    href="{{rootUrl}}/api/ticket/server/detail/?ticket_id={{done_ticket.ticket_id}}">{{done_ticket.ticket_title}}</a>
+            </p>
+        </div>
+        {% endfor %}
+        {% if todo_actions_tickets.count == 10 %}
+        <div class="w-100 text-center bg-white" style="height: 40px;">
+            <p class="text-white pt-2"><a
+                    href="{{rootUrl}}/api/ticket/server/all/?ticket_status=3" target="_blank">查看全部</a></p>
+        </div>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
 {% block js %}
 <script>
