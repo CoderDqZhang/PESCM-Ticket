@@ -143,7 +143,7 @@
             <p class="font-weight-bold border p-2">{{ticket.ticket_remark}}</p>
         </div>
         {% endif %}
-        {% if ticket.ticket_file != None and ticket.file_name != 'None' %}
+        {% if ticket.ticket_file != None and ticket.file_name != 'None' and confirm.confirm_file != '' %}
         <div class="flex-row d-flex justify-content-start mb-3">
             <a href="{{rootUrl}}/media/{{ticket.ticket_file}}" target="_blank">
                 <button type="button" class="btn btn-primary btn-sm"
@@ -182,14 +182,13 @@
                 {% endif %}
             </div>
         </div>
-        {% if confirm.transfer == 0 and confirm.check == 1 %}
+        {% if confirm.transfer == 0 and confirm.status == 1 %}
         <div class="d-flex justify-content-between w-100">
             <div class="flex-row d-flex justify-content-between">
                 <p class="font-weight-light">执行时间：</p>
                 <p class="font-weight-bold">{{confirm.handel_time}}</p>
             </div>
             <div class="flex-row d-flex justify-content-start">
-                {% if confirm.status == 1 %}
                 {% if confirm.check == 1 %}
                 <button type="submit" class="btn btn-secondary disabled">审核通过</button>
                 {% else %}
@@ -202,19 +201,17 @@
                     </div>
                     <button type="submit" class="btn btn-warning text-white">审核</button>
                     {% endif %}
-                    {% endif %}
                 </form>
             </div>
         </div>
-
-        {% if confirm.status == 1 %}
         <div class="flex-row d-flex justify-content-start">
             <label for="formFile">处理内容：</label>
         </div>
         <div class="flex-row d-flex justify-content-start">
             <p class="font-weight-bold border p-2">{{confirm.content}}</p>
         </div>
-        {% if confirm.confirm_file != Null %}
+        <p>{{confirm.confirm_file}}</p>
+        {% if confirm.confirm_file != '' and confirm.confirm_file != Null %}
         <div class="flex-row d-flex justify-content-start mb-3">
             <a href="{{rootUrl}}/media/{{confirm.confirm_file}}" target="_blank">
                 <button type="button" class="btn btn-primary btn-sm"
@@ -222,7 +219,6 @@
                 </button>
             </a>
         </div>
-        {% endif %}
         {% endif %}
         {% endif %}
     </div>
