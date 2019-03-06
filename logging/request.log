@@ -1149,3 +1149,11 @@ Traceback (most recent call last):
     get_text_list(["'%s'" % p for p in parse_until], 'or'),
 django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 225: 'endif', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
 WARNING 2019-03-06 14:32:07,062 log Not Found: /media/
+WARNING 2019-03-06 14:43:58,709 log Not Found: /
+WARNING 2019-03-06 14:43:58,721 log Not Found: /favicon.ico
+WARNING 2019-03-06 14:44:18,974 log Not Found: /favicon.ico
+WARNING 2019-03-06 14:45:23,849 log Not Found: /favicon.ico
+WARNING 2019-03-06 14:45:30,072 log Not Found: /favicon.ico
+WARNING 2019-03-06 14:45:32,823 log Not Found: /favicon.ico
+WARNING 2019-03-06 14:45:33,565 log Not Found: /favicon.ico
+WARNING 2019-03-06 14:45:35,084 log Not Found: /favicon.ico
