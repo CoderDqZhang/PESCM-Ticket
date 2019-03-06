@@ -302,7 +302,7 @@ class TicketDetailView(View):
                 tickt_form = ChangeTimeForm(request.POST, )
                 isCheckForm = False
             except:
-                tickt_form = TicketConfimForm(request.POST, )
+                tickt_form = TicketCheckForm(request.POST, )
                 isCheckForm = True
             if isCheckForm:
                 ticket = Ticket.objects.get(ticket_id=request.GET.get('ticket_id'))

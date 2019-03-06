@@ -57,7 +57,7 @@
         {% for actions_ticket in actions_tickets%}
         <div class="w-100 text-left bg-white" style="height: 40px;">
             <p class="text-white pt-2 border-bottom pl-3" style="height: 40px;"><a
-                    href="{{rootUrl}}/api/ticket/server/detail/?ticket_id={{actions_ticket.ticket_id}}">{{actions_ticket.ticket_title}}</a>
+                    href="{{rootUrl}}/api/ticket/detail/?ticket_id={{actions_ticket.ticket_id}}">{{actions_ticket.ticket_title}}</a>
             </p>
         </div>
         {% endfor %}
@@ -75,7 +75,7 @@
         {% for actions_ticket in todo_actions_tickets%}
         <div class="w-100 text-left bg-white" style="height: 40px;">
             <p class="text-white pt-2 border-bottom pl-3" style="height: 40px;"><a
-                    href="{{rootUrl}}/api/ticket/server/detail/?ticket_id={{actions_ticket.ticket_id}}">{{actions_ticket.ticket_title}}</a>
+                    href="{{rootUrl}}/api/ticket/detail/?ticket_id={{actions_ticket.ticket_id}}">{{actions_ticket.ticket_title}}</a>
             </p>
         </div>
         {% endfor %}
@@ -93,7 +93,7 @@
         {% for done_ticket in done_tickets%}
         <div class="w-100 text-left bg-white" style="height: 40px;">
             <p class="text-white pt-2 border-bottom pl-3" style="height: 40px;"><a
-                    href="{{rootUrl}}/api/ticket/server/detail/?ticket_id={{done_ticket.ticket_id}}">{{done_ticket.ticket_title}}</a>
+                    href="{{rootUrl}}/api/ticket/detail/?ticket_id={{done_ticket.ticket_id}}">{{done_ticket.ticket_title}}</a>
             </p>
         </div>
         {% endfor %}
