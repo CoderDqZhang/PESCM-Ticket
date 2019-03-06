@@ -530,3 +530,350 @@ Traceback (most recent call last):
   File "/usr/local/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 965, in get_prep_value
     return int(value)
 ValueError: invalid literal for int() with base 10: ''
+WARNING 2019-02-01 10:38:05,856 log Not Found: /uploads/image/default.png
+WARNING 2019-02-19 12:02:37,278 log Not Found: /favicon.ico
+WARNING 2019-02-19 15:41:27,792 log Not Found: /uploads/image/default.png
+WARNING 2019-02-19 15:43:12,853 log Not Found: /uploads/image/default.png
+WARNING 2019-02-19 15:46:12,047 log Not Found: /uploads/image/default.png
+WARNING 2019-02-28 10:10:10,480 log Not Found: /uploads/image/default.png
+WARNING 2019-02-28 10:11:39,137 log Not Found: /favicon.ico
+WARNING 2019-02-28 10:11:46,780 log Not Found: /favicon.ico
+WARNING 2019-02-28 10:11:54,585 log Not Found: /favicon.ico
+WARNING 2019-03-01 08:41:21,779 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:08,965 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:08,978 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:09,467 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:09,478 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:09,599 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:09,615 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:10,001 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:10,008 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:10,157 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:10,179 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:10,291 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:10,298 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:10,407 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:10,421 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:10,810 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:10,822 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:11,048 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:11,058 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:11,240 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:11,250 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:12,752 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:12,763 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:16,649 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:16,662 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:16,892 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:47:16,901 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:49:16,318 log Not Found: /favicon.ico
+WARNING 2019-03-04 14:53:16,578 log Not Found: /api/ticket/logout/
+WARNING 2019-03-04 14:53:16,649 log Not Found: /api/static/server_images/error.jpeg
+WARNING 2019-03-04 14:53:20,503 log Not Found: /api/ticket/logout/
+WARNING 2019-03-04 14:53:20,556 log Not Found: /api/static/server_images/error.jpeg
+WARNING 2019-03-04 14:54:18,236 log Not Found: /favicon.ico
+WARNING 2019-03-04 15:04:56,879 log Not Found: /uploads/image/default.png
+ERROR 2019-03-04 15:06:57,746 log Internal Server Error: /api/ticket/server/detail/
+Traceback (most recent call last):
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "./ticket/ticket_view/ticket.py", line 397, in post
+    ticket.save()
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 718, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 748, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 812, in _save_table
+    forced_update)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 861, in _do_update
+    return filtered._update(values) > 0
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/query.py", line 712, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1383, in execute_sql
+    cursor = super().execute_sql(result_type)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1052, in execute_sql
+    sql, params = self.as_sql()
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1349, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 790, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1273, in get_db_prep_value
+    value = self.get_prep_value(value)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1268, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1243, in to_python
+    params={'value': value},
+django.core.exceptions.ValidationError: ['’2019.03.05‘ 必须为合法的日期格式，请使用 YYYY-MM-DD 格式。']
+WARNING 2019-03-04 15:07:11,481 log Not Found: /favicon.ico
+ERROR 2019-03-04 15:08:01,485 log Internal Server Error: /api/ticket/server/detail/
+Traceback (most recent call last):
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "./ticket/ticket_view/ticket.py", line 397, in post
+    ticket.save()
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 718, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 748, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 812, in _save_table
+    forced_update)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 861, in _do_update
+    return filtered._update(values) > 0
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/query.py", line 712, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1383, in execute_sql
+    cursor = super().execute_sql(result_type)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1052, in execute_sql
+    sql, params = self.as_sql()
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1349, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 790, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1273, in get_db_prep_value
+    value = self.get_prep_value(value)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1268, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1243, in to_python
+    params={'value': value},
+django.core.exceptions.ValidationError: ['’2019.03.05‘ 必须为合法的日期格式，请使用 YYYY-MM-DD 格式。']
+ERROR 2019-03-04 15:19:08,560 log Internal Server Error: /api/ticket/server/detail/
+Traceback (most recent call last):
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "./ticket/ticket_view/ticket.py", line 397, in post
+    ticket.save()
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 718, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 748, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 812, in _save_table
+    forced_update)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 861, in _do_update
+    return filtered._update(values) > 0
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/query.py", line 712, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1383, in execute_sql
+    cursor = super().execute_sql(result_type)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1052, in execute_sql
+    sql, params = self.as_sql()
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1349, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 790, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1273, in get_db_prep_value
+    value = self.get_prep_value(value)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1268, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1243, in to_python
+    params={'value': value},
+django.core.exceptions.ValidationError: ['’‘ 必须为合法的日期格式，请使用 YYYY-MM-DD 格式。']
+ERROR 2019-03-04 15:19:53,083 log Internal Server Error: /api/ticket/server/detail/
+Traceback (most recent call last):
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "./ticket/ticket_view/ticket.py", line 397, in post
+    ticket.save()
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 718, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 748, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 812, in _save_table
+    forced_update)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 861, in _do_update
+    return filtered._update(values) > 0
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/query.py", line 712, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1383, in execute_sql
+    cursor = super().execute_sql(result_type)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1052, in execute_sql
+    sql, params = self.as_sql()
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1349, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 790, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1273, in get_db_prep_value
+    value = self.get_prep_value(value)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1268, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1243, in to_python
+    params={'value': value},
+django.core.exceptions.ValidationError: ['’‘ 必须为合法的日期格式，请使用 YYYY-MM-DD 格式。']
+ERROR 2019-03-04 15:45:24,425 log Internal Server Error: /api/ticket/server/detail/
+Traceback (most recent call last):
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "./ticket/ticket_view/ticket.py", line 397, in post
+    ticket.save()
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 718, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 748, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 812, in _save_table
+    forced_update)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 861, in _do_update
+    return filtered._update(values) > 0
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/query.py", line 712, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1383, in execute_sql
+    cursor = super().execute_sql(result_type)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1052, in execute_sql
+    sql, params = self.as_sql()
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1349, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 790, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1273, in get_db_prep_value
+    value = self.get_prep_value(value)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1268, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1243, in to_python
+    params={'value': value},
+django.core.exceptions.ValidationError: ['’2019/03/05‘ 必须为合法的日期格式，请使用 YYYY-MM-DD 格式。']
+WARNING 2019-03-04 15:49:41,680 log Not Found: /favicon.ico
+WARNING 2019-03-04 15:51:38,560 log Not Found: /api/api/login/
+WARNING 2019-03-04 15:53:28,349 log Not Found: /favicon.ico
+ERROR 2019-03-04 15:54:08,370 log Internal Server Error: /api/ticket/server/detail/
+Traceback (most recent call last):
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "./ticket/ticket_view/ticket.py", line 397, in post
+    ticket.save()
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 718, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 748, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 812, in _save_table
+    forced_update)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 861, in _do_update
+    return filtered._update(values) > 0
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/query.py", line 712, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1383, in execute_sql
+    cursor = super().execute_sql(result_type)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1052, in execute_sql
+    sql, params = self.as_sql()
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1349, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 790, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1273, in get_db_prep_value
+    value = self.get_prep_value(value)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1268, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1243, in to_python
+    params={'value': value},
+django.core.exceptions.ValidationError: ['’‘ 必须为合法的日期格式，请使用 YYYY-MM-DD 格式。']
+ERROR 2019-03-04 15:54:34,485 log Internal Server Error: /api/ticket/server/detail/
+Traceback (most recent call last):
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "./ticket/ticket_view/ticket.py", line 397, in post
+    ticket.save()
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 718, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 748, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 812, in _save_table
+    forced_update)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/base.py", line 861, in _do_update
+    return filtered._update(values) > 0
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/query.py", line 712, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1383, in execute_sql
+    cursor = super().execute_sql(result_type)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1052, in execute_sql
+    sql, params = self.as_sql()
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1349, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 790, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1273, in get_db_prep_value
+    value = self.get_prep_value(value)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1268, in get_prep_value
+    return self.to_python(value)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1243, in to_python
+    params={'value': value},
+django.core.exceptions.ValidationError: ['’‘ 必须为合法的日期格式，请使用 YYYY-MM-DD 格式。']
+WARNING 2019-03-04 16:37:17,858 log Not Found: /uploads/image/default.png
+WARNING 2019-03-04 16:37:34,833 log Not Found: /favicon.ico
+WARNING 2019-03-04 16:37:37,769 log Not Found: /favicon.ico
+WARNING 2019-03-04 16:37:47,224 log Not Found: /uploads/image/default.png
+WARNING 2019-03-04 16:37:48,687 log Not Found: /favicon.ico
+WARNING 2019-03-04 16:38:54,960 log Not Found: /uploads/image/default.png
+WARNING 2019-03-04 16:39:09,475 log Not Found: /uploads/image/default.png
+ERROR 2019-03-04 16:39:22,438 log Internal Server Error: /api/ticket/detail/
+Traceback (most recent call last):
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "./ticket/ticket_view/ticket.py", line 269, in get
+    ticket = Ticket.objects.get(ticket_show_id=request.GET.get('ticket_id'))
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/python3/lib/python3.6/site-packages/django/db/models/query.py", line 403, in get
+    (self.model._meta.object_name, num)
+ticket.ticke_model.ticket.Ticket.MultipleObjectsReturned: get() returned more than one Ticket -- it returned 8!
+WARNING 2019-03-04 16:42:13,694 log Not Found: /uploads/image/default.png
