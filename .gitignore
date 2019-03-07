@@ -46,4 +46,6 @@ logging/error.log
 logging/info.log
 logging/warn.log
 logging/request.log
+logging/my_scheduled_job.log
 .DS_Store
+*.pyc

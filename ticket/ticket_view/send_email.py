@@ -10,17 +10,20 @@ from django_apscheduler.jobstores import DjangoJobStore, register_events, regist
 #开启定时工作
 try:
     # 实例化调度器
-    scheduler = BackgroundScheduler()
-    # 调度器使用DjangoJobStore()
-    scheduler.add_jobstore(DjangoJobStore(), "default")
-    # 设置定时任务，选择方式为interval，时间间隔为10s
-    # 另一种方式为每天固定时间执行任务，对应代码为：
-    @register_job(scheduler, 'cron', hour='17', minute='30', second='0',id='task_time')
     def my_job():
         sender_email()
         # 这里写你要执行的任务
         pass
-    register_events(scheduler)
+    scheduler = BackgroundScheduler()
+    # 调度器使用DjangoJobStore()
+    # scheduler.add_jobstore(DjangoJobStore(), "default")
+    # 设置定时任务，选择方式为interval，时间间隔为10s
+    # 另一种方式为每天固定时间执行任务，对应代码为：
+    scheduler.add_job(my_job, 'cron', day_of_week='mon-fri', hour=17, minute=30, end_date='2099-05-30')
+
+    # @register_job(scheduler, 'cron',day_of_week='mon,tue,wed,thu,fri,', hour='09', minute='55', second='00',id='task_time')
+
+    # register_events(scheduler)
     scheduler.start()
 except Exception as e:
     print(e)
