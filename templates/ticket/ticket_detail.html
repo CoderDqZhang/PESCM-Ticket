@@ -173,7 +173,11 @@
                 <p class="font-weight-light">状态：</p>
                 {% if confirm.status == 1 %}
                 {% if confirm.check == 1 %}
+                {% if ticket.pub_push_time == None %}
+                <p class="font-weight-bold text-info">待部署</p>
+                {% else %}
                 <p class="font-weight-bold text-success">已完成</p>
+                {% endif %}
                 {% else %}
                 <p class="font-weight-bold text-warning">待审核</p>
                 {% endif %}
