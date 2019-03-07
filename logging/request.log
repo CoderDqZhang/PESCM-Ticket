@@ -93,3 +93,4 @@ Traceback (most recent call last):
   File "/usr/local/lib/python3.6/site-packages/django/utils/datastructures.py", line 79, in __getitem__
     raise MultiValueDictKeyError(key)
 django.utils.datastructures.MultiValueDictKeyError: 'dev_push_time'
+WARNING 2019-03-07 11:05:15,468 log Not Found: /favicon.ico
