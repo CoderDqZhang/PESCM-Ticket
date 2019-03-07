@@ -37,15 +37,15 @@ class GlobalSettings(object):
              'menus': (
                 {'title': '用户管理', 'icon': 'fa fa-user'
                     , 'url': self.get_model_url(Account, 'changelist')},
-                {'title': '部门管理', 'icon': 'fa fa-vimeo-square'
+                {'title': '部门管理', 'icon': 'fa fa-th-list'
                     , 'url': self.get_model_url(Department, 'changelist')},
-                {'title': '问题分类', 'icon': 'fa fa-vimeo-square'
+                {'title': '问题分类', 'icon': 'fa fa-question-circle'
                     , 'url': self.get_model_url(Category, 'changelist')},
-                {'title': '工单类型', 'icon': 'fa fa-vimeo-square'
+                {'title': '工单类型', 'icon': 'fa fa-bookmark-o'
                     , 'url': self.get_model_url(TicketModel, 'changelist')},
-                {'title': '工单列表', 'icon': 'fa fa-vimeo-square'
+                {'title': '工单列表', 'icon': 'fa fa-bars'
                     , 'url': self.get_model_url(Ticket, 'changelist')},
-                {'title': '群组列表', 'icon': 'fa fa-vimeo-square'
+                {'title': '群组列表', 'icon': 'fa fa-users'
                     , 'url': self.get_model_url(AccountGroup, 'changelist')},
             )},
 
