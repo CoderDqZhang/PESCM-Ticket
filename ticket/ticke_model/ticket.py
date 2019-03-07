@@ -50,7 +50,7 @@ class Ticket(models.Model):
 
     ticket_remark = models.TextField('工单备注', help_text='工单备注', max_length=255, null=True, blank=False,
                                      default='')  # 问题及现状描述
-    handel_time = models.FloatField('执行天数', default=0.0)  # 创建工单者执行天数
+    handel_time = models.FloatField('预期天数', default=0.0)  # 创建工单者执行天数
     done_time = models.FloatField('实际执行天数', default=0.0)  # 实际执行天数
 
     dev_push_time = models.DateField('测试机部署时间', auto_created=False, auto_now_add=False, null=True,
@@ -60,3 +60,21 @@ class Ticket(models.Model):
 
     def __str__(self):
         return self.ticket_title
+
+    def show_status(self):
+        if self.ticket_status == 3:
+            return '完成'
+        else:
+            return '未完成'
+
+    def show_ticket_lev(self):
+        if self.ticket_lev == 0:
+            return '一般'
+        else:
+            return '紧急'
+
+    def create_todev_time(self):
+        time1 = datetime.datetime.strptime(self.dev_push_time.strftime('%Y-%m-%d'), "%Y-%m-%d")
+        time2 = datetime.datetime.strptime(self.create_time.strftime('%Y-%m-%d'), "%Y-%m-%d")
+        # time1 = datetime._wrap_strftime(self.create_time.strftime('%Y,%m,%d'), '%Y,%m,%d')
+        return (time1.date() - time2.date()).total_seconds()/(24*60*60)

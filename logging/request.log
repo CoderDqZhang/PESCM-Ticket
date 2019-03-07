@@ -415,3 +415,1890 @@ Traceback (most recent call last):
   File "/usr/local/lib/python3.6/site-packages/django/template/base.py", line 528, in invalid_block_tag
     get_text_list(["'%s'" % p for p in parse_until], 'or'),
 django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 179: 'else', expected 'endif'. Did you forget to register or load this tag?
+ERROR 2019-03-07 13:58:30,040 log Internal Server Error: /xadmin/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 300, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 208, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 282, in view
+    return handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/dashboard.py", line 592, in get
+    self.widgets = self.get_widgets()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/dashboard.py", line 548, in get_widgets
+    user=self.user, key=self.get_portal_key())
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/query.py", line 844, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/query.py", line 862, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/sql/query.py", line 1263, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/sql/query.py", line 1287, in _add_q
+    split_subq=split_subq,
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/sql/query.py", line 1198, in build_filter
+    self.check_related_objects(join_info.final_field, value, join_info.opts)
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/sql/query.py", line 1065, in check_related_objects
+    for v in value:
+  File "/usr/local/lib/python3.6/site-packages/django/utils/functional.py", line 214, in inner
+    return func(self._wrapped, *args)
+TypeError: 'AnonymousUser' object is not iterable
+ERROR 2019-03-07 14:20:59,243 log Internal Server Error: /xadmin/ticket/ticket/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 564, in get_field
+    return self.fields_map[field_name]
+KeyError: 'create_to_dev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/contrib/admin/utils.py", line 332, in label_for_field
+    field = _get_non_gfk_field(model._meta, name)
+  File "/usr/local/lib/python3.6/site-packages/django/contrib/admin/utils.py", line 309, in _get_non_gfk_field
+    field = opts.get_field(name)
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 566, in get_field
+    raise FieldDoesNotExist("%s has no field named '%s'" % (self.object_name, field_name))
+django.core.exceptions.FieldDoesNotExist: Ticket has no field named 'create_to_dev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 300, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 208, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 282, in view
+    return handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 45, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 405, in get
+    context = self.get_context()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 384, in get_context
+    'result_headers': self.result_headers(),
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 524, in result_headers
+    field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 524, in <listcomp>
+    field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 441, in result_header
+    return_attr=True
+  File "/usr/local/lib/python3.6/site-packages/django/contrib/admin/utils.py", line 357, in label_for_field
+    raise AttributeError(message)
+AttributeError: Unable to lookup 'create_to_dev_time' on Ticket or ticketticketAdminListAdminViewModelAdminViewGlobalSettingsCommAdminViewBaseSettingBaseAdminViewBaseAdminObjectViewobject
+ERROR 2019-03-07 14:33:45,315 log Internal Server Error: /xadmin/ticket/ticket/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 564, in get_field
+    return self.fields_map[field_name]
+KeyError: 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 281, in lookup_field
+    f = opts.get_field(name)
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 566, in get_field
+    raise FieldDoesNotExist("%s has no field named '%s'" % (self.object_name, field_name))
+django.core.exceptions.FieldDoesNotExist: Ticket has no field named 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 300, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 208, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 282, in view
+    return handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 45, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 405, in get
+    context = self.get_context()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 385, in get_context
+    'results': self.results()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 597, in results
+    results.append(self.result_row(obj))
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in result_row
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in <listcomp>
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 534, in result_item
+    f, attr, value = lookup_field(field_name, obj, self)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 304, in lookup_field
+    value = attr()
+  File "/Users/zhang/Documents/Python/PESCM/ticket/ticke_model/ticket.py", line 77, in create_todev_time
+    return self.dev_push_time - self.create_time
+TypeError: unsupported operand type(s) for -: 'datetime.date' and 'datetime.datetime'
+ERROR 2019-03-07 14:35:42,088 log Internal Server Error: /xadmin/ticket/ticket/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 564, in get_field
+    return self.fields_map[field_name]
+KeyError: 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 281, in lookup_field
+    f = opts.get_field(name)
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 566, in get_field
+    raise FieldDoesNotExist("%s has no field named '%s'" % (self.object_name, field_name))
+django.core.exceptions.FieldDoesNotExist: Ticket has no field named 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 300, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 208, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 282, in view
+    return handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 45, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 405, in get
+    context = self.get_context()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 385, in get_context
+    'results': self.results()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 597, in results
+    results.append(self.result_row(obj))
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in result_row
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in <listcomp>
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 534, in result_item
+    f, attr, value = lookup_field(field_name, obj, self)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 304, in lookup_field
+    value = attr()
+  File "/Users/zhang/Documents/Python/PESCM/ticket/ticke_model/ticket.py", line 77, in create_todev_time
+    return self.dev_push_time - datetime.date(self.create_time)
+TypeError: an integer is required (got type datetime.datetime)
+ERROR 2019-03-07 14:39:25,807 log Internal Server Error: /xadmin/ticket/ticket/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 564, in get_field
+    return self.fields_map[field_name]
+KeyError: 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 281, in lookup_field
+    f = opts.get_field(name)
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 566, in get_field
+    raise FieldDoesNotExist("%s has no field named '%s'" % (self.object_name, field_name))
+django.core.exceptions.FieldDoesNotExist: Ticket has no field named 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 300, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 208, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 282, in view
+    return handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 45, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 405, in get
+    context = self.get_context()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 385, in get_context
+    'results': self.results()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 597, in results
+    results.append(self.result_row(obj))
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in result_row
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in <listcomp>
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 534, in result_item
+    f, attr, value = lookup_field(field_name, obj, self)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 304, in lookup_field
+    value = attr()
+  File "/Users/zhang/Documents/Python/PESCM/ticket/ticke_model/ticket.py", line 77, in create_todev_time
+    return self.dev_push_time - self.create_time
+TypeError: unsupported operand type(s) for -: 'datetime.date' and 'datetime.datetime'
+ERROR 2019-03-07 14:49:47,387 log Internal Server Error: /xadmin/ticket/ticket/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 564, in get_field
+    return self.fields_map[field_name]
+KeyError: 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 281, in lookup_field
+    f = opts.get_field(name)
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 566, in get_field
+    raise FieldDoesNotExist("%s has no field named '%s'" % (self.object_name, field_name))
+django.core.exceptions.FieldDoesNotExist: Ticket has no field named 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 300, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 208, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 282, in view
+    return handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 45, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 405, in get
+    context = self.get_context()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 385, in get_context
+    'results': self.results()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 597, in results
+    results.append(self.result_row(obj))
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in result_row
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in <listcomp>
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 534, in result_item
+    f, attr, value = lookup_field(field_name, obj, self)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 304, in lookup_field
+    value = attr()
+  File "/Users/zhang/Documents/Python/PESCM/ticket/ticke_model/ticket.py", line 77, in create_todev_time
+    return  datetime.datetime.time().min()
+TypeError: descriptor 'time' of 'datetime.datetime' object needs an argument
+ERROR 2019-03-07 14:50:08,856 log Internal Server Error: /xadmin/ticket/ticket/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 564, in get_field
+    return self.fields_map[field_name]
+KeyError: 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 281, in lookup_field
+    f = opts.get_field(name)
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 566, in get_field
+    raise FieldDoesNotExist("%s has no field named '%s'" % (self.object_name, field_name))
+django.core.exceptions.FieldDoesNotExist: Ticket has no field named 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 300, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 208, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 282, in view
+    return handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 45, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 405, in get
+    context = self.get_context()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 385, in get_context
+    'results': self.results()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 597, in results
+    results.append(self.result_row(obj))
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in result_row
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in <listcomp>
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 534, in result_item
+    f, attr, value = lookup_field(field_name, obj, self)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 304, in lookup_field
+    value = attr()
+  File "/Users/zhang/Documents/Python/PESCM/ticket/ticke_model/ticket.py", line 77, in create_todev_time
+    return  datetime.time.min()
+TypeError: 'datetime.time' object is not callable
+ERROR 2019-03-07 14:50:34,451 log Internal Server Error: /xadmin/ticket/ticket/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 564, in get_field
+    return self.fields_map[field_name]
+KeyError: 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 281, in lookup_field
+    f = opts.get_field(name)
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 566, in get_field
+    raise FieldDoesNotExist("%s has no field named '%s'" % (self.object_name, field_name))
+django.core.exceptions.FieldDoesNotExist: Ticket has no field named 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 300, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 208, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 282, in view
+    return handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 45, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 405, in get
+    context = self.get_context()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 385, in get_context
+    'results': self.results()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 597, in results
+    results.append(self.result_row(obj))
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in result_row
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in <listcomp>
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 534, in result_item
+    f, attr, value = lookup_field(field_name, obj, self)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 304, in lookup_field
+    value = attr()
+  File "/Users/zhang/Documents/Python/PESCM/ticket/ticke_model/ticket.py", line 77, in create_todev_time
+    return  datetime.datetime.time()
+TypeError: descriptor 'time' of 'datetime.datetime' object needs an argument
+ERROR 2019-03-07 14:54:05,150 log Internal Server Error: /xadmin/ticket/ticket/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 564, in get_field
+    return self.fields_map[field_name]
+KeyError: 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 281, in lookup_field
+    f = opts.get_field(name)
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 566, in get_field
+    raise FieldDoesNotExist("%s has no field named '%s'" % (self.object_name, field_name))
+django.core.exceptions.FieldDoesNotExist: Ticket has no field named 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 300, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 208, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 282, in view
+    return handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 45, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 405, in get
+    context = self.get_context()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 385, in get_context
+    'results': self.results()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 597, in results
+    results.append(self.result_row(obj))
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in result_row
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in <listcomp>
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 534, in result_item
+    f, attr, value = lookup_field(field_name, obj, self)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 304, in lookup_field
+    value = attr()
+  File "/Users/zhang/Documents/Python/PESCM/ticket/ticke_model/ticket.py", line 77, in create_todev_time
+    return  self.dev_push_time - self.create_time.strftime('%Y-%m-%d')
+TypeError: unsupported operand type(s) for -: 'datetime.date' and 'str'
+ERROR 2019-03-07 14:55:21,321 log Internal Server Error: /xadmin/ticket/ticket/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 564, in get_field
+    return self.fields_map[field_name]
+KeyError: 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 281, in lookup_field
+    f = opts.get_field(name)
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 566, in get_field
+    raise FieldDoesNotExist("%s has no field named '%s'" % (self.object_name, field_name))
+django.core.exceptions.FieldDoesNotExist: Ticket has no field named 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 300, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 208, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 282, in view
+    return handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 45, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 405, in get
+    context = self.get_context()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 385, in get_context
+    'results': self.results()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 597, in results
+    results.append(self.result_row(obj))
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in result_row
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in <listcomp>
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 534, in result_item
+    f, attr, value = lookup_field(field_name, obj, self)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 304, in lookup_field
+    value = attr()
+  File "/Users/zhang/Documents/Python/PESCM/ticket/ticke_model/ticket.py", line 77, in create_todev_time
+    return  self.dev_push_time - datetime.date(self.create_time.strftime('%Y-%m-%d'))
+TypeError: an integer is required (got type str)
+ERROR 2019-03-07 14:55:25,831 log Internal Server Error: /xadmin/ticket/ticket/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 564, in get_field
+    return self.fields_map[field_name]
+KeyError: 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 281, in lookup_field
+    f = opts.get_field(name)
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 566, in get_field
+    raise FieldDoesNotExist("%s has no field named '%s'" % (self.object_name, field_name))
+django.core.exceptions.FieldDoesNotExist: Ticket has no field named 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 300, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 208, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 282, in view
+    return handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 45, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 405, in get
+    context = self.get_context()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 385, in get_context
+    'results': self.results()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 597, in results
+    results.append(self.result_row(obj))
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in result_row
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in <listcomp>
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 534, in result_item
+    f, attr, value = lookup_field(field_name, obj, self)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 304, in lookup_field
+    value = attr()
+  File "/Users/zhang/Documents/Python/PESCM/ticket/ticke_model/ticket.py", line 77, in create_todev_time
+    return  self.dev_push_time - datetime.date(self.create_time.strftime('%Y-%m-%d'))
+TypeError: an integer is required (got type str)
+ERROR 2019-03-07 14:57:46,985 log Internal Server Error: /xadmin/ticket/ticket/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 564, in get_field
+    return self.fields_map[field_name]
+KeyError: 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 281, in lookup_field
+    f = opts.get_field(name)
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 566, in get_field
+    raise FieldDoesNotExist("%s has no field named '%s'" % (self.object_name, field_name))
+django.core.exceptions.FieldDoesNotExist: Ticket has no field named 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 300, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 208, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 282, in view
+    return handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 45, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 405, in get
+    context = self.get_context()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 385, in get_context
+    'results': self.results()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 597, in results
+    results.append(self.result_row(obj))
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in result_row
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in <listcomp>
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 534, in result_item
+    f, attr, value = lookup_field(field_name, obj, self)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 304, in lookup_field
+    value = attr()
+  File "/Users/zhang/Documents/Python/PESCM/ticket/ticke_model/ticket.py", line 77, in create_todev_time
+    return  self.dev_push_time - datetime.date(self.create_time.strftime('%Y,%m,%d'))
+TypeError: an integer is required (got type str)
+ERROR 2019-03-07 14:58:07,316 log Internal Server Error: /xadmin/ticket/ticket/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 564, in get_field
+    return self.fields_map[field_name]
+KeyError: 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 281, in lookup_field
+    f = opts.get_field(name)
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 566, in get_field
+    raise FieldDoesNotExist("%s has no field named '%s'" % (self.object_name, field_name))
+django.core.exceptions.FieldDoesNotExist: Ticket has no field named 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 300, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 208, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 282, in view
+    return handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 45, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 405, in get
+    context = self.get_context()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 385, in get_context
+    'results': self.results()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 597, in results
+    results.append(self.result_row(obj))
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in result_row
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in <listcomp>
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 534, in result_item
+    f, attr, value = lookup_field(field_name, obj, self)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 304, in lookup_field
+    value = attr()
+  File "/Users/zhang/Documents/Python/PESCM/ticket/ticke_model/ticket.py", line 77, in create_todev_time
+    return  datetime.date(self.create_time.strftime('%Y,%m,%d'))
+TypeError: an integer is required (got type str)
+ERROR 2019-03-07 15:00:48,140 log Internal Server Error: /xadmin/ticket/ticket/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 564, in get_field
+    return self.fields_map[field_name]
+KeyError: 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 281, in lookup_field
+    f = opts.get_field(name)
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 566, in get_field
+    raise FieldDoesNotExist("%s has no field named '%s'" % (self.object_name, field_name))
+django.core.exceptions.FieldDoesNotExist: Ticket has no field named 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 300, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 208, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 282, in view
+    return handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 45, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 405, in get
+    context = self.get_context()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 385, in get_context
+    'results': self.results()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 597, in results
+    results.append(self.result_row(obj))
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in result_row
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in <listcomp>
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 534, in result_item
+    f, attr, value = lookup_field(field_name, obj, self)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 304, in lookup_field
+    value = attr()
+  File "/Users/zhang/Documents/Python/PESCM/ticket/ticke_model/ticket.py", line 77, in create_todev_time
+    return  self.dev_push_time - datetime.datetime.strptime(self.create_time.strftime('%Y,%m,%d'),'%Y,%m,%d')
+TypeError: unsupported operand type(s) for -: 'datetime.date' and 'datetime.datetime'
+ERROR 2019-03-07 15:03:10,349 log Internal Server Error: /xadmin/ticket/ticket/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 564, in get_field
+    return self.fields_map[field_name]
+KeyError: 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 281, in lookup_field
+    f = opts.get_field(name)
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 566, in get_field
+    raise FieldDoesNotExist("%s has no field named '%s'" % (self.object_name, field_name))
+django.core.exceptions.FieldDoesNotExist: Ticket has no field named 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 300, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 208, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 282, in view
+    return handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 45, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 405, in get
+    context = self.get_context()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 385, in get_context
+    'results': self.results()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 597, in results
+    results.append(self.result_row(obj))
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in result_row
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in <listcomp>
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 534, in result_item
+    f, attr, value = lookup_field(field_name, obj, self)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 304, in lookup_field
+    value = attr()
+  File "/Users/zhang/Documents/Python/PESCM/ticket/ticke_model/ticket.py", line 77, in create_todev_time
+    return  self.dev_push_time - self.create_time.strftime('%Y,%m,%d')
+TypeError: unsupported operand type(s) for -: 'datetime.date' and 'str'
+ERROR 2019-03-07 15:09:38,739 log Internal Server Error: /xadmin/ticket/ticket/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 564, in get_field
+    return self.fields_map[field_name]
+KeyError: 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 281, in lookup_field
+    f = opts.get_field(name)
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 566, in get_field
+    raise FieldDoesNotExist("%s has no field named '%s'" % (self.object_name, field_name))
+django.core.exceptions.FieldDoesNotExist: Ticket has no field named 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 300, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 208, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 282, in view
+    return handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 45, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 405, in get
+    context = self.get_context()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 385, in get_context
+    'results': self.results()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 597, in results
+    results.append(self.result_row(obj))
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in result_row
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in <listcomp>
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 534, in result_item
+    f, attr, value = lookup_field(field_name, obj, self)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 304, in lookup_field
+    value = attr()
+  File "/Users/zhang/Documents/Python/PESCM/ticket/ticke_model/ticket.py", line 77, in create_todev_time
+    time1 = datetime.datetime.strptime(self.create_time, "%Y-%m-%d")
+TypeError: strptime() argument 1 must be str, not datetime.datetime
+ERROR 2019-03-07 15:10:54,992 log Internal Server Error: /xadmin/ticket/ticket/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 564, in get_field
+    return self.fields_map[field_name]
+KeyError: 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 281, in lookup_field
+    f = opts.get_field(name)
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 566, in get_field
+    raise FieldDoesNotExist("%s has no field named '%s'" % (self.object_name, field_name))
+django.core.exceptions.FieldDoesNotExist: Ticket has no field named 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 300, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 208, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 282, in view
+    return handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 45, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 405, in get
+    context = self.get_context()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 385, in get_context
+    'results': self.results()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 597, in results
+    results.append(self.result_row(obj))
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in result_row
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in <listcomp>
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 534, in result_item
+    f, attr, value = lookup_field(field_name, obj, self)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 304, in lookup_field
+    value = attr()
+  File "/Users/zhang/Documents/Python/PESCM/ticket/ticke_model/ticket.py", line 79, in create_todev_time
+    return  self.dev_push_time - time1
+TypeError: unsupported operand type(s) for -: 'datetime.date' and 'datetime.datetime'
+ERROR 2019-03-07 15:11:10,063 log Internal Server Error: /xadmin/ticket/ticket/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 564, in get_field
+    return self.fields_map[field_name]
+KeyError: 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 281, in lookup_field
+    f = opts.get_field(name)
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 566, in get_field
+    raise FieldDoesNotExist("%s has no field named '%s'" % (self.object_name, field_name))
+django.core.exceptions.FieldDoesNotExist: Ticket has no field named 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 300, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 208, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 282, in view
+    return handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 45, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 405, in get
+    context = self.get_context()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 385, in get_context
+    'results': self.results()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 597, in results
+    results.append(self.result_row(obj))
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in result_row
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in <listcomp>
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 534, in result_item
+    f, attr, value = lookup_field(field_name, obj, self)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 304, in lookup_field
+    value = attr()
+  File "/Users/zhang/Documents/Python/PESCM/ticket/ticke_model/ticket.py", line 79, in create_todev_time
+    return  self.dev_push_time - time1
+TypeError: unsupported operand type(s) for -: 'datetime.date' and 'datetime.datetime'
+ERROR 2019-03-07 15:11:13,918 log Internal Server Error: /xadmin/ticket/ticket/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 564, in get_field
+    return self.fields_map[field_name]
+KeyError: 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 281, in lookup_field
+    f = opts.get_field(name)
+  File "/usr/local/lib/python3.6/site-packages/django/db/models/options.py", line 566, in get_field
+    raise FieldDoesNotExist("%s has no field named '%s'" % (self.object_name, field_name))
+django.core.exceptions.FieldDoesNotExist: Ticket has no field named 'create_todev_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 300, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/sites.py", line 208, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 282, in view
+    return handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 45, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/django/utils/decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 405, in get
+    context = self.get_context()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 385, in get_context
+    'results': self.results()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 597, in results
+    results.append(self.result_row(obj))
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in result_row
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 590, in <listcomp>
+    obj, field_name, row) for field_name in self.list_display]
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 80, in method
+    return filter_chain(filters, len(filters) - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 63, in filter_chain
+    return filter_chain(filters, token - 1, _inner_method, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 49, in filter_chain
+    return func()
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 62, in _inner_method
+    return fm(func if fargs[1] == '__' else func(), *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/base.py", line 74, in _inner_method
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/views/list.py", line 534, in result_item
+    f, attr, value = lookup_field(field_name, obj, self)
+  File "/usr/local/lib/python3.6/site-packages/xadmin/util.py", line 304, in lookup_field
+    value = attr()
+  File "/Users/zhang/Documents/Python/PESCM/ticket/ticke_model/ticket.py", line 79, in create_todev_time
+    return  self.dev_push_time - time1
+TypeError: unsupported operand type(s) for -: 'datetime.date' and 'datetime.datetime'
