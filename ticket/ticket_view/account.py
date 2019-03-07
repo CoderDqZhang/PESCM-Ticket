@@ -50,7 +50,10 @@ def home(request):
                                                          Q(ticket_create_user=request.session.get("username")) &
                                                          Q(ticket_listsort__check=0)).\
                 exclude(ticket_status=3).distinct().order_by("-create_time")[:10]
-
+            todo_pubtime_tickets = Ticket.objects.filter(Q(ticket_listsort__status=1) &
+                                                         Q(ticket_create_user=request.session.get("username")) &
+                                                         Q(ticket_listsort__check=1)).\
+                exclude(ticket_status=3).distinct().order_by("-create_time")[:10]
             done_tickets = Ticket.objects.filter(
                 ticket_create_user=request.session.get("username")).filter(
                 ticket_status=3).order_by("-create_time")[:10]
@@ -59,6 +62,7 @@ def home(request):
                                                         'actions_tickets': actions_tickets,
                                                         'done_tickets': done_tickets,
                                                         'todo_actions_tickets': todo_actions_tickets,
+                                                        'todo_pubtime_tickets':todo_pubtime_tickets,
                                                         'rootUrl': config.rootUrl, })
         else:
             actions_tickets = Ticket.objects.filter(
@@ -67,6 +71,10 @@ def home(request):
             todo_actions_tickets = Ticket.objects.filter(Q(ticket_listsort__status=1) &
                                                          Q(ticket_listsort__user__user_id__exact=request.session.get("username")) &
                                                          Q(ticket_listsort__check=0)). \
+                                       exclude(ticket_status=3).distinct().order_by("-create_time")[:10]
+            todo_pubtime_tickets = Ticket.objects.filter(Q(ticket_listsort__status=1) &
+                                                         Q(ticket_listsort__user__user_id__exact=request.session.get("username")) &
+                                                         Q(ticket_listsort__check=1)). \
                                        exclude(ticket_status=3).distinct().order_by("-create_time")[:10]
             done_tickets = Ticket.objects.filter(
                 ticket_listsort__user__user_id__exact=request.session.get("username")).filter(
@@ -77,6 +85,7 @@ def home(request):
                                                           'actions_tickets': actions_tickets,
                                                           'rootUrl': config.rootUrl,
                                                           'done_tickets': done_tickets,
+                                                          'todo_pubtime_tickets': todo_pubtime_tickets,
                                                           'todo_actions_tickets':todo_actions_tickets})
     else:
         return redirect("../../api/login/")

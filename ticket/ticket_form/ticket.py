@@ -15,7 +15,6 @@ class TicketConfimForm(forms.Form):
     ticket_content = forms.Textarea()
     check_box = forms.CheckboxInput()
     dev_push_time = forms.TextInput()
-    pub_push_time = forms.TextInput()
     handel_time = forms.FloatField()
     confirm_remark = forms.Textarea()
 
@@ -28,4 +27,7 @@ class ChangeTimeForm(forms.Form):
 
 class TicketCheckForm(forms.Form):
     ticket_id = forms.CharField()
+
+class TicketPubTimeForm(forms.Form):
+    pub_push_time = forms.TextInput()
 
