@@ -16,7 +16,7 @@ from django.utils import timezone
 from django.db.models import Q
 import datetime
 
-
+#创建工单
 class TicketView(View):
     def get(self, request):
         username_session = request.session.get("username")
@@ -60,7 +60,7 @@ class TicketView(View):
             if tickt_form.is_valid():
                 try:
                     tickt_form.data['check_box']
-                    isCheckForm = 1  # 为紧急状态
+                    isCheckForm = 1 #是否为紧急工单
                 except:
                     isCheckForm = 0
 
@@ -99,7 +99,7 @@ class TicketView(View):
         else:
             return redirect("../../../api/login/")
 
-
+#我的工单列表
 class MyticketView(View):
     def get(self, request):
         username_session = request.session.get("username")
@@ -142,12 +142,10 @@ class MyticketView(View):
                 status = 4
 
             myticket_list = myticket
-            paginator = Paginator(myticket, 10)
             # 分页控制
-
+            paginator = Paginator(myticket, 10)
             if request.GET.get('page') != None:
                 page = int(request.GET.get('page'))
-
             # 当前分页
             try:
                 myticket_list = paginator.page(page)  # 获取当前页码的记录
@@ -199,7 +197,7 @@ class MyticketView(View):
         # 将状态码与上下博客传递给前端页面
         return data
 
-
+#我的工单列表
 class TicketListView(View):
     def get(self, request):
         username_session = request.session.get("username")
@@ -236,7 +234,6 @@ class TicketListView(View):
 
             paginator = Paginator(ticket, 10)
             # 分页控制
-
             if request.GET.get('page') != None:
                 page = int(request.GET.get('page'))
 
@@ -266,7 +263,6 @@ class TicketListView(View):
 
 
 # 甲方详情页面
-
 class TicketDetailView(View):
     def get(self, request):
         username_session = request.session.get("username")
@@ -344,7 +340,7 @@ class TicketDetailView(View):
         else:
             return redirect("../../../api/login/")
 
-
+#乙方工单详情界面
 class TicketServerDetailView(View):
     def get(self, request):
         username_session = request.session.get("username")
@@ -379,7 +375,7 @@ class TicketServerDetailView(View):
                 try:
                     request.POST['pub_push_time']
                     tickt_form = TicketPubTimeForm(request.POST, )
-                    isCheckForm = 1
+                    isCheckForm = 1#(isCheckForm 0为未审核状态下的 1 审核完成后 2为完成后的状态)
                 except:
                     tickt_form = TicketConfimForm(request.POST, )
                     isCheckForm = 2
@@ -466,7 +462,7 @@ class TicketServerDetailView(View):
         else:
             return redirect("../../../../api/login/")
 
-
+#甲方所有工单
 class TicketAllDetailView(View):
     def get(self, request):
         username_session = request.session.get("username")
@@ -494,7 +490,7 @@ class TicketAllDetailView(View):
         else:
             return redirect("../../../api/login/")
 
-
+#乙方所有工单
 class TicketServerAllDetailView(View):
     def get(self, request):
         username_session = request.session.get("username")

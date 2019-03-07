@@ -2302,3 +2302,8 @@ Traceback (most recent call last):
   File "/Users/zhang/Documents/Python/PESCM/ticket/ticke_model/ticket.py", line 79, in create_todev_time
     return  self.dev_push_time - time1
 TypeError: unsupported operand type(s) for -: 'datetime.date' and 'datetime.datetime'
+WARNING 2019-03-07 17:16:48,779 log Not Found: /api/login/ddd
+WARNING 2019-03-07 17:25:34,906 log Not Found: /api/login/ddd
+WARNING 2019-03-07 17:25:45,205 log Not Found: /api/login/ddd
+WARNING 2019-03-07 17:25:57,028 log Not Found: /api/login/ddd
+WARNING 2019-03-07 17:28:24,764 log Not Found: /api/login/ddd

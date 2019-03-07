@@ -18,6 +18,3 @@ def get_ticket_id(ticket_model):
     first_order = pinyin.get_pinyin_first_alpha(ticket_model.ticket_model_name)
     ticket_id = str(first_order + get_date_time())
     return ticket_id
-
-if __name__ == "__main__":
-	id = create_serial_number()
