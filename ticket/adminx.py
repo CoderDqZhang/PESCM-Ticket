@@ -69,8 +69,24 @@ class TicketModelAdmin(object):
 
 
 class TicketAdmin(object):
-    list_display = ('ticket_id','ticket_show_id','ticket_title','ticket_desc','ticket_model_ticket',
-                    'ticket_lev','ticket_listsort',)
+    list_display = ('ticket_id','ticket_title','ticket_desc','ticket_model_ticket','show_status',
+                    'show_ticket_lev','create_todev_time','ticket_listsort',)
+
+    def show_status(self,obj):
+        return obj.show_status()
+    show_status.short_description = '工单转态'
+
+    def show_ticket_lev(self,obj):
+        return obj.show_ticket_lev()
+    show_ticket_lev.short_description = '紧急状态'
+
+    def ticket_listsort(self, obj):
+        return obj.ticket_listsort
+    ticket_listsort.short_description = '执行人员'
+
+    def create_todev_time(self,obj):
+        return obj.create_todev_time()
+    create_todev_time.short_description = '创建发布时间间隔'
 
 class BaseSetting(object):
     enable_themes = True
