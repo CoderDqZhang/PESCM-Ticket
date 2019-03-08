@@ -16,20 +16,17 @@ try:
         pass
     scheduler = BackgroundScheduler()
     # 调度器使用DjangoJobStore()
-    # scheduler.add_jobstore(DjangoJobStore(), "default")
-    # 设置定时任务，选择方式为interval，时间间隔为10s
     # 另一种方式为每天固定时间执行任务，对应代码为：
     scheduler.add_job(my_job, 'cron', day_of_week='mon-fri', hour=17, minute=30, end_date='2099-05-30')
 
     # @register_job(scheduler, 'cron',day_of_week='mon,tue,wed,thu,fri,', hour='09', minute='55', second='00',id='task_time')
-
-    # register_events(scheduler)
     scheduler.start()
 except Exception as e:
     print(e)
     # 有错误就停止定时器
     scheduler.shutdown()
 
+#发送指定的工单
 def sender_email_ticket(ticket):
     senderuser = []
     for confirm in ticket.ticket_listsort.filter(status=0):
@@ -40,7 +37,7 @@ def sender_email_ticket(ticket):
               senderuser, fail_silently=False)
     return
 
-
+#根据数据库中所有未完成工单
 def sender_email():
     all_ticket = Ticket.objects.filter(ticket_status=0)
     for ticket in all_ticket:

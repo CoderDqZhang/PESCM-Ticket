@@ -61,20 +61,22 @@ class Ticket(models.Model):
     def __str__(self):
         return self.ticket_title
 
+    # 显示工单的状态
     def show_status(self):
         if self.ticket_status == 3:
             return '完成'
         else:
             return '未完成'
 
+    #显示工单的紧急状态与否
     def show_ticket_lev(self):
         if self.ticket_lev == 0:
             return '一般'
         else:
             return '紧急'
 
+    #工单创建时间到测试机部署时间的时间间隔
     def create_todev_time(self):
         time1 = datetime.datetime.strptime(self.dev_push_time.strftime('%Y-%m-%d'), "%Y-%m-%d")
         time2 = datetime.datetime.strptime(self.create_time.strftime('%Y-%m-%d'), "%Y-%m-%d")
-        # time1 = datetime._wrap_strftime(self.create_time.strftime('%Y,%m,%d'), '%Y,%m,%d')
         return (time1.date() - time2.date()).total_seconds()/(24*60*60)
