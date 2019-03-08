@@ -27,7 +27,7 @@ from ticket.until import define
 if (define.get_mac_address() == '00:50:56:82:19:40'):
     DEBUG = False
 else:
-    DEBUG = False
+    DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
