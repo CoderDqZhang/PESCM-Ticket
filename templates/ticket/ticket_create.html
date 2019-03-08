@@ -43,6 +43,16 @@
         <span class="navbar-text" style="margin-right: 30px;">
       您好，{{ user.nickname }}
     </span>
+            <div class="btn-group btn-sm" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle text-secondary" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                    用户设置
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <a class="dropdown-item text-secondary" href="{{rootUrl}}/api/change/password/">修改密码</a>
+                    <a class="dropdown-item text-secondary" href="{{rootUrl}}/api/change/email/">修改邮箱</a>
+                </div>
+            </div>
             <button type="submit" class="btn btn-primary btn-sm">退出登录</button>
         </form>
     </div>
