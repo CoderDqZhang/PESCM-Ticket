@@ -52,11 +52,14 @@ class GlobalSettings(object):
         )
 
 class AccountAdmin(object):
-    list_display = ('nickname','user_id','status','desc'
-                    ,'create_time','last_login',)
+    list_display = ('nickname','show_user_lv','user_id','status','desc')
+
+    def show_user_lv(self,obj):
+        return obj.show_user_lv()
+    show_user_lv.short_description = '群组&级别'
 
 class AccountGroupAdmin(object):
-    list_display = ('group_status','group_name','group_menu')
+    list_display = ('group_name','group_menu')
 
 class DepartmentAdmin(object):
     list_display = ('partment_code','partment_desc','partment_lev',)

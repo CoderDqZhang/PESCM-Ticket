@@ -5,13 +5,13 @@ from django.contrib.auth.models import User
 from ticket.ticke_model.department import Department
 
 class AccountGroup(models.Model):
-    group_id = models.IntegerField(auto_created=True,primary_key=True)
-    group_status = models.IntegerField('群组状态',default=0) #群组状态 0关闭，1开启
+    group_id = models.IntegerField('群组ID',auto_created=True,primary_key=True)
+    group_status = models.IntegerField('群组分布',default=0) #群组状态 0关闭，1开启
     group_name = models.CharField('群组名称',max_length=255,null=False,blank=False)
-    group_menu = models.CharField('群组菜单',max_length=255,null=False,blank=False)
+    group_menu = models.CharField('人员级别',max_length=255,null=False,blank=False)
 
     def __str__(self):
-        return self.group_name
+        return self.group_name + '-' + self.group_menu
 
 class Account(models.Model):
     nickname = models.CharField('用户名', max_length=255, default='', null=True) #用户名
@@ -29,6 +29,10 @@ class Account(models.Model):
 
     def __str__(self):
         return self.nickname
+
+    #显示群组&用户级别
+    def show_user_lv(self):
+        return self.group.group_name + '-' + self.group.group_menu
 
 
 
