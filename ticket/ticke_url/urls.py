@@ -9,6 +9,8 @@ from ticket.ticket_view import account,department,ticket,send_email
 
 urlpatterns = [
     url(r'^login/$', account.LoginView.as_view()),
+    url(r'^change/password/$', account.ChangePasswordView.as_view()),
+    url(r'^change/email/$', account.ChangeEmailView.as_view()),
     url(r'^home/$', account.home),
     url(r'^home/api/$', account.home_api),
     url(r'^logout/$', account.logout),

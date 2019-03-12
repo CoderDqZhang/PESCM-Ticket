@@ -35,7 +35,8 @@
                     工单列表
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{rootUrl}}/api/ticket/myticket/?page=1&status=4&dateType=100">我的工单</a>
+                    <a class="dropdown-item"
+                       href="{{rootUrl}}/api/ticket/myticket/?page=1&status=4&dateType=100">我的工单</a>
                     <a class="dropdown-item" href="{{rootUrl}}/api/ticket/list/?page=1&status=4&dateType=100">工单列表</a>
                 </div>
             </li>
@@ -53,6 +54,17 @@
         <span class="navbar-text" style="margin-right: 30px;">
       您好，{{ user.nickname }}
     </span>
+            <div class="btn-group btn-sm" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle text-secondary"
+                        data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                    用户设置
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <a class="dropdown-item text-secondary" href="{{rootUrl}}/api/change/password/">修改密码</a>
+                    <a class="dropdown-item text-secondary" href="{{rootUrl}}/api/change/email/">修改邮箱</a>
+                </div>
+            </div>
             <button type="submit" class="btn btn-primary btn-sm">退出登录</button>
         </form>
     </div>
@@ -176,7 +188,7 @@
                 {% for index in myticket_list.paginator.page_range %}
                 {% if index == myticket_list.number %}
                 <li class="page-item "><a class="page-link bg-primary border-light text-white"
-                                         href="?page={{ index }}&status={{status}}&dateType={{dateType}}">{{index}}</a>
+                                          href="?page={{ index }}&status={{status}}&dateType={{dateType}}">{{index}}</a>
                 </li>
                 {% else %}
                 <li class="page-item"><a class="page-link"

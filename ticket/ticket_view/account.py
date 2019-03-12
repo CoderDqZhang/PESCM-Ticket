@@ -5,7 +5,7 @@ from django.http import HttpResponse, JsonResponse
 from django.views import View
 from ticket.ticke_model.account import Account
 from ticket.until import define, config
-from ticket.ticket_form.account import LoginForm
+from ticket.ticket_form.account import LoginForm,ChangePasswordForm
 from ticket.ticke_model.ticket import Ticket
 from django.forms.models import model_to_dict
 from django.db.models import Q
@@ -31,6 +31,51 @@ class LoginView(View):
         else:
             return redirect("../../api/login/")
 
+#修改密码
+class ChangePasswordView(View):
+    def get(self, request):
+        return render(request, 'ticket/change_password.html')
+
+    def post(self, request):
+        form = LoginForm(request.POST)  # form 包含提交的数据
+        username_session = request.session.get("username")
+        if username_session:
+            password = form.data['old_password']
+            user = Account.objects.filter(user_id=username_session, password=password)
+            if user.count() > 0:
+                user[0].password = form.data['new_password']
+                user[0].save()
+                return JsonResponse({'success': '修改密码成功'})
+            else:
+                # 用户不存在
+                print('用户不存在')
+                return JsonResponse({'error': '原密码错误'})
+        else:
+            return render(request, 'ticket/login.html')
+
+# 修改邮箱
+class ChangeEmailView(View):
+    def get(self, request):
+        username_session = request.session.get("username")
+        user = Account.objects.get(user_id=username_session)
+        return render(request, 'ticket/change_email.html',context={'user':user})
+
+    def post(self, request):
+        form = LoginForm(request.POST)  # form 包含提交的数据
+        username_session = request.session.get("username")
+        if username_session:
+            email = form.data['email']
+            user = Account.objects.get(user_id=username_session)
+            if user:
+                user.email = form.data['email']
+                user.save()
+                return JsonResponse({'success': '修改邮箱成功'})
+            else:
+                # 用户不存在
+                print('用户不存在')
+                return JsonResponse({'error': '修改邮箱错误'})
+        else:
+            return render(request, 'ticket/change_email.html')
 
 #登出
 def logout(request):
