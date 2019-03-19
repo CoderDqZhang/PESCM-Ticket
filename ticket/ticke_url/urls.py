@@ -31,6 +31,6 @@ urlpatterns = [
     url(r'^ticket/create/department/user/', ticket.get_department_user),
 
 
-    url(r'^ticket/send/$', send_email.sender_email),
+    url(r'^ticket/send/$', send_email.sender_admin_email),
 ]
 

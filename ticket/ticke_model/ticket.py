@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 from ticket.ticke_model.department import Department
-from ticket.ticke_model.account import Account
+from ticket.ticke_model.account import Account,AccountGroup
 from ticket.ticke_model.category import TicketModel
 import django.utils.timezone as timezone
 import datetime
@@ -57,6 +57,7 @@ class Ticket(models.Model):
                                      blank=True)  # 测试机部署时间
     pub_push_time = models.DateField('生产机部署时间', auto_created=False, auto_now_add=False, null=True,
                                      blank=True)  # 生产机部署时间
+
 
     def __str__(self):
         return self.ticket_title
