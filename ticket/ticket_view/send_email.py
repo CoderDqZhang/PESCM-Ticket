@@ -42,23 +42,66 @@ def sender_email_ticket(ticket):
 
 
 # 根据数据库中所有未完成工单
+def test_sender_email(request):
+    all_ticket = Ticket.objects.filter(ticket_status=0)
+    all_count = Account.objects.all()
+    for count in all_count:
+        strs = ''
+        strs_confirm = ''
+        tickets_confirm = all_ticket.filter(ticket_listsort__user=count)
+        tickets = all_ticket.filter(ticket_create_user=count)
+        if tickets.count() > 0:
+            senderuser = [count.email]
+            for ticket in tickets:
+                strs = strs + '工单标题' + ticket.ticket_title + '   ' + '工单编号' + str(ticket.ticket_id) + '\n'
+            try:
+                send_mail('未完成工单提醒', strs,
+                      'redbullticket@163.com',
+                      senderuser, fail_silently=False)
+            except:
+                print('error')
+        if tickets_confirm.count() > 0:
+            senderuser = [count.email]
+            for ticket in tickets_confirm:
+                strs_confirm = strs_confirm + '工单标题' + ticket.ticket_title + '   ' + '工单编号' + str(ticket.ticket_id) + '\n'
+            try:
+                send_mail('未完成工单提醒', strs_confirm,
+                      'redbullticket@163.com',
+                      senderuser, fail_silently=False)
+            except:
+                print('error')
+    return JsonResponse({'success':'e'})
+
+# 根据数据库中所有未完成工单
 def sender_email():
     all_ticket = Ticket.objects.filter(ticket_status=0)
-    strs = ''
-    for ticket in all_ticket:
-        senderuser = []
-        for confirm in ticket.ticket_listsort.filter(status=0):
-            if confirm.user.email != None:
-                senderuser.append(confirm.user.email)
-            if ticket.ticket_create_user.email != None:
-                senderuser.append(ticket.ticket_create_user.email)
-        strs = strs + '工单标题' + ticket.ticket_title + '   ' + '工单编号' + str(ticket.ticket_id) + '\n'
-    try:
-        send_mail('未完成工单提醒', strs,
-                  'redbullticket@163.com',
-                  senderuser, fail_silently=False)
-    except:
-        print('error')
+    all_count = Account.objects.all()
+    for count in all_count:
+        strs = ''
+        strs_confirm = ''
+        tickets_confirm = all_ticket.filter(ticket_listsort__user=count)
+        tickets = all_ticket.filter(ticket_create_user=count)
+        if tickets.count() > 0:
+            senderuser = [count.email]
+            for ticket in tickets:
+                strs = strs + '工单标题' + ticket.ticket_title + '   ' + '工单编号' + str(ticket.ticket_id) + '\n'
+            try:
+                send_mail('未完成工单提醒', strs,
+                          'redbullticket@163.com',
+                          senderuser, fail_silently=False)
+            except:
+                print('error')
+        if tickets_confirm.count() > 0:
+            senderuser = [count.email]
+            for ticket in tickets_confirm:
+                strs_confirm = strs_confirm + '工单标题' + ticket.ticket_title + '   ' + '工单编号' + str(
+                    ticket.ticket_id) + '\n'
+            try:
+                send_mail('未完成工单提醒', strs_confirm,
+                          'redbullticket@163.com',
+                          senderuser, fail_silently=False)
+            except:
+                print('error')
 
 
 # 根据数据库中所有未完成工单
@@ -78,8 +121,6 @@ def sender_admin_email():
         tickets = all_ticket.filter(ticket_create_user__group__group_status=group.group_status)
         for ticket in tickets:
             strs = strs + '工单标题' + ticket.ticket_title + '   ' + '工单编号' + str(ticket.ticket_id) + '\n'
-            print(strs)
-        print(senderuser)
         try:
             send_mail('未完成工单提醒', strs,
                       'redbullticket@163.com',
