@@ -6,7 +6,7 @@ from ticket.ticke_model.department import Department
 
 class AccountGroup(models.Model):
     group_id = models.IntegerField('群组ID',auto_created=True,primary_key=True)
-    group_status = models.IntegerField('群组分布',default=0) #群组状态 0关闭，1开启
+    group_status = models.IntegerField('群组分布ID',default=0) #群组状态 0关闭，1开启
     group_name = models.CharField('群组名称',max_length=255,null=False,blank=False)
     group_menu = models.CharField('人员级别',max_length=255,null=False,blank=False)
 
