@@ -74,6 +74,7 @@ class TicketModelAdmin(object):
 class TicketAdmin(object):
     list_display = ('ticket_id','ticket_title','ticket_desc','ticket_model_ticket','show_status',
                     'show_ticket_lev','create_todev_time','ticket_listsort',)
+    search_fields = ('ticket_id','ticket_title','ticket_model_ticket__ticket_model_name','ticket_title')
 
     def show_status(self,obj):
         return obj.show_status()

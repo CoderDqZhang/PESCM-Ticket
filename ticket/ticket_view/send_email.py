@@ -20,7 +20,6 @@ try:
     # 调度器使用DjangoJobStore()
     # 另一种方式为每天固定时间执行任务，对应代码为：
     scheduler.add_job(my_job, 'cron', day_of_week='mon-fri', hour=17, minute=30, end_date='2099-05-30')
-
     # @register_job(scheduler, 'cron',day_of_week='mon,tue,wed,thu,fri,', hour='09', minute='55', second='00',id='task_time')
     scheduler.start()
 except Exception as e:
