@@ -72,16 +72,11 @@ class TicketModelAdmin(object):
 
 
 class TicketAdmin(object):
-    list_display = ('ticket_id','ticket_title','ticket_desc','ticket_model_ticket','show_status',
-                    'show_ticket_lev','create_todev_time','ticket_listsort',)
-
-    def show_status(self,obj):
-        return obj.show_status()
-    show_status.short_description = '工单转态'
-
-    def show_ticket_lev(self,obj):
-        return obj.show_ticket_lev()
-    show_ticket_lev.short_description = '紧急状态'
+    list_display = ('ticket_id','ticket_title','ticket_model_ticket',
+                    'create_todev_time','ticket_listsort','ticket_lev','ticket_status','ticket_create_user','create_time')
+    list_filter = ('ticket_id','ticket_title','ticket_model_ticket',
+                    'ticket_status','ticket_create_user','ticket_lev')
+    search_fields = ('ticket_id','ticket_title','ticket_model_ticket__ticket_model_name','ticket_title')
 
     def ticket_listsort(self, obj):
         return obj.ticket_listsort

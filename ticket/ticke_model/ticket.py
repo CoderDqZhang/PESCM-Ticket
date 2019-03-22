@@ -9,11 +9,27 @@ import django.utils.timezone as timezone
 import datetime
 
 
+CONFIRM_STATUS = (
+    ('0','未处理'),
+    ('1','完成'),
+)
+
+TRANSFER = (
+    ('0','未转派'),
+    ('1','已转派'),
+    ('2','被转派')
+)
+
+CHECK = (
+    ('0','未审核'),
+    ('1','已审核')
+)
+
 class TicketConfim(models.Model):
     user = models.ForeignKey(Account, verbose_name='处理人员', on_delete=models.CASCADE)
-    status = models.IntegerField('处理状态', default=0)  # 状态 0未处理，1处理完成
+    status = models.CharField('处理状态', max_length=7, default='0', choices=CONFIRM_STATUS)  # 状态 0未处理，1处理完成
     # 是否是转派过来的工单
-    transfer = models.IntegerField('是否转派', default=0)  # 状态 0否，1是（处理完成后转派给他人），2，接到转派工单
+    transfer = models.CharField('是否转派', max_length=7, default='0', choices=TRANSFER)  # 状态 0否，1是（处理完成后转派给他人），2，接到转派工单
 
     content = models.TextField('处理描述', null=True, blank=True)
     confirm_time = models.DateTimeField('处理时间', auto_created=False, null=True, blank=True, auto_now=False)
@@ -25,11 +41,23 @@ class TicketConfim(models.Model):
     file_name = models.CharField('文件名称', max_length=255, null=True, default='None')
 
     handel_time = models.FloatField('执行天数', default=0.0)  # 创建工单者执行天数
-    check = models.IntegerField('是否审核',default=0) # 状态 0否，1是
+    check = models.CharField('是否审核',max_length=7, default='0', choices=CHECK) # 状态 0否，1是
 
     def __str__(self):
         return self.user.nickname
 
+
+TICKET_LV = (
+    ('0','一般'),
+    ('1','紧急'),
+)
+
+TICKET_STATUS = (
+    ('0','未处理'),
+    ('1','处理中'),
+    ('2','工单驳回'),
+    ('3','处理完成')
+)
 
 class Ticket(models.Model):
     ticket_show_id = models.CharField('工单显示ID', default='', null=False, blank=False, max_length=255)
@@ -39,13 +67,13 @@ class Ticket(models.Model):
     ticket_desc = models.TextField('工单描述', help_text='输入工单详细描述', max_length=255, null=True, blank=False,
                                    default='')  # 问题及现状描述
     ticket_model_ticket = models.ForeignKey(TicketModel, verbose_name='工单模型', on_delete=models.CASCADE)  # 问题类别
-    ticket_lev = models.IntegerField('紧急状态', default=0)  # 状态，一般，紧急，
-    ticket_status = models.IntegerField('工单状态', default=0)  # 状态0 未处理，1处理中，2工单驳回，3处理完成。
-    ticket_listsort = models.ManyToManyField(TicketConfim, '工单处理人员', null=False, blank=False)  # 实施顾问
-    ticket_create_user = models.ForeignKey(Account, '创建人', null=False, blank=False)  # 提报人
+    ticket_lev = models.CharField('紧急状态', max_length=255, default = '0', choices=TICKET_LV)  # 状态，一般，紧急，
+    ticket_status = models.CharField('工单状态', max_length=255, default='0', choices=TICKET_STATUS)  # 状态0 未处理，1处理中，2工单驳回，3处理完成。
+    ticket_listsort = models.ManyToManyField(TicketConfim, verbose_name='工单处理人员', null=False, blank=False)  # 实施顾问
+    ticket_create_user = models.ForeignKey(Account, verbose_name='创建人',on_delete=models.CASCADE, null=False, blank=False)  # 提报人
     create_time = models.DateTimeField('创建时间', auto_created=True, auto_now=True)  # 提报时间
 
-    ticket_file = models.FileField(upload_to="ticket/%Y/%m/%d", null=True)  # 提交附件
+    ticket_file = models.FileField(upload_to="ticket/%Y/%m/%d",verbose_name='文件', null=True)  # 提交附件
     file_name = models.CharField('文件名称', max_length=255, null=True, default='None')
 
     ticket_remark = models.TextField('工单备注', help_text='工单备注', max_length=255, null=True, blank=False,
@@ -61,20 +89,6 @@ class Ticket(models.Model):
 
     def __str__(self):
         return self.ticket_title
-
-    # 显示工单的状态
-    def show_status(self):
-        if self.ticket_status == 3:
-            return '完成'
-        else:
-            return '未完成'
-
-    #显示工单的紧急状态与否
-    def show_ticket_lev(self):
-        if self.ticket_lev == 0:
-            return '一般'
-        else:
-            return '紧急'
 
     #工单创建时间到测试机部署时间的时间间隔
     def create_todev_time(self):
