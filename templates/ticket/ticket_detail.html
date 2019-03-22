@@ -12,7 +12,7 @@
 </style>{% endblock %}
 {% block content %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    {% if user.status == 1 %}
+    {% if user.status == '1' %}
     <a class="navbar-brand" href="{{rootUrl}}/api/home/">首页</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +21,7 @@
     {% endif %}
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            {% if user.status == 0 %}
+            {% if user.status == '0' %}
             <li class="nav-item">
                 <a class="nav-link" href="{{rootUrl}}/api/home/">首页</a>
             </li>
@@ -51,7 +51,7 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" action="{{rootUrl}}/api/logout/">
-        <span class="navbar-text" style="margin-right: 30px;">
+        <span class="navbar-text" >
       您好，{{ user.nickname }}
     </span>
             <div class="btn-group btn-sm" role="group">
@@ -85,7 +85,7 @@
             </div>
             <div class="flex-row d-flex justify-content-start">
                 <p class="font-weight-light">实际执行天数：：</p>
-                {% if ticket.ticket_status == 3 %}
+                {% if ticket.ticket_status == '3' %}
                 <p class="font-weight-bold text-success">{{ticket.done_time}}</p>
                 {% else %}
                 <p class="font-weight-bold font-italic text-danger">未完成</p>
@@ -104,7 +104,7 @@
             </div>
             <div class="flex-row d-flex justify-content-start">
                 <p class="font-weight-light">工单状态：</p>
-                {% if ticket.ticket_status == 3 %}
+                {% if ticket.ticket_status == '3' %}
                 <p class="font-weight-bold text-success">完成</p>
                 {% else %}
                 <p class="font-weight-bold font-italic text-danger">未处理</p>
@@ -122,7 +122,7 @@
             </div>
             <div class="flex-row d-flex justify-content-start">
                 <p class="font-weight-light">紧急转态：</p>
-                {% if ticket.ticket_lev == 0 %}
+                {% if ticket.ticket_lev == '0' %}
                 <p class="font-weight-bold text-success">一般</p>
                 {% else %}
                 <p class="font-weight-bold font-italic text-danger">紧急</p>
@@ -181,8 +181,8 @@
             </div>
             <div class="flex-row d-flex justify-content-start">
                 <p class="font-weight-light">状态：</p>
-                {% if confirm.status == 1 %}
-                {% if confirm.check == 1 %}
+                {% if confirm.status == '1' %}
+                {% if confirm.check == '1' %}
                 {% if ticket.pub_push_time == None %}
                 <p class="font-weight-bold text-info">待部署</p>
                 {% else %}
@@ -196,8 +196,8 @@
                 {% endif %}
             </div>
         </div>
-        {% if confirm.status == 1 %}
-        {% if confirm.transfer == 1 %}
+        {% if confirm.status == '1' %}
+        {% if confirm.transfer == '1' %}
         <div class="flex-row d-flex justify-content-between">
             <p class="font-weight-light">已转派</p>
         </div>
@@ -208,7 +208,7 @@
                 <p class="font-weight-bold">{{confirm.handel_time}}</p>
             </div>
             <div class="flex-row d-flex justify-content-start">
-                {% if confirm.check == 1 %}
+                {% if confirm.check == '1' %}
                 <button type="submit" class="btn btn-secondary disabled">审核通过</button>
                 {% else %}
                 <form class="w-100 needs-validation" action="{{location.href}}" method="POST" id="ticketForm"

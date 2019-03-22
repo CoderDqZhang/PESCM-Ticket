@@ -60,9 +60,9 @@ class TicketView(View):
             if tickt_form.is_valid():
                 try:
                     tickt_form.data['check_box']
-                    isCheckForm = 1 #是否为紧急工单
+                    isCheckForm = '1' #是否为紧急工单
                 except:
-                    isCheckForm = 0
+                    isCheckForm = '0'
 
                 ticket_id = serial_number.get_ticket_id(ticketModel)
                 ticket = Ticket.objects.create(
@@ -105,7 +105,7 @@ class MyticketView(View):
         username_session = request.session.get("username")
         if username_session:
             user = Account.objects.get(user_id=username_session)
-            if user.status == 1:
+            if user.status == '1':
                 myticket = Ticket.objects.get_queryset().filter(
                     ticket_listsort__user__user_id__exact=username_session).order_by(
                     '-create_time')
@@ -205,7 +205,7 @@ class TicketListView(View):
             user = Account.objects.get(user_id=username_session)
             ticket = Ticket.objects.all().order_by(
                 '-create_time')
-            if user.status == 1:
+            if user.status == '1':
                 for ticket1 in ticket:
                     if ticket1.ticket_listsort.filter(user__user_id=username_session).count() == 1:
                         ticket1.ticket_status = ticket1.ticket_listsort.get(user__user_id=username_session).status
@@ -305,7 +305,7 @@ class TicketDetailView(View):
                 if tickt_form.is_valid():
                     ticket_confirm = ticket.ticket_listsort.get(id=tickt_form.data['ticket_id'])
 
-                    ticket_confirm.check = 1
+                    ticket_confirm.check = '1'
                     ticket_confirm.save()
 
                     ticket.save()
@@ -370,23 +370,23 @@ class TicketServerDetailView(View):
             try:
                 request.POST['listsort']
                 tickt_form = TicketConfirmForm(request.POST, )
-                isCheckForm = 0
+                isCheckForm = '0'
             except:
                 try:
                     request.POST['pub_push_time']
                     tickt_form = TicketPubTimeForm(request.POST, )
-                    isCheckForm = 1#(isCheckForm 0为未审核状态下的 1 审核完成后 2为完成后的状态)
+                    isCheckForm = '1'#(isCheckForm 0为未审核状态下的 1 审核完成后 2为完成后的状态)
                 except:
                     tickt_form = TicketConfimForm(request.POST, )
-                    isCheckForm = 2
+                    isCheckForm = '2'
 
             ticket = Ticket.objects.get(ticket_id=request.GET.get('ticket_id'))
 
             # 测试机部署时间 生产机部署时间
-            if isCheckForm == 2:
+            if isCheckForm == '2':
                 if tickt_form.data['dev_push_time'] is not '':
                     ticket.dev_push_time = tickt_form.data['dev_push_time']
-            elif isCheckForm == 1:
+            elif isCheckForm == '1':
                 if tickt_form.data['pub_push_time'] is not '':
                     ticket.pub_push_time = tickt_form.data['pub_push_time']
             departments = Department.objects.all()
@@ -395,9 +395,9 @@ class TicketServerDetailView(View):
                 users = Account.objects.filter(department__partment_code=request.GET.get('department_code'))
 
             ticket_confirm = ticket.ticket_listsort.get(user__user_id=request.session.get("username"))
-            if isCheckForm == 1 and tickt_form.is_valid():
+            if isCheckForm == '1' and tickt_form.is_valid():
                 if ticket.ticket_listsort.filter(check=0).count() == 0:
-                    ticket.ticket_status = 3
+                    ticket.ticket_status = '3'
                 ticket.save()
                 return render(request, 'ticket/server_ticket_detail.html', {'ticket': ticket,
                                                                             'confirms': ticket.ticket_listsort.all(),
@@ -407,14 +407,14 @@ class TicketServerDetailView(View):
                                                                             'departments': departments,
                                                                             'users': users
                                                                             })
-            elif isCheckForm == 2:
+            elif isCheckForm == '2':
                 try:
                     ticket_confirm.confirm_file = request.FILES.get('file_data', None)
                     ticket_confirm.file_name = str(request.FILES.get('file_data'))
                 except:
                     ticket_confirm.confirm_file = None
 
-                ticket_confirm.status = 1
+                ticket_confirm.status = '1'
                 ticket_confirm.content = tickt_form.data['ticket_content']
                 ticket_confirm.confirm_remark = tickt_form.data['confirm_remark']
                 ticket_confirm.handel_time = tickt_form.data['handel_time']
@@ -433,21 +433,21 @@ class TicketServerDetailView(View):
             else:
                 try:
                     # 处理完成后转派给他人
-                    ticket_confirm.transfer = 1
+                    ticket_confirm.transfer = '1'
                     # 默认已经审核通过
                     ticket_confirm.confirm_time = timezone.now()
-                    ticket_confirm.check = 1
-                    ticket_confirm.status = 1
+                    ticket_confirm.check = '1'
+                    ticket_confirm.status = '1'
                     if ticket.ticket_listsort.filter(user__user_id=tickt_form.data["listsort"]).count() == 0:
                         user = Account.objects.get(user_id=tickt_form.data["listsort"])
                         ticket_confim = TicketConfim.objects.create(
                             user=user,
-                            transfer=2,
+                            transfer='2',
                         )
                         ticket.ticket_listsort.add(ticket_confim)
                 except:
                     if ticket.ticket_listsort.filter(check=0).count() == 0:
-                        ticket.ticket_status = 3
+                        ticket.ticket_status = '3'
 
                 ticket_confirm.save()
                 ticket.save()
