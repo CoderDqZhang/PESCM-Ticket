@@ -88,7 +88,7 @@ def home(request):
     if username_session:
         user = Account.objects.get(user_id=username_session)
         #根据甲乙方加载不同请求界面
-        if user.status == 0:
+        if user.status == '0':
             #未完成工单
             actions_tickets = Ticket.objects.filter(Q(ticket_listsort__status=0) &
                                                     Q(ticket_create_user=request.session.get("username"))).\
