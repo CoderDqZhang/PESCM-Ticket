@@ -6,26 +6,40 @@ from django.http import HttpResponse, JsonResponse
 from apscheduler.schedulers.background import BackgroundScheduler
 from django_apscheduler.jobstores import DjangoJobStore, register_events, register_job
 
-# 开启定时工作
+
+import sys, socket
+
 try:
-    # 实例化调度器
-    def my_job():
-        sender_email()
-        sender_admin_email()
-        # 这里写你要执行的任务
-        pass
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.bind(("10.8.8.192", 47200))
+except socket.error:
+    print
+    "!!!scheduler already started, DO NOTHING"
+else:
+    try:
+        # 实例化调度器
+        def my_job():
+            sender_email()
+            sender_admin_email()
+            # 这里写你要执行的任务
+            pass
 
 
-    scheduler = BackgroundScheduler()
-    # 调度器使用DjangoJobStore()
-    # 另一种方式为每天固定时间执行任务，对应代码为：
-    scheduler.add_job(my_job, 'cron', day_of_week='mon-fri', hour=17, minute=30, end_date='2099-05-30')
-    # @register_job(scheduler, 'cron',day_of_week='mon,tue,wed,thu,fri,', hour='09', minute='55', second='00',id='task_time')
-    scheduler.start()
-except Exception as e:
-    print(e)
-    # 有错误就停止定时器
-    scheduler.shutdown()
+        scheduler = BackgroundScheduler()
+        # 调度器使用DjangoJobStore()
+        # 另一种方式为每天固定时间执行任务，对应代码为：
+        # scheduler.add_job(my_job, 'interval', seconds=5)
+
+        scheduler.add_job(my_job, 'cron', day_of_week='mon-fri', hour=8, minute=30, end_date='2099-05-30')
+        # @register_job(scheduler, 'cron',day_of_week='mon,tue,wed,thu,fri,', hour='09', minute='55', second='00',id='task_time')
+        scheduler.start()
+    except Exception as e:
+        print(e)
+        # 有错误就停止定时器
+        scheduler.shutdown()
+
+
+
 
 
 # 发送指定的工单
@@ -87,6 +101,7 @@ def sender_email():
                 senderuser = [acount.email]
                 for ticket in tickets:
                     strs = strs + '工单标题' + ticket.ticket_title + '   ' + '工单编号' + str(ticket.ticket_id) + '\n'
+
                 try:
                     send_mail('未完成工单提醒', strs,
                       'redbullticket@163.com',
@@ -97,6 +112,7 @@ def sender_email():
                 senderuser = [acount.email]
                 for ticket in tickets_confirm:
                     strs_confirm = strs_confirm + '工单标题' + ticket.ticket_title + '   ' + '工单编号' + str(ticket.ticket_id) + '\n'
+
                 try:
                     send_mail('未完成工单提醒', strs_confirm,
                       'redbullticket@163.com',
