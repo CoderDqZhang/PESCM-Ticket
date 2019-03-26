@@ -5,6 +5,7 @@ from datetime import date, time, datetime, timedelta
 from django.http import HttpResponse, JsonResponse
 from apscheduler.schedulers.background import BackgroundScheduler
 from django_apscheduler.jobstores import DjangoJobStore, register_events, register_job
+from django.forms.models import model_to_dict
 
 
 import sys, socket
@@ -98,6 +99,7 @@ def sender_email():
             tickets_confirm = all_ticket.filter(ticket_listsort__user=acount)
             tickets = all_ticket.filter(ticket_create_user=acount)
             if tickets.count() > 0:
+
                 senderuser = [acount.email]
                 for ticket in tickets:
                     strs = strs + '工单标题' + ticket.ticket_title + '   ' + '工单编号' + str(ticket.ticket_id) + '\n'
@@ -133,8 +135,13 @@ def sender_admin_email():
             group_status.append(group.group_status)
         strs = ''
         senderuser = []
-        for user in Account.objects.filter(group__group_status=group.group_status).filter(group__group_menu='管理员'):
-            senderuser.append(user.email)
+        groups_admins = Account.objects.filter(group__group_status=group.group_status).filter(group__group_menu='管理员')
+        print(groups_admins)
+        for user in groups_admins:
+            if user.email != None:
+                senderuser.append(user.email)
+        if senderuser.count == 0:
+            break;
         tickets = all_ticket.filter(ticket_create_user__group__group_status=group.group_status)
         for ticket in tickets:
             strs = strs + '工单标题' + ticket.ticket_title + '   ' + '工单编号' + str(ticket.ticket_id) + '\n'
@@ -144,3 +151,36 @@ def sender_admin_email():
                       senderuser, fail_silently=False)
         except:
             print('error')
+
+
+# 根据数据库中所有未完成工单
+def sender_admin_email_test(request):
+    all_ticket = Ticket.objects.filter(ticket_status=0)
+    all_group = AccountGroup.objects.all()
+    group_status = []
+    testjson = []
+    for group in all_group:
+        if group.group_status in group_status:
+            continue;
+        else:
+            group_status.append(group.group_status)
+        strs = ''
+        senderuser = []
+        groups_admins = Account.objects.filter(group__group_status=group.group_status).filter(group__group_menu='管理员')
+        for user in groups_admins:
+            if user.email != None:
+                json = model_to_dict(user,exclude=['avatar'])
+                testjson.append(json)
+                senderuser.append(user.email)
+        tickets = all_ticket.filter(ticket_create_user__group__group_status=group.group_status)
+        for ticket in tickets:
+            strs = strs + '工单标题' + ticket.ticket_title + '   ' + '工单编号' + str(ticket.ticket_id) + '\n'
+        # try:
+        #     send_mail('未完成工单提醒', strs,
+        #               'redbullticket@163.com',
+        #               senderuser, fail_silently=False)
+        # except:
+        #     print('error')
+        print(senderuser)
+
+    return JsonResponse({'success': testjson})

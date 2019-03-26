@@ -32,5 +32,6 @@ urlpatterns = [
 
 
     url(r'^ticket/send/test/$', send_email.test_sender_email),
+    url(r'^ticket/send/test1/$', send_email.sender_admin_email_test),
 ]
 

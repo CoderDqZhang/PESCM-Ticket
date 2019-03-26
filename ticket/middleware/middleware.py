@@ -9,7 +9,6 @@ from django.http import HttpResponse, JsonResponse
 class UserSessionMiddleware(MiddlewareMixin):
     def process_request(self,request):
         parpam = str(request.get_full_path()).split('/')
-        print(parpam)
         if request.session.get("username") == None \
                 and request.get_full_path() != '/api/login/' \
                 and 'admin' not in parpam \
