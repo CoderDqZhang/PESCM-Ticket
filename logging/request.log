@@ -4262,3 +4262,9 @@ Traceback (most recent call last):
     o.__class__.__name__)
 TypeError: Object of type 'ImageFieldFile' is not JSON serializable
 >>>>>>> dbbc6901302ff39fd2d7fd295af2ddd3db1ffcba
+WARNING 2019-03-31 10:20:15,266 base Method Not Allowed (PUT): /api/login/
+WARNING 2019-03-31 10:20:15,268 log Method Not Allowed: /api/login/
+WARNING 2019-03-31 10:20:15,339 base Method Not Allowed (PUT): /api/login/
+WARNING 2019-03-31 10:20:15,340 log Method Not Allowed: /api/login/
+WARNING 2019-03-31 10:20:15,409 base Method Not Allowed (PUT): /api/login/
+WARNING 2019-03-31 10:20:15,410 log Method Not Allowed: /api/login/
